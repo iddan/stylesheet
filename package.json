@@ -4,6 +4,7 @@
   "main": "src/css-react-components-loader",
   "license": "MIT",
   "dependencies": {
+    "camelcase": "^4.0.0",
     "classnames": "^2.2.5",
     "loader-utils": "^1.0.4",
     "lodash": "^4.17.4",

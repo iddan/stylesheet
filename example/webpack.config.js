@@ -9,8 +9,8 @@ module.exports = {
             loader: 'css-loader',
             query: {
               modules: true,
-            }
-          }
+            },
+          },
         ],
       },
     ],
@@ -19,5 +19,5 @@ module.exports = {
   output: {
     filename: 'dist/bundle.js',
   },
-  devtool: 'sourcemaps'
+  devtool: 'sourcemaps',
 };

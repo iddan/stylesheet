@@ -2,6 +2,7 @@ const path = require('path');
 const { set, map } = require('lodash');
 const { stringifyRequest } = require('loader-utils');
 const postcss = require('postcss');
+const camelCase = require('camelcase');
 const postcssPlugin = require('./post-css-plugin');
 const validAttributes = require('./utils/validAttributes');
 
@@ -19,7 +20,7 @@ module.exports = function(content) {
       set(scope, ['components', component, 'className'], className);
     },
     onAttr(component, property, attr) {
-      set(scope, ['components', component, 'attrs', property], attr);
+      set(scope, ['components', component, 'attrs', camelCase(property)], attr);
     },
   })])
   .process(string)

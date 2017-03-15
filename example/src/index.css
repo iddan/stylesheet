@@ -4,7 +4,7 @@
   color: tomato;
 }
 
-.Label-data-color {
+.Label-color {
   color: attr(color color);
-  font-size: attr(font-size px);
+  font-size: attr(fontSize px);
 }
