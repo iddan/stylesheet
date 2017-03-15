@@ -1,0 +1,10 @@
+.Label {
+  font-family: monospace;
+  font-size: 14px;
+  color: tomato;
+}
+
+.Label-data-color {
+  color: attr(color color);
+  font-size: attr(font-size px);
+}
