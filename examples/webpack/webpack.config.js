@@ -4,7 +4,7 @@ module.exports = {
       {        
         test: /\.css/,
         loaders: [
-          'css-react-components-loader',
+          'reactive-css/loader',
           {
             loader: 'css-loader',
             query: {
@@ -14,6 +14,10 @@ module.exports = {
         ],
       },
     ],
+  },
+  externals: {
+    'react': 'React',
+    'react-dom': 'ReactDOM',
   },
   entry: './src/index.js',
   output: {

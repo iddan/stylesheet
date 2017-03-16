@@ -1,5 +1,5 @@
 const postcss = require('postcss');
-const { partial } = require('lodash');
+const partial = require('lodash/partial');
 const reverseMap = require('./utils/reverse-map');
 
 /**
@@ -18,12 +18,12 @@ module.exports = postcss.plugin('parse-css', ({ locals, onComponent, onProp, onA
       if (isProp(className)) {
         const [, component, prop] = className.split(/(^.+?)-/);
         onProp(component, prop, localClassName);
-        parseAttrs(partial(onAttr, [component]), rule);
+        parseAttrs(partial(onAttr, component, localClassName), rule);
         return rule;
       }
       if (isComponent(className)) {
         onComponent(className, localClassName);
-        parseAttrs(partial(onAttr, [className]), rule);
+        parseAttrs(partial(onAttr, className, localClassName), rule);
         return rule;
       }
       return rule;

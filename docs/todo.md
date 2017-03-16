@@ -1,11 +1,13 @@
- - [ ] filter non validAttr
- - attr() fallback arguments
+ - [x] filter non validAttr
+ - [x] attr() fallback arguments
  - [x] resolve async
 
  - [ ] write documentation
    - [ ] motivation (declarativity, seperation, bundle size)
-   - [ ] usage
-   - [ ] prior art
+   - [x] usage
+   - [x] prior art
+   - [ ] API
+   - [ ] Intenal API
    - [ ] code comments
    - [ ] JSDoc
    - [x] flow? no.

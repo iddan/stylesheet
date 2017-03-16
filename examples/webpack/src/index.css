@@ -1,0 +1,9 @@
+.Label {
+  font-family: monospace;
+  font-size: 14px;
+}
+
+.Label-highlight {
+  color: attr(color color, tomato);
+  font-size: attr(fontSize em);
+}

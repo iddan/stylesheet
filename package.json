@@ -1,11 +1,11 @@
 {
-  "name": "css-react-components-loader",
+  "name": "reactive-css",
   "version": "0.0.1",
-  "main": "src/css-react-components-loader",
   "license": "MIT",
   "dependencies": {
     "camelcase": "^4.0.0",
     "classnames": "^2.2.5",
+    "insert-css": "^2.0.0",
     "loader-utils": "^1.0.4",
     "lodash": "^4.17.4",
     "postcss": "^5.2.16",

@@ -1,0 +1,639 @@
+
+{
+  "errors": [],
+  "warnings": [],
+  "version": "2.2.1",
+  "hash": "2783c8a26229e2745a43",
+  "time": 3636,
+  "publicPath": "",
+  "assetsByChunkName": {
+    "main": [
+      "dist/bundle.js",
+      "dist/bundle.js.map"
+    ]
+  },
+  "assets": [
+    {
+      "name": "dist/bundle.js",
+      "size": 9796,
+      "chunks": [
+        0
+      ],
+      "chunkNames": [
+        "main"
+      ],
+      "emitted": true
+    },
+    {
+      "name": "dist/bundle.js.map",
+      "size": 9923,
+      "chunks": [
+        0
+      ],
+      "chunkNames": [
+        "main"
+      ],
+      "emitted": true
+    }
+  ],
+  "entrypoints": {
+    "main": {
+      "chunks": [
+        0
+      ],
+      "assets": [
+        "dist/bundle.js",
+        "dist/bundle.js.map"
+      ]
+    }
+  },
+  "chunks": [
+    {
+      "id": 0,
+      "rendered": true,
+      "initial": true,
+      "entry": true,
+      "extraAsync": false,
+      "size": 4783,
+      "names": [
+        "main"
+      ],
+      "files": [
+        "dist/bundle.js",
+        "dist/bundle.js.map"
+      ],
+      "hash": "521ad7c1cc9cd3a80e2c",
+      "parents": [],
+      "modules": [
+        {
+          "id": 0,
+          "identifier": "external \"React\"",
+          "name": "external \"React\"",
+          "index": 1,
+          "index2": 0,
+          "size": 42,
+          "cacheable": false,
+          "built": false,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            0
+          ],
+          "assets": [],
+          "issuer": "/Users/iddan/css-modules-styled-components-loader/example/src/index.js",
+          "issuerId": 6,
+          "issuerName": "./src/index.js",
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "reasons": [
+            {
+              "moduleId": 4,
+              "moduleIdentifier": "/Users/iddan/css-modules-styled-components-loader/src/create-styled-component.js",
+              "module": "../src/create-styled-component.js",
+              "moduleName": "../src/create-styled-component.js",
+              "type": "harmony import",
+              "userRequest": "react",
+              "loc": "1:0-53"
+            },
+            {
+              "moduleId": 6,
+              "moduleIdentifier": "/Users/iddan/css-modules-styled-components-loader/example/src/index.js",
+              "module": "./src/index.js",
+              "moduleName": "./src/index.js",
+              "type": "harmony import",
+              "userRequest": "react",
+              "loc": "1:0-45"
+            }
+          ],
+          "usedExports": [
+            "PureComponent",
+            "default",
+            "createElement"
+          ],
+          "providedExports": null,
+          "depth": 1
+        },
+        {
+          "id": 1,
+          "identifier": "/Users/iddan/css-modules-styled-components-loader/src/css-react-components-loader.js!/Users/iddan/css-modules-styled-components-loader/example/node_modules/css-loader/index.js??ref--0-1!/Users/iddan/css-modules-styled-components-loader/example/src/index.css",
+          "name": "./src/index.css",
+          "index": 3,
+          "index2": 5,
+          "size": 885,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            0
+          ],
+          "assets": [],
+          "issuer": "/Users/iddan/css-modules-styled-components-loader/example/src/index.js",
+          "issuerId": 6,
+          "issuerName": "./src/index.js",
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "reasons": [
+            {
+              "moduleId": 6,
+              "moduleIdentifier": "/Users/iddan/css-modules-styled-components-loader/example/src/index.js",
+              "module": "./src/index.js",
+              "moduleName": "./src/index.js",
+              "type": "harmony import",
+              "userRequest": "./index.css",
+              "loc": "3:0-36"
+            }
+          ],
+          "usedExports": [
+            "Label"
+          ],
+          "providedExports": [
+            "Label"
+          ],
+          "depth": 1,
+          "source": "\n      import createStyledComponent from \"../../src/create-styled-component\";\n\n      const style = document.createElement('style');\n      style.type = 'text/css';\n      style.appendChild(document.createTextNode(`._3Jf2UAh7lDlg9lbTvdlWv- {\n  font-family: monospace;\n  font-size: 14px;\n}\n\n.NnwMdaOW4vvtIK60BTEj- {\n  color: attr(color color, tomato);\n  font-size: attr(fontSize em);\n}`));\n      document.head.appendChild(style);\n\n      \n      export const Label = createStyledComponent({\"displayName\":\"Label\",\"className\":\"_3Jf2UAh7lDlg9lbTvdlWv-\",\"props\":{\"highlight\":\"NnwMdaOW4vvtIK60BTEj-\"},\"attrs\":{\"color\":{\"name\":\"color\",\"className\":\"NnwMdaOW4vvtIK60BTEj-\",\"type\":\"color\",\"defaultValue\":\"tomato\"},\"fontSize\":{\"name\":\"fontSize\",\"className\":\"NnwMdaOW4vvtIK60BTEj-\",\"type\":\"em\"}},\"invalidProps\":{\"highlight\":true,\"attr(color color, tomato)\":true,\"attr(fontSize em)\":true}});\n      \n    "
+        },
+        {
+          "id": 2,
+          "identifier": "external \"ReactDOM\"",
+          "name": "external \"ReactDOM\"",
+          "index": 2,
+          "index2": 1,
+          "size": 42,
+          "cacheable": false,
+          "built": false,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            0
+          ],
+          "assets": [],
+          "issuer": "/Users/iddan/css-modules-styled-components-loader/example/src/index.js",
+          "issuerId": 6,
+          "issuerName": "./src/index.js",
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "reasons": [
+            {
+              "moduleId": 6,
+              "moduleIdentifier": "/Users/iddan/css-modules-styled-components-loader/example/src/index.js",
+              "module": "./src/index.js",
+              "moduleName": "./src/index.js",
+              "type": "harmony import",
+              "userRequest": "react-dom",
+              "loc": "2:0-33"
+            }
+          ],
+          "usedExports": [
+            "default"
+          ],
+          "providedExports": null,
+          "depth": 1
+        },
+        {
+          "id": 3,
+          "identifier": "/Users/iddan/css-modules-styled-components-loader/node_modules/classnames/index.js",
+          "name": "../~/classnames/index.js",
+          "index": 5,
+          "index2": 2,
+          "size": 1102,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            0
+          ],
+          "assets": [],
+          "issuer": "/Users/iddan/css-modules-styled-components-loader/src/create-styled-component.js",
+          "issuerId": 4,
+          "issuerName": "../src/create-styled-component.js",
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "reasons": [
+            {
+              "moduleId": 4,
+              "moduleIdentifier": "/Users/iddan/css-modules-styled-components-loader/src/create-styled-component.js",
+              "module": "../src/create-styled-component.js",
+              "moduleName": "../src/create-styled-component.js",
+              "type": "harmony import",
+              "userRequest": "classnames",
+              "loc": "2:0-36"
+            }
+          ],
+          "usedExports": [
+            "default"
+          ],
+          "providedExports": null,
+          "depth": 3,
+          "source": "/*!\n  Copyright (c) 2016 Jed Watson.\n  Licensed under the MIT License (MIT), see\n  http://jedwatson.github.io/classnames\n*/\n/* global define */\n\n(function () {\n\t'use strict';\n\n\tvar hasOwn = {}.hasOwnProperty;\n\n\tfunction classNames () {\n\t\tvar classes = [];\n\n\t\tfor (var i = 0; i < arguments.length; i++) {\n\t\t\tvar arg = arguments[i];\n\t\t\tif (!arg) continue;\n\n\t\t\tvar argType = typeof arg;\n\n\t\t\tif (argType === 'string' || argType === 'number') {\n\t\t\t\tclasses.push(arg);\n\t\t\t} else if (Array.isArray(arg)) {\n\t\t\t\tclasses.push(classNames.apply(null, arg));\n\t\t\t} else if (argType === 'object') {\n\t\t\t\tfor (var key in arg) {\n\t\t\t\t\tif (hasOwn.call(arg, key) && arg[key]) {\n\t\t\t\t\t\tclasses.push(key);\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\n\t\treturn classes.join(' ');\n\t}\n\n\tif (typeof module !== 'undefined' && module.exports) {\n\t\tmodule.exports = classNames;\n\t} else if (typeof define === 'function' && typeof define.amd === 'object' && define.amd) {\n\t\t// register as 'classnames', consistent with npm package name\n\t\tdefine('classnames', [], function () {\n\t\t\treturn classNames;\n\t\t});\n\t} else {\n\t\twindow.classNames = classNames;\n\t}\n}());\n"
+        },
+        {
+          "id": 4,
+          "identifier": "/Users/iddan/css-modules-styled-components-loader/src/create-styled-component.js",
+          "name": "../src/create-styled-component.js",
+          "index": 4,
+          "index2": 4,
+          "size": 1605,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            0
+          ],
+          "assets": [],
+          "issuer": "/Users/iddan/css-modules-styled-components-loader/src/css-react-components-loader.js!/Users/iddan/css-modules-styled-components-loader/example/node_modules/css-loader/index.js??ref--0-1!/Users/iddan/css-modules-styled-components-loader/example/src/index.css",
+          "issuerId": 1,
+          "issuerName": "./src/index.css",
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "reasons": [
+            {
+              "moduleId": 1,
+              "moduleIdentifier": "/Users/iddan/css-modules-styled-components-loader/src/css-react-components-loader.js!/Users/iddan/css-modules-styled-components-loader/example/node_modules/css-loader/index.js??ref--0-1!/Users/iddan/css-modules-styled-components-loader/example/src/index.css",
+              "module": "./src/index.css",
+              "moduleName": "./src/index.css",
+              "type": "harmony import",
+              "userRequest": "../../src/create-styled-component",
+              "loc": "2:6-76"
+            }
+          ],
+          "usedExports": [
+            "default"
+          ],
+          "providedExports": [
+            "default"
+          ],
+          "depth": 2,
+          "source": "import { createElement, PureComponent } from 'react';\nimport classnames from 'classnames';\nimport postfixAttrValue from './utils/postfix-attr-value';\n\n/**\n * @param {string} displayName \n * @param {string} className \n * @param {Object} propsMap \n * @param {string[]} attrs \n */\nexport default function createStyledComponent({ displayName, className, props: propsMap, attrs, invalidProps }) {\n  class StyledComponent extends PureComponent {\n    render() {\n      const { props } = this;\n      const classNames = classnames(className, Object.keys(props).map(key => propsMap[key]));\n      return createElement('div', Object.assign(\n        {},\n        omitBy(props, (value, key) => invalidProps[key]),\n        {\n          className: classNames,\n          style: Object.assign(\n            {},\n            props.style,\n            mapValues(attrs, ({ name, type, defaultValue, className }) => {\n              if (!classNames.includes(className)) {\n                return null;\n              }\n              const prop = props[name];\n              return postfixAttrValue(prop, type);\n            })\n          ),\n        })\n      );\n    }\n  }\n  StyledComponent.displayName = displayName;\n  return StyledComponent;\n}\n\nconst omitBy = (object, filter) => {\n  const newObj = {};\n  for (let key of Object.keys(object)) {\n    const value = object[key];\n    if (!filter(value, key)) {\n      newObj[key] = value; \n    }\n  }\n  return newObj;\n};\n\nconst mapValues = (object, transformer) => {\n  const newObj = {};\n  for (let key of Object.keys(object)) {\n    newObj[key] = transformer(object[key]);\n  }\n  return newObj;\n};"
+        },
+        {
+          "id": 5,
+          "identifier": "/Users/iddan/css-modules-styled-components-loader/src/utils/postfix-attr-value.js",
+          "name": "../src/utils/postfix-attr-value.js",
+          "index": 6,
+          "index2": 3,
+          "size": 467,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            0
+          ],
+          "assets": [],
+          "issuer": "/Users/iddan/css-modules-styled-components-loader/src/create-styled-component.js",
+          "issuerId": 4,
+          "issuerName": "../src/create-styled-component.js",
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "reasons": [
+            {
+              "moduleId": 4,
+              "moduleIdentifier": "/Users/iddan/css-modules-styled-components-loader/src/create-styled-component.js",
+              "module": "../src/create-styled-component.js",
+              "moduleName": "../src/create-styled-component.js",
+              "type": "harmony import",
+              "userRequest": "./utils/postfix-attr-value",
+              "loc": "3:0-58"
+            }
+          ],
+          "usedExports": [
+            "default"
+          ],
+          "providedExports": [
+            "default"
+          ],
+          "depth": 3,
+          "source": "export default function postfixAttrValue(value, type) {\n  switch (type) {\n    case 'em':\n    case 'ex':\n    case 'px':\n    case 'rem':\n    case 'vw':\n    case 'vh':\n    case 'vmin':\n    case 'vmax':\n    case 'mm':\n    case 'cm':\n    case 'in':\n    case 'pt':\n    case 'pc':\n    case 'deg':\n    case 'grad':\n    case 'rad':\n    case 's':\n    case 'ms':\n    case 'Hz':\n    case 'kHz':\n    case '%':\n      return `${value}${type}`;\n    default:\n      return value;\n  }\n}"
+        },
+        {
+          "id": 6,
+          "identifier": "/Users/iddan/css-modules-styled-components-loader/example/src/index.js",
+          "name": "./src/index.js",
+          "index": 0,
+          "index2": 6,
+          "size": 640,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            0
+          ],
+          "assets": [],
+          "issuer": null,
+          "issuerId": null,
+          "issuerName": null,
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "reasons": [],
+          "usedExports": true,
+          "providedExports": null,
+          "depth": 0,
+          "source": "import React, { PureComponent } from 'react';\nimport ReactDOM from 'react-dom';\nimport { Label } from './index.css';\n\nclass App extends PureComponent {\n  constructor(props) {\n    super(props);\n    this.state = {};\n  }\n  render() {\n    return React.createElement(Label, {\n      color: this.state.color,\n      fontSize: Math.random() * 10,\n      highlight: true,\n      onClick: () => this.setState({\n        color: `rgb(${(Math.random() * 255).toFixed(0)}, ${(Math.random() * 255).toFixed(0)}, ${(Math.random() * 255).toFixed(0)})` }),\n    }, 'Hello World!');\n  }\n}\n\nReactDOM.render(React.createElement(App), document.querySelector('#root'));"
+        }
+      ],
+      "filteredModules": 0,
+      "origins": [
+        {
+          "moduleId": 6,
+          "module": "/Users/iddan/css-modules-styled-components-loader/example/src/index.js",
+          "moduleIdentifier": "/Users/iddan/css-modules-styled-components-loader/example/src/index.js",
+          "moduleName": "./src/index.js",
+          "loc": "",
+          "name": "main",
+          "reasons": []
+        }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": 0,
+      "identifier": "external \"React\"",
+      "name": "external \"React\"",
+      "index": 1,
+      "index2": 0,
+      "size": 42,
+      "cacheable": false,
+      "built": false,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "assets": [],
+      "issuer": "/Users/iddan/css-modules-styled-components-loader/example/src/index.js",
+      "issuerId": 6,
+      "issuerName": "./src/index.js",
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "reasons": [
+        {
+          "moduleId": 4,
+          "moduleIdentifier": "/Users/iddan/css-modules-styled-components-loader/src/create-styled-component.js",
+          "module": "../src/create-styled-component.js",
+          "moduleName": "../src/create-styled-component.js",
+          "type": "harmony import",
+          "userRequest": "react",
+          "loc": "1:0-53"
+        },
+        {
+          "moduleId": 6,
+          "moduleIdentifier": "/Users/iddan/css-modules-styled-components-loader/example/src/index.js",
+          "module": "./src/index.js",
+          "moduleName": "./src/index.js",
+          "type": "harmony import",
+          "userRequest": "react",
+          "loc": "1:0-45"
+        }
+      ],
+      "usedExports": [
+        "PureComponent",
+        "default",
+        "createElement"
+      ],
+      "providedExports": null,
+      "depth": 1
+    },
+    {
+      "id": 1,
+      "identifier": "/Users/iddan/css-modules-styled-components-loader/src/css-react-components-loader.js!/Users/iddan/css-modules-styled-components-loader/example/node_modules/css-loader/index.js??ref--0-1!/Users/iddan/css-modules-styled-components-loader/example/src/index.css",
+      "name": "./src/index.css",
+      "index": 3,
+      "index2": 5,
+      "size": 885,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "assets": [],
+      "issuer": "/Users/iddan/css-modules-styled-components-loader/example/src/index.js",
+      "issuerId": 6,
+      "issuerName": "./src/index.js",
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "reasons": [
+        {
+          "moduleId": 6,
+          "moduleIdentifier": "/Users/iddan/css-modules-styled-components-loader/example/src/index.js",
+          "module": "./src/index.js",
+          "moduleName": "./src/index.js",
+          "type": "harmony import",
+          "userRequest": "./index.css",
+          "loc": "3:0-36"
+        }
+      ],
+      "usedExports": [
+        "Label"
+      ],
+      "providedExports": [
+        "Label"
+      ],
+      "depth": 1,
+      "source": "\n      import createStyledComponent from \"../../src/create-styled-component\";\n\n      const style = document.createElement('style');\n      style.type = 'text/css';\n      style.appendChild(document.createTextNode(`._3Jf2UAh7lDlg9lbTvdlWv- {\n  font-family: monospace;\n  font-size: 14px;\n}\n\n.NnwMdaOW4vvtIK60BTEj- {\n  color: attr(color color, tomato);\n  font-size: attr(fontSize em);\n}`));\n      document.head.appendChild(style);\n\n      \n      export const Label = createStyledComponent({\"displayName\":\"Label\",\"className\":\"_3Jf2UAh7lDlg9lbTvdlWv-\",\"props\":{\"highlight\":\"NnwMdaOW4vvtIK60BTEj-\"},\"attrs\":{\"color\":{\"name\":\"color\",\"className\":\"NnwMdaOW4vvtIK60BTEj-\",\"type\":\"color\",\"defaultValue\":\"tomato\"},\"fontSize\":{\"name\":\"fontSize\",\"className\":\"NnwMdaOW4vvtIK60BTEj-\",\"type\":\"em\"}},\"invalidProps\":{\"highlight\":true,\"attr(color color, tomato)\":true,\"attr(fontSize em)\":true}});\n      \n    "
+    },
+    {
+      "id": 2,
+      "identifier": "external \"ReactDOM\"",
+      "name": "external \"ReactDOM\"",
+      "index": 2,
+      "index2": 1,
+      "size": 42,
+      "cacheable": false,
+      "built": false,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "assets": [],
+      "issuer": "/Users/iddan/css-modules-styled-components-loader/example/src/index.js",
+      "issuerId": 6,
+      "issuerName": "./src/index.js",
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "reasons": [
+        {
+          "moduleId": 6,
+          "moduleIdentifier": "/Users/iddan/css-modules-styled-components-loader/example/src/index.js",
+          "module": "./src/index.js",
+          "moduleName": "./src/index.js",
+          "type": "harmony import",
+          "userRequest": "react-dom",
+          "loc": "2:0-33"
+        }
+      ],
+      "usedExports": [
+        "default"
+      ],
+      "providedExports": null,
+      "depth": 1
+    },
+    {
+      "id": 3,
+      "identifier": "/Users/iddan/css-modules-styled-components-loader/node_modules/classnames/index.js",
+      "name": "../~/classnames/index.js",
+      "index": 5,
+      "index2": 2,
+      "size": 1102,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "assets": [],
+      "issuer": "/Users/iddan/css-modules-styled-components-loader/src/create-styled-component.js",
+      "issuerId": 4,
+      "issuerName": "../src/create-styled-component.js",
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "reasons": [
+        {
+          "moduleId": 4,
+          "moduleIdentifier": "/Users/iddan/css-modules-styled-components-loader/src/create-styled-component.js",
+          "module": "../src/create-styled-component.js",
+          "moduleName": "../src/create-styled-component.js",
+          "type": "harmony import",
+          "userRequest": "classnames",
+          "loc": "2:0-36"
+        }
+      ],
+      "usedExports": [
+        "default"
+      ],
+      "providedExports": null,
+      "depth": 3,
+      "source": "/*!\n  Copyright (c) 2016 Jed Watson.\n  Licensed under the MIT License (MIT), see\n  http://jedwatson.github.io/classnames\n*/\n/* global define */\n\n(function () {\n\t'use strict';\n\n\tvar hasOwn = {}.hasOwnProperty;\n\n\tfunction classNames () {\n\t\tvar classes = [];\n\n\t\tfor (var i = 0; i < arguments.length; i++) {\n\t\t\tvar arg = arguments[i];\n\t\t\tif (!arg) continue;\n\n\t\t\tvar argType = typeof arg;\n\n\t\t\tif (argType === 'string' || argType === 'number') {\n\t\t\t\tclasses.push(arg);\n\t\t\t} else if (Array.isArray(arg)) {\n\t\t\t\tclasses.push(classNames.apply(null, arg));\n\t\t\t} else if (argType === 'object') {\n\t\t\t\tfor (var key in arg) {\n\t\t\t\t\tif (hasOwn.call(arg, key) && arg[key]) {\n\t\t\t\t\t\tclasses.push(key);\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\n\t\treturn classes.join(' ');\n\t}\n\n\tif (typeof module !== 'undefined' && module.exports) {\n\t\tmodule.exports = classNames;\n\t} else if (typeof define === 'function' && typeof define.amd === 'object' && define.amd) {\n\t\t// register as 'classnames', consistent with npm package name\n\t\tdefine('classnames', [], function () {\n\t\t\treturn classNames;\n\t\t});\n\t} else {\n\t\twindow.classNames = classNames;\n\t}\n}());\n"
+    },
+    {
+      "id": 4,
+      "identifier": "/Users/iddan/css-modules-styled-components-loader/src/create-styled-component.js",
+      "name": "../src/create-styled-component.js",
+      "index": 4,
+      "index2": 4,
+      "size": 1605,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "assets": [],
+      "issuer": "/Users/iddan/css-modules-styled-components-loader/src/css-react-components-loader.js!/Users/iddan/css-modules-styled-components-loader/example/node_modules/css-loader/index.js??ref--0-1!/Users/iddan/css-modules-styled-components-loader/example/src/index.css",
+      "issuerId": 1,
+      "issuerName": "./src/index.css",
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "reasons": [
+        {
+          "moduleId": 1,
+          "moduleIdentifier": "/Users/iddan/css-modules-styled-components-loader/src/css-react-components-loader.js!/Users/iddan/css-modules-styled-components-loader/example/node_modules/css-loader/index.js??ref--0-1!/Users/iddan/css-modules-styled-components-loader/example/src/index.css",
+          "module": "./src/index.css",
+          "moduleName": "./src/index.css",
+          "type": "harmony import",
+          "userRequest": "../../src/create-styled-component",
+          "loc": "2:6-76"
+        }
+      ],
+      "usedExports": [
+        "default"
+      ],
+      "providedExports": [
+        "default"
+      ],
+      "depth": 2,
+      "source": "import { createElement, PureComponent } from 'react';\nimport classnames from 'classnames';\nimport postfixAttrValue from './utils/postfix-attr-value';\n\n/**\n * @param {string} displayName \n * @param {string} className \n * @param {Object} propsMap \n * @param {string[]} attrs \n */\nexport default function createStyledComponent({ displayName, className, props: propsMap, attrs, invalidProps }) {\n  class StyledComponent extends PureComponent {\n    render() {\n      const { props } = this;\n      const classNames = classnames(className, Object.keys(props).map(key => propsMap[key]));\n      return createElement('div', Object.assign(\n        {},\n        omitBy(props, (value, key) => invalidProps[key]),\n        {\n          className: classNames,\n          style: Object.assign(\n            {},\n            props.style,\n            mapValues(attrs, ({ name, type, defaultValue, className }) => {\n              if (!classNames.includes(className)) {\n                return null;\n              }\n              const prop = props[name];\n              return postfixAttrValue(prop, type);\n            })\n          ),\n        })\n      );\n    }\n  }\n  StyledComponent.displayName = displayName;\n  return StyledComponent;\n}\n\nconst omitBy = (object, filter) => {\n  const newObj = {};\n  for (let key of Object.keys(object)) {\n    const value = object[key];\n    if (!filter(value, key)) {\n      newObj[key] = value; \n    }\n  }\n  return newObj;\n};\n\nconst mapValues = (object, transformer) => {\n  const newObj = {};\n  for (let key of Object.keys(object)) {\n    newObj[key] = transformer(object[key]);\n  }\n  return newObj;\n};"
+    },
+    {
+      "id": 5,
+      "identifier": "/Users/iddan/css-modules-styled-components-loader/src/utils/postfix-attr-value.js",
+      "name": "../src/utils/postfix-attr-value.js",
+      "index": 6,
+      "index2": 3,
+      "size": 467,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "assets": [],
+      "issuer": "/Users/iddan/css-modules-styled-components-loader/src/create-styled-component.js",
+      "issuerId": 4,
+      "issuerName": "../src/create-styled-component.js",
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "reasons": [
+        {
+          "moduleId": 4,
+          "moduleIdentifier": "/Users/iddan/css-modules-styled-components-loader/src/create-styled-component.js",
+          "module": "../src/create-styled-component.js",
+          "moduleName": "../src/create-styled-component.js",
+          "type": "harmony import",
+          "userRequest": "./utils/postfix-attr-value",
+          "loc": "3:0-58"
+        }
+      ],
+      "usedExports": [
+        "default"
+      ],
+      "providedExports": [
+        "default"
+      ],
+      "depth": 3,
+      "source": "export default function postfixAttrValue(value, type) {\n  switch (type) {\n    case 'em':\n    case 'ex':\n    case 'px':\n    case 'rem':\n    case 'vw':\n    case 'vh':\n    case 'vmin':\n    case 'vmax':\n    case 'mm':\n    case 'cm':\n    case 'in':\n    case 'pt':\n    case 'pc':\n    case 'deg':\n    case 'grad':\n    case 'rad':\n    case 's':\n    case 'ms':\n    case 'Hz':\n    case 'kHz':\n    case '%':\n      return `${value}${type}`;\n    default:\n      return value;\n  }\n}"
+    },
+    {
+      "id": 6,
+      "identifier": "/Users/iddan/css-modules-styled-components-loader/example/src/index.js",
+      "name": "./src/index.js",
+      "index": 0,
+      "index2": 6,
+      "size": 640,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "assets": [],
+      "issuer": null,
+      "issuerId": null,
+      "issuerName": null,
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "reasons": [],
+      "usedExports": true,
+      "providedExports": null,
+      "depth": 0,
+      "source": "import React, { PureComponent } from 'react';\nimport ReactDOM from 'react-dom';\nimport { Label } from './index.css';\n\nclass App extends PureComponent {\n  constructor(props) {\n    super(props);\n    this.state = {};\n  }\n  render() {\n    return React.createElement(Label, {\n      color: this.state.color,\n      fontSize: Math.random() * 10,\n      highlight: true,\n      onClick: () => this.setState({\n        color: `rgb(${(Math.random() * 255).toFixed(0)}, ${(Math.random() * 255).toFixed(0)}, ${(Math.random() * 255).toFixed(0)})` }),\n    }, 'Hello World!');\n  }\n}\n\nReactDOM.render(React.createElement(App), document.querySelector('#root'));"
+    }
+  ],
+  "filteredModules": 0,
+  "children": []
+}
