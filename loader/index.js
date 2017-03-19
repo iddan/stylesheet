@@ -1,11 +1,11 @@
 const { set } = require('lodash');
-const { parseQuery } = require('loader-utils');
+const { getOptions } = require('loader-utils');
 const postcss = require('postcss');
 const reactWrap = require('../react/wrap');
 const postcssPlugin = require('../core/post-css-plugin');
 
 module.exports = function(content) {
-  const { bindings } = parseQuery(this.query);
+  const { bindings } = getOptions(this);
   const { locals } = this.exec(content, this.resource);
   const [[, string]] = this.exec(content, this.resource);
   const scope = { components: {} };

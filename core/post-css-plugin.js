@@ -1,6 +1,6 @@
 const postcss = require('postcss');
 const partial = require('lodash/partial');
-const reverseMap = require('./utils/reverse-map');
+const { reverseMap } = require('./utils');
 
 /**
  * @param {Object} options

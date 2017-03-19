@@ -4,7 +4,12 @@ module.exports = {
       {        
         test: /\.css/,
         loaders: [
-          'reactive-css/loader',
+          {
+            loader: 'reactive-css/loader',
+            query: {
+              bindings: 'react',
+            },
+          },
           {
             loader: 'css-loader',
             query: {

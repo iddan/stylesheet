@@ -1,8 +1,7 @@
 import { createElement, PureComponent } from 'react';
 import classnames from 'classnames';
-import insertCSS from 'insert-css';
-import postfixAttrValue from '../core/utils/postfix-attr-value';
-import { omitBy, mapObject } from './utils.js';
+import postfixAttrValue from '../core/postfix-attr-value';
+import { omitBy } from './utils.js';
 
 /**
  * @param {string} displayName 
@@ -10,17 +9,21 @@ import { omitBy, mapObject } from './utils.js';
  * @param {Object} propsMap 
  * @param {string[]} attrs 
  */
-export default function createCSSComponent({ displayName, className, props: propsMap, attrs, invalidProps }) {
+export default function createCSSComponent({ displayName, className, props: propsMap, attrs, invalidProps }, cssRules) {
+  for (let attr of Object.values(attrs)) {
+    for (let cssRule of cssRules) {
+      if (cssRule.selectorText === '.' + attr.className) {
+        attr.cssStyleDeclaration = cssRule.style;
+      }
+    }
+  }
   class CSSComponent extends PureComponent {
     render() {
       const { props } = this;
-      this.styleElement = insertCSS(
-        mapObject(attrs, ({ name, type, defaultValue, className }, property) => `
-          .${classnames(className)} {
-            ${property}: ${postfixAttrValue(props[name], type)}
-          }
-        `).join('\n')
-      );
+      for (let property of Object.keys(attrs)) {
+        const { name, type, cssStyleDeclaration } = attrs[property];
+        cssStyleDeclaration[property] = postfixAttrValue(props[name], type);
+      }
       return createElement('div', Object.assign(
         {},
         omitBy(props, (value, key) => invalidProps[key]),

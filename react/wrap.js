@@ -1,16 +1,14 @@
 const { stringifyRequest } = require('loader-utils');
-const { map } = require('loadsh');
+const { map } = require('lodash');
 const validAttributes = require('./validAttributes');
 const createCSSComponentPath = stringifyRequest(this, require.resolve('./create-css-component'));
 
 module.exports = function reactWrap(string, { components }) {
   return `
+    import insertCSS from 'insert-css';
     import createCSSComponent from ${createCSSComponentPath};
 
-    const style = document.createElement('style');
-    style.type = 'text/css';
-    style.appendChild(document.createTextNode(\`${string}\`));
-    document.head.appendChild(style);
+    const styleElement = insertCSS(\`${string}\`);
 
     ${map(components, ({ className, props = {}, attrs = {} }, displayName) => `
     export const ${displayName} = createCSSComponent(${JSON.stringify({
@@ -19,18 +17,18 @@ module.exports = function reactWrap(string, { components }) {
       props,
       attrs,
       invalidProps: flagInvalidProps(props, attrs),
-    })});
+    })}, styleElement.sheet.cssRules);
     `).join('\n')}
   `;
 };
 
 function flagInvalidProps(props, attrs) {
   const invalidProps = {};
-  for (let prop of Object.keys(prop)) {
-    invalidProps[prop] = validAttributes[prop];
+  for (const prop of Object.keys(props)) {
+    invalidProps[prop] = !validAttributes(prop);
   }
-  for (let { name } of Object.values(attrs)) {
-    invalidProps[name] = validAttributes[name];
+  for (const { name } of Object.values(attrs)) {
+    invalidProps[name] = !validAttributes(name);
   }
   return invalidProps;
 }
