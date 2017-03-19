@@ -1,7 +1,8 @@
 import { createElement, PureComponent } from 'react';
 import classnames from 'classnames';
-import postfixAttrValue from './utils/postfix-attr-value';
 import insertCSS from 'insert-css';
+import postfixAttrValue from '../core/utils/postfix-attr-value';
+import { omitBy, mapObject } from './utils.js';
 
 /**
  * @param {string} displayName 
@@ -29,25 +30,4 @@ export default function createCSSComponent({ displayName, className, props: prop
   }
   CSSComponent.displayName = displayName;
   return CSSComponent;
-}
-
-// lodash functions
-
-const omitBy = (object, filter) => {
-  const newObj = {};
-  for (let key of Object.keys(object)) {
-    const value = object[key];
-    if (!filter(value, key)) {
-      newObj[key] = value; 
-    }
-  }
-  return newObj;
-};
-
-const mapObject = (object, transformer) => {
-  const array = [];
-  for (let key of Object.keys(object)) {
-    array.push(transformer(object[key], key));
-  }
-  return array;
 }
