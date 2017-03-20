@@ -1,6 +1,12 @@
-# stylesheet
+# Stylesheet
 
-The next generation of CSS
+Dynamic CSS for user interfaces.
+
+ - **Pure:** Stylesheet uses pure standard CSS. Wrap your dynamic CSS properties with the experminatal attr() function and Stylesheet will automatically update and render them with your data. Stylesheet does not require support for attr() to work and does not interrupt static CSS rendering, so you can develop new features in Stylesheet without rewriting existing code.
+ 
+ - **Component-Based:** Build reusable, customizable and dynamic front-end UI elements. Since component style is written in CSS instead of JavaScript, you can easily define components's complex relationships and interactions and share style as efficiently as with normal CSS.
+ 
+ - **Write Once, Use Anywhere:** Stylesheet can potentially work with any front-end technology stack, so you can share and transfer your styled components between platforms.
 
 ```bash
 npm install --save stylesheet
@@ -8,44 +14,52 @@ npm install --save stylesheet
 
 ### Usage
 
-#### React (Web)
-
-*App.js*
-```JSX
-import React from 'react';
-import { Title } from './Title.css';
-
-export default function App() {
-  return <Title>Hello World, this is my first Reacive CSS component!</Title>;
-}
-```
-*Title.css*
+*stylesheet.css*
 ```CSS
 .Title {
   font-size: 4em;
-  color: tomato;
+  color: attr(textColor color);
+}
+```
+
+#### React (Web)
+
+```JSX
+import React, { Component } from 'react';
+import { Title } from './stylesheet.css';
+
+class Header extends Component {
+  render() {
+    return <Title textColor={this.props.textColor}>My dynamically styled app</Title>;
+  }
 }
 ```
 
 #### Webpack
 
-*webpack.config.js*
 ```JavaScript
 module.exports = {
   module: {
-    loaders: [
+    rules: [
       {
-        test: /^[A-Z].+\.css$/,
+        test: /\.css$/,
         exclude: /node_modules/,
-        loader: 'reactive-css/loader'
-        query: {
-          bindings: 'react'
-        }
+        use: [
+          {
+            loader: 'stylesheet/loader'
+            query: {
+              bindings: 'react'
+            }
+          },
+          {
+            loader: 'css-loader',
+            query: {
+              modules: true
+            }
+          }
+        ]
       }
-    ]
-  }
   // the rest of your webpack config
-}
 ```
 
 ### Prior Art and Comparison
