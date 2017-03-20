@@ -1,9 +1,9 @@
 module.exports = {
   module: {
-    loaders: [
+    rules: [
       {        
         test: /\.css/,
-        loaders: [
+        use: [
           {
             loader: 'stylesheet/loader',
             query: {
