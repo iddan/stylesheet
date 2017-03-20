@@ -1,16 +1,16 @@
 import { createElement, PureComponent } from 'react';
-import classnames from 'classnames';
 import postfixAttrValue from '../core/postfix-attr-value';
 import { omitBy } from './utils.js';
 
 /**
  * @param {string} displayName 
- * @param {string} className 
- * @param {Object} propsMap 
+ * @param {string} selector 
+ * @param {string} localClassName 
+ * @param {Object} props
  * @param {string[]} attrs 
+ * @param {Object} invalidProps
  */
 export default function createCSSComponent({ displayName, selector, localClassName, props: propsMap, attrs, invalidProps }, cssRules) {
-  console.log(attrs);
   for (let attr of attrs) {
     for (const cssRule of cssRules) {
       if (cssRule.selectorText === attr.selector) {
@@ -30,12 +30,12 @@ export default function createCSSComponent({ displayName, selector, localClassNa
         {},
         omitBy(props, (value, key) => invalidProps[key]),
         {
-          className: classnames(
+          className: [
             localClassName,
             ...Object.keys(props)
             .filter((prop) => props[prop] && propsMap[prop])
             .map((prop) => propsMap[prop].localClassName)
-          ),
+          ].join(' '),
         }
       ));
     }
