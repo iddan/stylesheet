@@ -1,5 +1,5 @@
 {
-  "name": "css-modules-styled-components-example",
+  "name": "stylesheet-webpack-react-dom-example",
   "scripts": {
     "start": "webpack"
   },

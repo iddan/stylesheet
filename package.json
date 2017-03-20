@@ -1,6 +1,6 @@
 {
-  "name": "reactive-css",
-  "version": "0.0.1",
+  "name": "stylesheet",
+  "version": "0.5.0",
   "license": "MIT",
   "dependencies": {
     "css-selector-tokenizer": "^0.7.0",
