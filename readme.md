@@ -8,7 +8,7 @@ npm install --save stylesheet
 
 ### Usage
 
-#### React
+#### React (Web)
 
 *App.js*
 ```JSX

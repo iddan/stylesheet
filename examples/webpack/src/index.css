@@ -1,6 +1,19 @@
+body {
+  margin: 0;
+}
+
+:global #root {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
 .Label {
   font-family: monospace;
   font-size: 14px;
+  user-select: none;
 }
 
 .Label-highlight {
