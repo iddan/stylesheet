@@ -76,10 +76,10 @@ Binding for CSS Modules and React that allows style class names annoation in a s
  - Requires boilreplate code to use with React as components.
  - Do not provides a solution for dynamic CSS.
 
-#### Styled Components 
+<!--#### Styled Components 
 A React library which generates 
 
 css strings in js
 
 #### react-css-components
-using not standard css
+using not standard css-->
