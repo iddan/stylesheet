@@ -10,7 +10,7 @@ module.exports = function reactWrap(string, { components }) {
 
     const styleElement = insertCSS(\`${string}\`);
 
-    ${map(components, ({ selector, localClassName, props = {}, attrs = {} }, displayName) => `
+    ${map(components, ({ selector, localClassName, props = {}, attrs = [] }, displayName) => `
     export const ${displayName} = createCSSComponent(${JSON.stringify({
       displayName,
       selector,
@@ -25,10 +25,10 @@ module.exports = function reactWrap(string, { components }) {
 
 function flagInvalidProps(props, attrs) {
   const invalidProps = {};
-  for (const prop of Object.keys(props)) {
+  for (const prop in props) {
     invalidProps[prop] = !validAttributes(prop);
   }
-  for (const { name } of Object.values(attrs)) {
+  for (const { name } of attrs) {
     invalidProps[name] = !validAttributes(name);
   }
   return invalidProps;
