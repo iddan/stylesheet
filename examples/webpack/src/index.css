@@ -4,6 +4,21 @@
 }
 
 .Label-highlight {
+  color: blue;
+  font-size: attr(fontSize px);
+}
+
+body .Label-highlight {
   color: attr(color color, tomato);
   font-size: attr(fontSize em);
+}
+
+.Shark .Label-highlight {
+  color: attr(color color, tomato);
+  font-size: attr(fontSize em);
+}
+
+div.Label:active {
+  background: attr(color color, tomato);
+  color: white;
 }

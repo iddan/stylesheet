@@ -10,10 +10,11 @@ module.exports = function reactWrap(string, { components }) {
 
     const styleElement = insertCSS(\`${string}\`);
 
-    ${map(components, ({ className, props = {}, attrs = {} }, displayName) => `
+    ${map(components, ({ selector, localClassName, props = {}, attrs = {} }, displayName) => `
     export const ${displayName} = createCSSComponent(${JSON.stringify({
       displayName,
-      className,
+      selector,
+      localClassName,
       props,
       attrs,
       invalidProps: flagInvalidProps(props, attrs),

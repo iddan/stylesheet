@@ -9,10 +9,11 @@ import { omitBy } from './utils.js';
  * @param {Object} propsMap 
  * @param {string[]} attrs 
  */
-export default function createCSSComponent({ displayName, className, props: propsMap, attrs, invalidProps }, cssRules) {
-  for (let attr of Object.values(attrs)) {
-    for (let cssRule of cssRules) {
-      if (cssRule.selectorText === '.' + attr.className) {
+export default function createCSSComponent({ displayName, selector, localClassName, props: propsMap, attrs, invalidProps }, cssRules) {
+  console.log(attrs);
+  for (let attr of attrs) {
+    for (const cssRule of cssRules) {
+      if (cssRule.selectorText === attr.selector) {
         attr.cssStyleDeclaration = cssRule.style;
       }
     }
@@ -20,14 +21,22 @@ export default function createCSSComponent({ displayName, className, props: prop
   class CSSComponent extends PureComponent {
     render() {
       const { props } = this;
-      for (let property of Object.keys(attrs)) {
-        const { name, type, cssStyleDeclaration } = attrs[property];
-        cssStyleDeclaration[property] = postfixAttrValue(props[name], type);
+      for (const { property, name, type, cssStyleDeclaration } of attrs) {
+        if (props[name]) {
+          cssStyleDeclaration[property] = postfixAttrValue(props[name], type);
+        }
       }
       return createElement('div', Object.assign(
         {},
         omitBy(props, (value, key) => invalidProps[key]),
-        { className: classnames(className, this.id, Object.keys(props).map(key => propsMap[key])) }
+        {
+          className: classnames(
+            localClassName,
+            ...Object.keys(props)
+            .filter((prop) => props[prop] && propsMap[prop])
+            .map((prop) => propsMap[prop].localClassName)
+          ),
+        }
       ));
     }
   }

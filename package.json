@@ -4,6 +4,7 @@
   "license": "MIT",
   "dependencies": {
     "classnames": "^2.2.5",
+    "css-selector-tokenizer": "^0.7.0",
     "insert-css": "^2.0.0",
     "loader-utils": "^1.0.4",
     "lodash": "^4.17.4",
