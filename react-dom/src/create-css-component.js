@@ -1,5 +1,5 @@
 import { createElement, PureComponent } from 'react';
-import postfixAttrValue from '../core/postfix-attr-value';
+import postfixAttrValue from '../../core/postfix-attr-value';
 import { omitBy } from './utils.js';
 
 /**
@@ -18,7 +18,10 @@ export default function createCSSComponent({ displayName, selector, localClassNa
       }
     }
   }
-  class CSSComponent extends PureComponent {
+  return class CSSComponent extends PureComponent {
+
+    displayName = displayName
+
     render() {
       const { props } = this;
       for (const { property, name, type, cssStyleDeclaration } of attrs) {
@@ -26,20 +29,15 @@ export default function createCSSComponent({ displayName, selector, localClassNa
           cssStyleDeclaration[property] = postfixAttrValue(props[name], type);
         }
       }
-      return createElement('div', Object.assign(
-        {},
-        omitBy(props, (value, key) => invalidProps[key]),
-        {
-          className: [
-            localClassName,
-            ...Object.keys(props)
-            .filter((prop) => props[prop] && propsMap[prop])
-            .map((prop) => propsMap[prop].localClassName)
-          ].join(' '),
-        }
-      ));
+      return createElement('div', {
+        ...omitBy(props, (value, key) => invalidProps[key]),
+        className: [
+          localClassName,
+          ...Object.keys(props)
+          .filter((prop) => props[prop] && propsMap[prop])
+          .map((prop) => propsMap[prop].localClassName),
+        ].join(' '),
+      });
     }
-  }
-  CSSComponent.displayName = displayName;
-  return CSSComponent;
+  };
 }

@@ -1,17 +1,17 @@
 const { stringifyRequest } = require('loader-utils');
 const { map } = require('lodash');
 const validAttributes = require('./validAttributes');
-const createCSSComponentPath = stringifyRequest(this, require.resolve('./create-css-component'));
+const createCSSComponentPath = stringifyRequest(this, require.resolve('./dist/create-css-component'));
 
 module.exports = function reactWrap(string, { components }) {
   return `
     import insertCSS from 'insert-css';
     import createCSSComponent from ${createCSSComponentPath};
 
-    const styleElement = insertCSS(\`${string}\`);
+    var styleElement = insertCSS(\`${string}\`);
 
     ${map(components, ({ selector, localClassName, props = {}, attrs = [] }, displayName) => `
-    export const ${displayName} = createCSSComponent(${JSON.stringify({
+    export var ${displayName} = createCSSComponent(${JSON.stringify({
       displayName,
       selector,
       localClassName,
