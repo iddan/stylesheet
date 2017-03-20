@@ -1,6 +1,7 @@
 const postcss = require('postcss');
 const partial = require('lodash/partial');
-const reverseMap = require('./utils/reverse-map');
+const Tokenizer = require('css-selector-tokenizer');
+const { getClassNames, reverseMap } = require('./utils');
 
 /**
  * @param {Object} options
@@ -12,21 +13,23 @@ const reverseMap = require('./utils/reverse-map');
 module.exports = postcss.plugin('parse-css', ({ locals, onComponent, onProp, onAttr }) => {
   const externals = reverseMap(locals);
   return (root, result) => {
-    root.walkRules(/^\./, rule => {
-      const localClassName = rule.selector.replace(/^\./, '');
-      const className = externals[localClassName];
-      if (isProp(className)) {
-        const [, component, prop] = className.split(/(^.+?)-/);
-        onProp(component, prop, localClassName);
-        parseAttrs(partial(onAttr, component, localClassName), rule);
+    root.walkRules(/\./, rule => {
+      const { selector } = rule;
+      for (let localClassName of getClassNames(Tokenizer.parse(selector))) {
+        const externalClassName = externals[localClassName];
+        if (isProp(externalClassName)) {
+          const [, component, prop] = externalClassName.split(/([A-Z].+?)-/);
+          onProp(component, prop, selector, localClassName);
+          parseAttrs(partial(onAttr, component, selector), rule);
+          return rule;
+        }
+        if (isComponent(externalClassName)) {
+          onComponent(externalClassName, selector, localClassName);
+          parseAttrs(partial(onAttr, externalClassName, selector), rule);
+          return rule;
+        }
         return rule;
       }
-      if (isComponent(className)) {
-        onComponent(className, localClassName);
-        parseAttrs(partial(onAttr, className, localClassName), rule);
-        return rule;
-      }
-      return rule;
     });
   };
 });

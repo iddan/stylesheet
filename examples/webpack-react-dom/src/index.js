@@ -14,7 +14,7 @@ class App extends PureComponent {
       highlight: true,
       onClick: () => this.setState({
         color: `rgb(${(Math.random() * 255).toFixed(0)}, ${(Math.random() * 255).toFixed(0)}, ${(Math.random() * 255).toFixed(0)})` }),
-    }, 'Hello World!');
+    }, 'Click Me!');
   }
 }
 

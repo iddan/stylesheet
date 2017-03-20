@@ -1,20 +1,19 @@
-# Reactive CSS
+# stylesheet
 
-CSS driven styled React components
+The next generation of CSS
 
 ```bash
-npm install --save css-react-components-loader
+npm install --save stylesheet
 ```
 
-Utilising [CSS attr()]() (a recent addition to CSS), [React](https://github.com/facebook/react) and [CSS Modules](https://github.com/css-modules/css-modules), `reactive-css` enables you to define dynamically styled ready to use React components using nothing but CSS stylesheets.
-
 ### Usage
+
+#### React (Web)
 
 *App.js*
 ```JSX
 import React from 'react';
-
-import { Title } from './title.css';
+import { Title } from './Title.css';
 
 export default function App() {
   return <Title>Hello World, this is my first Reacive CSS component!</Title>;
@@ -39,6 +38,9 @@ module.exports = {
         test: /^[A-Z].+\.css$/,
         exclude: /node_modules/,
         loader: 'reactive-css/loader'
+        query: {
+          bindings: 'react'
+        }
       }
     ]
   }
@@ -46,9 +48,24 @@ module.exports = {
 }
 ```
 
-### Prior Art
+### Prior Art and Comparison
 
- - CSS Modules (requires boilerplate code to connect to react)
- - React CSS Modules (binding css modules class names)
- - Styled Components (css strings in js)
- - react-css-components (using not standard css)
+#### CSS Modules
+A methodology to import CSS tokens (class names and animation names) to JavaScript and converting them unique identifiers. Used in this project to convert components class names.
+
+ - Requires boilreplate code to use with React as components.
+ - Do not provides a solution for dynamic CSS.
+
+#### React CSS Modules
+Binding for CSS Modules and React that allows style class names annoation in a seperate prop on components.
+
+ - Requires boilreplate code to use with React as components.
+ - Do not provides a solution for dynamic CSS.
+
+#### Styled Components 
+A React library which generates 
+
+css strings in js
+
+#### react-css-components
+using not standard css
