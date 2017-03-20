@@ -7,7 +7,7 @@ module.exports = {
           {
             loader: 'reactive-css/loader',
             query: {
-              bindings: 'react',
+              bindings: 'react-dom',
             },
           },
           {

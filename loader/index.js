@@ -1,6 +1,6 @@
 const { getOptions } = require('loader-utils');
 const parse = require('../core/parse');
-const reactWrap = require('../react/wrap');
+const reactDOMWrap = require('../react-dom/wrap');
 
 module.exports = function(content) {
   const { bindings } = getOptions(this);
@@ -8,8 +8,8 @@ module.exports = function(content) {
   const [[, string]] = this.exec(content, this.resource);
   const { css, scope } = parse(string, locals);
   switch (bindings) {
-    case 'react': {
-      return reactWrap(css, scope);
+    case 'react-dom': {
+      return reactDOMWrap(css, scope);
     }
   }
 };
