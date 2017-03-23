@@ -1,3 +1,7 @@
+<a href="">
+    <img src="assets/stylesheet.png" alt="Stylesheet Logo" align="right" />
+</a>
+
 # Stylesheet
 
 Dynamic CSS for user interfaces.
