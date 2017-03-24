@@ -1,5 +1,5 @@
 <div align="center" href="">
-    <img width="200" src="https://raw.githubusercontent.com/500tech/stylesheet/master/assets/stylesheet.svg" alt="Stylesheet Logo" align="center" />
+    <img width="200" src="https://cdn.rawgit.com/500tech/stylesheet/master/assets/stylesheet.svg" alt="Stylesheet Logo" align="center" />
 <h1>Stylesheet</h1>
 <p>Dynamic CSS for user interfaces.</p>
 </div>
