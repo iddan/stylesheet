@@ -1,10 +1,12 @@
-<a href="">
-    <img src="assets/stylesheet.png" alt="Stylesheet Logo" align="right" />
-</a>
+<div align="center" href="">
+    <img width="200" src="assets/stylesheet.svg" alt="Stylesheet Logo" align="center" />
+<h1>Stylesheet</h1>
+<p>Dynamic CSS for user interfaces.</p>
+</div>
 
-# Stylesheet
-
-Dynamic CSS for user interfaces.
+```bash
+npm install --save stylesheet
+```
 
  - **Pure:** Stylesheet uses pure standard CSS. Wrap your dynamic CSS properties with the experminatal attr() function and Stylesheet will automatically update and render them with your data. Stylesheet does not require support for attr() to work and does not interrupt static CSS rendering, so you can develop new features in Stylesheet without rewriting existing code.
  
@@ -12,11 +14,7 @@ Dynamic CSS for user interfaces.
  
  - **Write Once, Use Anywhere:** Stylesheet can potentially work with any front-end technology stack, so you can share and transfer your styled components between platforms.
 
-```bash
-npm install --save stylesheet
-```
-
-### Usage
+<h2 align="center">Usage</h2>
 
 *stylesheet.css*
 ```CSS
@@ -69,21 +67,15 @@ module.exports = {
 ### Prior Art and Comparison
 
 #### CSS Modules
-A methodology to import CSS tokens (class names and animation names) to JavaScript and converting them unique identifiers. Used in this project to convert components class names.
+A methodology to import CSS tokens (e.g. class names) to JavaScript and converting them to unique identifiers.
 
- - Requires boilreplate code to use with React as components.
- - Do not provides a solution for dynamic CSS.
+ - Requires boilreplate code to use as components.
+ - Does not provide a solution for dynamic CSS.
 
-#### React CSS Modules
-Binding for CSS Modules and React that allows style class names annoation in a seperate prop on components.
+#### Styled Components 
+A library for composing components from tagged template literals of CSS code.
 
- - Requires boilreplate code to use with React as components.
- - Do not provides a solution for dynamic CSS.
-
-<!--#### Styled Components 
-A React library which generates 
-
-css strings in js
-
-#### react-css-components
-using not standard css-->
+ - Does not use standard CSS for dynamic properties.
+ - Does not use external CSS.
+ - Compiles at runtime
+ - Requires 70KB of *minified* code for full usage
