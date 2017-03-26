@@ -1,0 +1,19 @@
+%button-reset {
+  padding: .5rem;
+}
+
+section.actions {
+  margin: auto;
+
+  code {
+    padding: .5rem;
+    background: black;
+    color: white;
+  }
+
+  button {
+    @extend %button-reset;
+    padding: .5em;
+    box-shadow: 2px solid #000;
+  }
+}

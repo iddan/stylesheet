@@ -1,0 +1,15 @@
+title: Stylesheet
+email: info@500tech.com
+description: Dynamic CSS for user interfaces
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+github_username:  500tech
+
+# Build settings
+markdown: kramdown
+gems:
+  - jekyll-feed
+  - jekyll-sitemap
+exclude:
+  - Gemfile
+  - Gemfile.lock

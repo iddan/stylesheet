@@ -1,0 +1,22 @@
+{% capture features %}{% include features.md %}{% endcapture %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Stylesheet</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="index.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    {% include header.html %}
+    {% include hero.html %}
+    {% include actions.html %}
+    <section class="features">{{ features | markdownify }}</section>
+    <article>
+
+    </article>
+    {% include actions.html %}
+    {% include footer.html %}
+  </body>
+</html>

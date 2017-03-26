@@ -1,0 +1,10 @@
+<header>
+  {% include logo.html %}
+  <h1>{{ site.title }}</h1>
+  <nav>
+    {% for link in site.data.links %}
+      <a href="{{ link.href }}">{{ link.label }}</a>
+    {% endfor %}
+    <div id="search"></div>
+  </nav>
+</header>

@@ -1,0 +1,14 @@
+---
+---
+
+@import 'header';
+@import 'hero';
+@import 'actions';
+@import 'features';
+@import 'footer';
+
+body {
+  font-family: 'Work Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
