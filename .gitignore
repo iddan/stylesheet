@@ -1,1 +1,5 @@
 **/node_modules/
+_site
+_assets
+.sass-cache
+search

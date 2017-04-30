@@ -4,16 +4,11 @@ module.exports = {
       {        
         test: /\.css/,
         use: [
+          'style-loader',
           {
             loader: 'stylesheet/loader',
             query: {
               bindings: 'react-dom',
-            },
-          },
-          {
-            loader: 'css-loader',
-            query: {
-              modules: true,
             },
           },
         ],

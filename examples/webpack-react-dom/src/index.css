@@ -1,6 +1,27 @@
+@import './another.css';
+@media screen and (max-width: 250px) {
+
+}
+
 body {
   margin: 0;
 }
+
+Label {
+  font-family: monospace;
+  font-size: 14px;
+  user-select: none;
+}
+
+Label[highlighted] {
+  background: yellow;
+}
+
+Label[name="Ryskin"] {
+  color: red;
+}
+
+/* bad code */
 
 :global #root {
   min-height: 100vh;

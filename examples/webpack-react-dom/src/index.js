@@ -11,7 +11,8 @@ class App extends PureComponent {
     return React.createElement(Label, {
       color: this.state.color,
       fontSize: Math.random() * 10,
-      highlight: true,
+      highlighted: true,
+      name: 'Ryskin',
       onClick: () => this.setState({
         color: `rgb(${(Math.random() * 255).toFixed(0)}, ${(Math.random() * 255).toFixed(0)}, ${(Math.random() * 255).toFixed(0)})` }),
     }, 'Click Me!');

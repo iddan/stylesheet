@@ -1,32 +1,29 @@
+const _ = require('lodash/fp');
 const postcss = require('postcss');
-const { get, set } = require('lodash');
-const postcssPlugin = require('./post-css-plugin');
+const extractComponents = require('./postcss-extract-components');
+const extractImports = require('./postcss-extract-imports');
 
-module.exports = function parse(string, locals) {
-  let scope = { components: {} };
-  const { css } = postcss([postcssPlugin({
-    locals,
-    onProp(component, prop, selector, localClassName) {
-      set(scope, ['components', component, 'props', prop], { selector, localClassName });
-    },
-    onComponent(component, selector, localClassName) {
-      set(scope, ['components', component, 'selector'], selector);
-      set(scope, ['components', component, 'localClassName'], localClassName);
-    },
-    onAttr(component, selector, property, attr) {
-      const [, name, type, defaultValue] = attr.split(/attr\(\s*(.+?)\s+(.+?)(?:,\s+(.+?))?\s*\)/);
-      if (!get(scope, ['components', component, 'attrs'])) {
-        set(scope, ['components', component, 'attrs'], []);
-      }
-      scope.components[component].attrs.push({
-        property,
-        name,
-        selector,
-        type,
-        defaultValue,
-      });
-    },
-  })])
-  .process(string);
-  return { css, scope };
+module.exports = async function parse(string) {
+  let importStatements = [];
+  let components = {};
+  const result = await postcss([
+    extractImports({
+      onImport(file, mediaQuery) {
+        importStatements = [...importStatements, { file, mediaQuery }];
+      },
+    }),
+    extractComponents({
+      onComponent(component, className) {
+        components = _.set([component, 'className'], className, components);
+      },
+      onAttribute(component, attribute, className) {
+        components = _.set([component, 'props', attribute.name], _.assign({ className }, attribute), components);
+      },
+      onAttr(selector, component, prop, value) {
+        const [, name, type, defaultValue] = value.split(/attr\(\s*(.+?)\s+(.+?)(?:,\s+(.+?))?\s*\)/);
+        components = _.set([component, 'attrs', name], { prop, type, defaultValue, selector }, components);
+      },
+    }),
+  ]).process(string);
+  return { result, importStatements, components };
 };
