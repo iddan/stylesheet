@@ -17,7 +17,6 @@ module.exports = function(content) {
   const options = getOptions(this);
   const bindings = Bindings[options.bindings];
   assert(bindings, `Bindings must be provided and be one of the following: ${Object.keys(Bindings).join()}`);
-  console.log(stringifyRequest(this, './css-base'));
   parse(content)
     .then(({ result, importStatements, components }) => callback(null, `
 const cssBase = require(${ stringifyRequest(this, require.resolve('./css-base')) });

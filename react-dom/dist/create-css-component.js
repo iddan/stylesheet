@@ -44,57 +44,6 @@ module.exports = function createCSSComponent(_ref) {
       attrs = _ref.attrs,
       invalidProps = _ref.invalidProps;
 
-  for (var property in attrs) {
-    var attr = attrs[property];
-    var _iteratorNormalCompletion = true;
-    var _didIteratorError = false;
-    var _iteratorError = undefined;
-
-    try {
-      for (var _iterator = document.styleSheets[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-        var sheet = _step.value;
-        var _iteratorNormalCompletion2 = true;
-        var _didIteratorError2 = false;
-        var _iteratorError2 = undefined;
-
-        try {
-          for (var _iterator2 = sheet.cssRules[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-            var cssRule = _step2.value;
-
-            if (cssRule.selectorText === attr.selector) {
-              attr.cssStyleDeclaration = cssRule.style;
-            }
-          }
-        } catch (err) {
-          _didIteratorError2 = true;
-          _iteratorError2 = err;
-        } finally {
-          try {
-            if (!_iteratorNormalCompletion2 && _iterator2.return) {
-              _iterator2.return();
-            }
-          } finally {
-            if (_didIteratorError2) {
-              throw _iteratorError2;
-            }
-          }
-        }
-      }
-    } catch (err) {
-      _didIteratorError = true;
-      _iteratorError = err;
-    } finally {
-      try {
-        if (!_iteratorNormalCompletion && _iterator.return) {
-          _iterator.return();
-        }
-      } finally {
-        if (_didIteratorError) {
-          throw _iteratorError;
-        }
-      }
-    }
-  }
   return _temp = _class = function (_PureComponent) {
     _inherits(CSSComponent, _PureComponent);
 
@@ -105,6 +54,61 @@ module.exports = function createCSSComponent(_ref) {
     }
 
     _createClass(CSSComponent, [{
+      key: 'componentWillMount',
+      value: function componentWillMount() {
+        for (var property in attrs) {
+          var attr = attrs[property];
+          var _iteratorNormalCompletion = true;
+          var _didIteratorError = false;
+          var _iteratorError = undefined;
+
+          try {
+            for (var _iterator = document.styleSheets[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+              var sheet = _step.value;
+              var _iteratorNormalCompletion2 = true;
+              var _didIteratorError2 = false;
+              var _iteratorError2 = undefined;
+
+              try {
+                for (var _iterator2 = sheet.cssRules[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                  var cssRule = _step2.value;
+
+                  if (cssRule.selectorText === attr.selector) {
+                    attr.cssStyleDeclaration = cssRule.style;
+                  }
+                }
+              } catch (err) {
+                _didIteratorError2 = true;
+                _iteratorError2 = err;
+              } finally {
+                try {
+                  if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                    _iterator2.return();
+                  }
+                } finally {
+                  if (_didIteratorError2) {
+                    throw _iteratorError2;
+                  }
+                }
+              }
+            }
+          } catch (err) {
+            _didIteratorError = true;
+            _iteratorError = err;
+          } finally {
+            try {
+              if (!_iteratorNormalCompletion && _iterator.return) {
+                _iterator.return();
+              }
+            } finally {
+              if (_didIteratorError) {
+                throw _iteratorError;
+              }
+            }
+          }
+        }
+      }
+    }, {
       key: 'render',
       value: function render() {
         var props = this.props;
@@ -114,7 +118,7 @@ module.exports = function createCSSComponent(_ref) {
               type = _attrs$attribute.type,
               cssStyleDeclaration = _attrs$attribute.cssStyleDeclaration;
 
-          if (props[attribute]) {
+          if (cssStyleDeclaration && props[attribute]) {
             cssStyleDeclaration[attribute] = (0, _postfixAttrValue2.default)(props[attribute], type);
           }
         }

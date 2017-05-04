@@ -14,25 +14,28 @@ import { omitBy } from './utils.js';
 module.exports = function createCSSComponent({
   displayName, selector, className, props: propsMap, attrs, invalidProps,
 }) {
-  for (const property in attrs) {
-    const attr = attrs[property];
-    for (const sheet of document.styleSheets) {
-      for (const cssRule of sheet.cssRules) {
-        if (cssRule.selectorText === attr.selector) {
-          attr.cssStyleDeclaration = cssRule.style;
+  return class CSSComponent extends PureComponent {
+
+    static displayName = displayName;
+
+    componentWillMount() {
+      for (const property in attrs) {
+        const attr = attrs[property];
+        for (const sheet of document.styleSheets) {
+          for (const cssRule of sheet.cssRules) {
+            if (cssRule.selectorText === attr.selector) {
+              attr.cssStyleDeclaration = cssRule.style;
+            }
+          }
         }
       }
     }
-  }
-  return class CSSComponent extends PureComponent {
-
-    static displayName = displayName
 
     render() {
       const { props } = this;
       for (const attribute in attrs) {
         const { type, cssStyleDeclaration } = attrs[attribute];
-        if (props[attribute]) {
+        if (cssStyleDeclaration && props[attribute]) {
           cssStyleDeclaration[attribute] = postfixAttrValue(props[attribute], type);
         }
       }

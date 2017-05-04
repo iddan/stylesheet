@@ -15,6 +15,9 @@ Label {
 
 Label[highlighted] {
   background: yellow;
+  font-size: attr(fontSize px);
+  color: attr(color color, tomato);
+  font-size: attr(fontSize em);
 }
 
 Label[name="Ryskin"] {
