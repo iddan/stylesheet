@@ -1,25 +1,34 @@
-// const path = require('path');
 const assert = require('assert');
-const { getOptions } = require('loader-utils');
+const { stringifyRequest, getOptions } = require('loader-utils');
+// const _ = require('lodash/fp');
 const parse = require('../core/parse');
 const Bindings = require('./bindings');
 
-// todo source maps for module
+/**
+ * TODO
+ * fix final file
+ * empty components
+ * source maps for module
+ * remove imports from original file
+ */
 
 module.exports = function(content) {
   const callback = this.async();
   const options = getOptions(this);
-  const { result, importStatements, components } = parse(content);
   const bindings = Bindings[options.bindings];
   assert(bindings, `Bindings must be provided and be one of the following: ${Object.keys(Bindings).join()}`);
-  callback(`
+  console.log(stringifyRequest(this, './css-base'));
+  parse(content)
+    .then(({ result, importStatements, components }) => callback(null, `
+const cssBase = require(${ stringifyRequest(this, require.resolve('./css-base')) });
+exports = module.exports = cssBase(${ options.sourceMap });
 // imports
 ${ importStatements.map(stringifyImport).join('\n') }
 // module
-exports.push([module.id, ${ result }, ""])
+exports.push([module.id, ${ JSON.stringify(result.css) }, ""])
 // exports
 exports.locals = {};
-${ bindings(components).map(stringifyExport).join('\n') }`);
+${ bindings(components) }`));
 };
 
 const stringifyImport = ({ url, mediaQuery }) => `
@@ -29,5 +38,3 @@ exports.push([
   ${ JSON.stringify(mediaQuery) }
 ]);
 `;
-
-const stringifyExport = ({ variable, value }) => `exports.locals.${variable} = ${value};`;

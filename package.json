@@ -5,7 +5,7 @@
   "scripts": {
     "build": "yarn run build:react-dom; yarn run build:examples-webpack-react-dom",
     "build:react-dom": "babel react-dom/src --out-dir react-dom/dist --config react-dom/src/.babelrc",
-    "build:examples-webpack-react-dom": "cd examples/webpack-react-dom; yarn run build"
+    "build:examples-webpack-react-dom": "cd examples/webpack-react-dom; yarn run build -- --verbose --bail"
   },
   "keywords": [
     "css-modules",
@@ -48,6 +48,7 @@
     "loader-utils": "^1.0.4",
     "lodash": "^4.17.4",
     "postcss": "^5.2.16",
+    "postcss-selector-parser": "^2.2.3",
     "react": "^15.4.2",
     "webpack": "^2.2.1"
   },

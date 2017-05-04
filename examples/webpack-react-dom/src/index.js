@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
-import { Label } from './index.css';
+import * as Components from './index.css';
+
+console.log(Components);
 
 class App extends PureComponent {
   constructor(props) {
@@ -8,7 +10,7 @@ class App extends PureComponent {
     this.state = {};
   }
   render() {
-    return React.createElement(Label, {
+    return React.createElement(Components.Label, {
       color: this.state.color,
       fontSize: Math.random() * 10,
       highlighted: true,

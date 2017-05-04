@@ -3,7 +3,9 @@ const _ = require('lodash/fp');
 const validAttributes = require('./validAttributes');
 const createCSSComponentPath = stringifyRequest(this, require.resolve('./dist/create-css-component'));
 
-const reactDOMWrap = (string, components) => `
+const cappedMap = _.map.convert({ cap: false });
+
+const reactDOMWrap = (components) => `
 var createCSSComponent = require(${createCSSComponentPath});
 
 ${generateCSSComponentsCode(components)}`;
@@ -11,7 +13,7 @@ ${generateCSSComponentsCode(components)}`;
 module.exports = reactDOMWrap;
 
 const generateCSSComponentsCode = _.flow([
-  _.map.convert({ cap: false })(({ selector, className, props = {}, attrs = {}}, displayName) => `
+  cappedMap(({ selector, className, props = {}, attrs = {}}, displayName) => `
     exports.locals.${displayName} = createCSSComponent(${JSON.stringify({
       displayName,
       selector,
