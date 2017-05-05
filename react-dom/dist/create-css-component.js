@@ -126,7 +126,7 @@ module.exports = function createCSSComponent(_ref) {
           return invalidProps[key];
         }), {
           className: [className].concat(_toConsumableArray(Object.keys(props).filter(function (prop) {
-            return propsMap[prop] && (0, _matchAttribute2.default)(propsMap[prop], prop, props[prop]);
+            return propsMap[prop] && (0, _matchAttribute2.default)(propsMap[prop], props[prop]);
           }).map(function (prop) {
             return propsMap[prop].className;
           }))).join(' ')

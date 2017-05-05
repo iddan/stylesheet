@@ -8,8 +8,8 @@ module.exports = async function parse(string) {
   let components = {};
   const result = await postcss([
     extractImports({
-      onImport(file, mediaQuery) {
-        importStatements = [...importStatements, { file, mediaQuery }];
+      onImport(url, mediaQuery) {
+        importStatements = [...importStatements, { url, mediaQuery }];
       },
     }),
     extractComponents({
