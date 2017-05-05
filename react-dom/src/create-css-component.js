@@ -44,7 +44,7 @@ module.exports = function createCSSComponent({
         className: [
           className,
           ...Object.keys(props)
-            .filter(prop => propsMap[prop] && matchAttribute(propsMap[prop], prop, props[prop]))
+            .filter(prop => propsMap[prop] && matchAttribute(propsMap[prop], props[prop]))
             .map(prop => propsMap[prop].className),
         ].join(' '),
       });
