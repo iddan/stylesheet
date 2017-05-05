@@ -1,2 +1,3 @@
  * source maps for module
- * handle imported components
+ * don't bypass imported components defenitions but extend them
+ * test instance specific attr() values

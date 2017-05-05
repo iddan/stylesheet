@@ -1,27 +1,33 @@
 const assert = require('assert');
 const { stringifyRequest, getOptions } = require('loader-utils');
-// const _ = require('lodash/fp');
+const _ = require('lodash/fp');
 const parse = require('../core/parse');
-const Bindings = require('./bindings');
+const bindings = require('./bindings');
 
 module.exports = async function(content) {
   const callback = this.async();
   const options = getOptions(this);
-  const bindings = Bindings[options.bindings];
-  assert(bindings, `Bindings must be provided and be one of the following: ${Object.keys(Bindings).join()}`);
+  assert(bindings[options.bindings], `Bindings must be provided and be one of the following: ${Object.keys(bindings).join()}`);
+  const { preprocess, createComponentPath } = bindings[options.bindings];
   parse(content)
-    .then(({ result, importStatements, components }) => console.log(components) || callback(null, `
-const cssBase = require(${ stringifyRequest(this, require.resolve('./css-base')) });
+    .then(({ result, importStatements, components }) => callback(null, `
+var cssBase = require(${ stringifyRequest(this, require.resolve('./css-base')) });
+const deepMerge = require(${ stringifyRequest(this, require.resolve('./deep-merge')) });
+var importedComponentsData = Object.assign({}, ${ importStatements.map(requireData) });
+var createComponent = require(${ stringifyRequest(this, createComponentPath) });
 exports = module.exports = cssBase(${ options.sourceMap });
 // module
 exports.push([module.id, ${ JSON.stringify(result.css) }, ""])
 // exports
-exports.components = ${ JSON.stringify(components) };
-const importedComponents = Object.assign({}, ${ importStatements.map(stringifyImport) });
-console.log({ importedComponents });
-exports.locals = {};
-${ bindings(components) }`))
+const data = ${ JSON.stringify(_.mapValues(preprocess, components)) };
+console.log(deepMerge(importedComponentsData, data));
+exports.locals = {
+  ${ Object.entries(components).map(([name, component]) => 
+    `${name}: createComponent(data.${name})`
+  ).join('\n') },
+  __data__: data
+};`))
     .catch(callback);
 };
 
-const stringifyImport = ({ url }) => `require(${ stringifyRequest(this, url) })`;
+const requireData = ({ url }) => `require(${ stringifyRequest(this, url) }).__data__`;
