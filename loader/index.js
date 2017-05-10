@@ -19,8 +19,9 @@ exports = module.exports = cssBase(${ options.sourceMap });
 // module
 exports.push([module.id, ${ JSON.stringify(result.css) }, ""])
 // exports
-const data = ${ JSON.stringify(_.mapValues(preprocess, components)) };
-console.log(deepMerge(importedComponentsData, data));
+var moduleData = ${ JSON.stringify(_.mapValues(preprocess, components)) };
+var data = deepMerge(importedComponentsData, moduleData);
+console.log(data);
 exports.locals = {
   ${ Object.entries(components).map(([name, component]) => 
     `${name}: createComponent(data.${name})`
