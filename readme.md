@@ -51,7 +51,7 @@ module.exports = {
           {
             loader: 'stylesheet/loader'
             query: {
-              bindings: 'react'
+              bindings: 'react-dom'
             }
           }
         ]
