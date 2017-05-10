@@ -18,7 +18,7 @@ npm install --save stylesheet
 
 *stylesheet.css*
 ```CSS
-.Title {
+Title {
   font-size: 4em;
   color: attr(textColor color);
 }
