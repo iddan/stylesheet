@@ -47,16 +47,11 @@ module.exports = {
         test: /\.css$/,
         exclude: /node_modules/,
         use: [
+          'style-loader',
           {
             loader: 'stylesheet/loader'
             query: {
               bindings: 'react'
-            }
-          },
-          {
-            loader: 'css-loader',
-            query: {
-              modules: true
             }
           }
         ]
