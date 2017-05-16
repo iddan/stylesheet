@@ -18,7 +18,7 @@ npm install --save stylesheet
 
 *stylesheet.css*
 ```CSS
-.Title {
+Title {
   font-size: 4em;
   color: attr(textColor color);
 }
@@ -47,16 +47,11 @@ module.exports = {
         test: /\.css$/,
         exclude: /node_modules/,
         use: [
+          'style-loader',
           {
             loader: 'stylesheet/loader'
             query: {
-              bindings: 'react'
-            }
-          },
-          {
-            loader: 'css-loader',
-            query: {
-              modules: true
+              bindings: 'react-dom'
             }
           }
         ]
