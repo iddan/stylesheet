@@ -26,7 +26,7 @@ module.exports = async function parse(string) {
         const [, name, type, defaultValue] = value.split(/attr\(\s*(.+?)\s+(.+?)(?:,\s+(.+?))?\s*\)/);
         components = _.update([component, 'attrs'], (attrs = []) => [
           ...attrs,
-          { name, prop, type, defaultValue, selector }
+          { name, prop, type, defaultValue, selector },
         ], components);
       },
     }),

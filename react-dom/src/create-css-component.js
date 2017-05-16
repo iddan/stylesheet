@@ -19,8 +19,7 @@ module.exports = function createCSSComponent({
     static displayName = displayName;
 
     componentWillMount() {
-      for (const property in attrs) {
-        const attr = attrs[property];
+      for (const attr of attrs) {
         for (const sheet of document.styleSheets) {
           for (const cssRule of sheet.cssRules) {
             if (cssRule.selectorText === attr.selector) {
@@ -33,10 +32,10 @@ module.exports = function createCSSComponent({
 
     render() {
       const { props } = this;
-      for (const attribute in attrs) {
-        const { type, cssStyleDeclaration } = attrs[attribute];
-        if (cssStyleDeclaration && props[attribute]) {
-          cssStyleDeclaration[attribute] = postfixAttrValue(props[attribute], type);
+      for (const attr of attrs) {
+        const { name, type, cssStyleDeclaration } = attr;
+        if (cssStyleDeclaration && props[name]) {
+          cssStyleDeclaration[name] = postfixAttrValue(props[name], type);
         }
       }
       return createElement('div', {
