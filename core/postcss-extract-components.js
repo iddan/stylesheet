@@ -1,6 +1,7 @@
 const postcss = require('postcss');
 const parser = require('postcss-selector-parser');
 const _ = require('lodash/fp');
+const { ID } = require('./utils');
 
 /**
  * @param {Object} options
@@ -8,21 +9,25 @@ const _ = require('lodash/fp');
  * @param {function} options.onProp
  * @param {function} options.onAttr
  */
-module.exports = postcss.plugin('extract-components', ({ onComponent, onAttribute, onAttr }) => {
-  const id = ID();
+module.exports = postcss.plugin('extract-components', ({
+  onComponent,
+  onAttribute,
+  onAttr,
+  id,
+}) => {
   return (root, result) =>
     result.root.walkRules(/\b[A-Z]/, rule => {
-      let components = [];
-      rule.selector = parser(root => {
+      const components = [];
+      rule.selector = parser(selectorRoot => {
         // TODO check for walkSelectors
-        for (const selector of root.nodes) {
+        for (const selector of selectorRoot.nodes) {
           const tagIndex = _.findLastIndex({ type: 'tag' }, selector.nodes);
           const tag = selector.nodes[tagIndex];
           if (!tag || !isComponentElement(tag)) {
             continue;
           }
           const { value: componentName } = tag;
-          const componentClassName = `${componentName}_${id}`;
+          const componentClassName = `${ componentName }_${ id }`;
           onComponent(componentName, componentClassName);
           components.push(componentName);
           for (let i = tagIndex; i < selector.nodes.length; i++) {
@@ -30,7 +35,7 @@ module.exports = postcss.plugin('extract-components', ({ onComponent, onAttribut
             switch (node.type) {
               case 'attribute': {
                 const { operator, attribute, raws: { unquoted, insensitive }} = node;
-                const attributeClassName = `${componentName}-${attribute}_${id}`;
+                const attributeClassName = `${ componentName }-${ attribute }_${ ID() }_${ id }`;
                 onAttribute(
                   componentName,
                   { operator, name: attribute, value: unquoted, insensitive },
@@ -61,6 +66,5 @@ module.exports = postcss.plugin('extract-components', ({ onComponent, onAttribut
     });
 });
 
-const ID = () => Math.random().toString(36).slice(3);
 const isComponentElement = ({ value }) => value.search(/\b[A-Z]/) > -1;
 const isAttr = value => value.search(/^attr\(.+?\)$/) !== -1;

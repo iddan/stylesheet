@@ -16,13 +16,13 @@ Label {
   margin: 1rem;
 }
 
-body[role="container"] Label[highlighted] {
+body Label[highlighted] {
   background: yellow;
   font-size: attr(fontSize px);
   color: attr(color color, tomato);
   font-size: attr(fontSize em);
 }
 
-body[role="container"] Label[name="Ryskin"] {
+body Label[name="Ryskin"] {
   color: red;
 }

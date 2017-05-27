@@ -2,7 +2,10 @@ const assert = require('assert');
 const { stringifyRequest, getOptions } = require('loader-utils');
 const _ = require('lodash/fp');
 const parse = require('../core/parse');
+const { ID } = require('../core/utils');
 const bindings = require('./bindings');
+
+const id = ID();
 
 module.exports = function(content) {
   const callback = this.async();
@@ -12,7 +15,7 @@ module.exports = function(content) {
     `Bindings must be provided and be one of the following: ${ Object.keys(bindings).join() }`
   );
   const { preprocess, createComponentPath } = bindings[options.bindings];
-  parse(content)
+  parse(content, { id: options.id || id })
     .then(({ result, importStatements, components }) =>
       callback(
         null,
@@ -38,4 +41,4 @@ exports.locals = {
     .catch(callback);
 };
 
-const requireData = ({ url }) => `require(${ stringifyRequest(this, url) }).__data__`;
+const requireData = ({ url }) => `require(${ stringifyRequest(this, url + `?id=${ id }`) }).__data__`;
