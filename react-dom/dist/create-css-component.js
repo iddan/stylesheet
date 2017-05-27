@@ -46,7 +46,7 @@ module.exports = function createCSSComponent(_ref) {
         return attribute.className;
       }))).join(' '),
       style: _extends({}, props.style, attrs.reduce(function (acc, attr) {
-        return _extends({}, acc, _defineProperty({}, attr.name, props[name] && (0, _postfixAttrValue2.default)(props[name], attr.type)));
+        return console.log(attr) || _extends({}, acc, _defineProperty({}, attr.prop, props[attr.name] && (0, _postfixAttrValue2.default)(props[attr.name], attr.type)));
       }, {}))
     }));
   };

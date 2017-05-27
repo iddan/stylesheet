@@ -33,10 +33,11 @@ module.exports = function createCSSComponent({
       style: {
         ...props.style,
         ...attrs.reduce(
-          (acc, attr) => ({
-            ...acc,
-            [attr.name]: props[name] && postfixAttrValue(props[name], attr.type),
-          }),
+          (acc, attr) =>
+            console.log(attr) || {
+              ...acc,
+              [attr.prop]: props[attr.name] && postfixAttrValue(props[attr.name], attr.type),
+            },
           {}
         ),
       },

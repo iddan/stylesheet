@@ -32,7 +32,10 @@ module.exports = async function parse(string, options) {
         );
         components = _.update(
           [component, 'attrs'],
-          (attrs = []) => [...attrs, { name, prop, type, defaultValue, selector }],
+          (attrs = []) => [
+            ...attrs,
+            { name, prop: _.camelCase(prop), type, defaultValue, selector },
+          ],
           components
         );
       },
