@@ -22,7 +22,7 @@ class App extends PureComponent {
               color: `rgb(${ (Math.random() * 255).toFixed(0) }, ${ (Math.random() * 255).toFixed(0) }, ${ (Math.random() * 255).toFixed(0) })`,
             }),
         },
-        'Click Me!'
+        'Ryskinder, please click me!'
       ),
       React.createElement(
         Label,
