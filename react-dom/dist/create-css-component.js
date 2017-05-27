@@ -164,11 +164,10 @@ module.exports = function createCSSComponent(_ref) {
         return (0, _react.createElement)('div', _extends({}, (0, _utils.omitBy)(props, function (value, key) {
           return invalidProps[key];
         }), {
-          className: [className].concat(_toConsumableArray(props.filter(function (prop) {
-            return propsMap[prop.name] && (0, _matchAttribute2.default)(propsMap[prop.name], prop);
-          }).map(function (_ref2) {
-            var className = _ref2.className;
-            return className;
+          className: [className].concat(_toConsumableArray(Object.keys(props).filter(function (prop) {
+            return propsMap[prop] && (0, _matchAttribute2.default)(propsMap[prop], props[prop]);
+          }).map(function (prop) {
+            return propsMap[prop].className;
           }))).join(' ')
         }));
       }

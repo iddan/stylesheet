@@ -1,61 +1,24 @@
 @import './another.css';
-@media screen and (max-width: 250px) {
-
-}
+@media screen and (max-width: 250px) {}
 
 body {
   margin: 0;
 }
 
 Label {
+  @apply div;
   font-family: monospace;
   font-size: 14px;
   user-select: none;
 }
 
-Label[highlighted] {
+body[cool] Label[highlighted] {
   background: yellow;
   font-size: attr(fontSize px);
   color: attr(color color, tomato);
   font-size: attr(fontSize em);
 }
 
-Label[name="Ryskin"] {
+body[cool] Label[name="Ryskin"] {
   color: red;
-}
-
-/* bad code */
-
-:global #root {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.Label {
-  font-family: monospace;
-  font-size: 14px;
-  user-select: none;
-}
-
-.Label-highlight {
-  color: blue;
-  font-size: attr(fontSize px);
-}
-
-body .Label-highlight {
-  color: attr(color color, tomato);
-  font-size: attr(fontSize em);
-}
-
-.Shark .Label-highlight {
-  color: attr(color color, tomato);
-  font-size: attr(fontSize em);
-}
-
-div.Label:active {
-  background: attr(color color, tomato);
-  color: white;
 }

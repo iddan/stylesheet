@@ -1,8 +1,6 @@
-// const _ = require('lodash/fp');
 const postcss = require('postcss');
 const parser = require('postcss-selector-parser');
-// const Tokenizer = require('css-selector-tokenizer');
-// const parseAttribute = require('./parse-attribute');
+const _ = require('lodash/fp');
 
 /**
  * @param {Object} options
@@ -12,37 +10,55 @@ const parser = require('postcss-selector-parser');
  */
 module.exports = postcss.plugin('extract-components', ({ onComponent, onAttribute, onAttr }) => {
   const id = ID();
-  return (root, result) => result.root.walkRules(/\b[A-Z]/, rule => {
-    let component;
-    rule.selector = parser((selectors) => {
-      selectors.walkTags((node) => {
-        if (isComponentElement(node)) {
-          const { value } = node;
-          const className = `${value}_${id}`;
-          component = value;
-          onComponent(value, className);
-          node.replaceWith(parser.className({ value: className }));
+  return (root, result) =>
+    result.root.walkRules(/\b[A-Z]/, rule => {
+      let components = [];
+      rule.selector = parser(root => {
+        // TODO check for walkSelectors
+        for (const selector of root.nodes) {
+          const tagIndex = _.findLastIndex({ type: 'tag' }, selector.nodes);
+          const tag = selector.nodes[tagIndex];
+          if (!tag || !isComponentElement(tag)) {
+            continue;
+          }
+          const { value: componentName } = tag;
+          const componentClassName = `${componentName}_${id}`;
+          onComponent(componentName, componentClassName);
+          components.push(componentName);
+          for (let i = tagIndex; i < selector.nodes.length; i++) {
+            const node = selector.nodes[i];
+            switch (node.type) {
+              case 'attribute': {
+                const { operator, attribute, raws: { unquoted, insensitive }} = node;
+                const attributeClassName = `${componentName}-${attribute}_${id}`;
+                onAttribute(
+                  componentName,
+                  { operator, name: attribute, value: unquoted, insensitive },
+                  attributeClassName
+                );
+                node.replaceWith(parser.className({ value: attributeClassName }));
+                break;
+              }
+            }
+          }
+          tag.replaceWith(parser.className({ value: componentClassName }));
         }
-      });
-      selectors.walkAttributes((node) => {
-        if (component) {
-          const { operator, attribute, raws: { unquoted, insensitive } } = node;
-          const className = `${component}-${node.attribute}_${id}`;
-          onAttribute(component, { operator, name: attribute, value: unquoted, insensitive }, className);
-          node.replaceWith(parser.className({ value: className }));
+        if (components.length) {
+          rule.walkDecls(decl => {
+            const { prop, value } = decl;
+            if (isAttr(value)) {
+              for (const component of components) {
+                onAttr(rule.selector, component, prop, value);
+              }
+              decl.remove();
+            }
+            // rule.walkAtRules('apply', atRule => {
+            //   findParentComponent(atRule);
+            // });
+          });
         }
-      });
-    }).process(rule.selector).result;
-    if (component) {
-      rule.walkDecls(decl => {
-        const { prop, value } = decl;
-        if (isAttr(value)) {
-          onAttr(rule.selector, component, prop, value);
-          decl.remove();
-        }
-      });
-    }
-  });
+      }).process(rule.selector).result;
+    });
 });
 
 const ID = () => Math.random().toString(36).slice(3);

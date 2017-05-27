@@ -5,7 +5,14 @@
   "prettier.semi": true,
   "prettier.singleQuote": true,
   "prettier.tabWidth": 2,
-  "prettier.trailingComma": "all",
+  "prettier.trailingComma": "es5",
   "prettier.useTabs": false,
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "files.exclude": {
+    "**/node_modules/": "explorerExcludedFiles",
+    "_site": "explorerExcludedFiles",
+    "_assets": "explorerExcludedFiles",
+    ".sass-cache": "explorerExcludedFiles",
+    "search": "explorerExcludedFiles"
+  }
 }
