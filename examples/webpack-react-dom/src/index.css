@@ -10,15 +10,19 @@ Label {
   font-family: monospace;
   font-size: 14px;
   user-select: none;
+  color: white;
+  background: blue;
+  padding: 1rem;
+  margin: 1rem;
 }
 
-body[cool] Label[highlighted] {
+body[role="container"] Label[highlighted] {
   background: yellow;
   font-size: attr(fontSize px);
   color: attr(color color, tomato);
   font-size: attr(fontSize em);
 }
 
-body[cool] Label[name="Ryskin"] {
+body[role="container"] Label[name="Ryskin"] {
   color: red;
 }

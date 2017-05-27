@@ -3,16 +3,15 @@ const validAttributes = require('./validAttributes');
 
 exports.createComponentPath = require.resolve('./dist/create-css-component');
 
-exports.preprocess = ({ selector, className, props = [], attrs = [] }) => ({
+exports.preprocess = ({ selector, className, attributes = [], attrs = [] }) => ({
   selector,
   className,
-  props,
+  attributes,
   attrs,
-  invalidProps: flagInvalidProps(props, attrs),
+  invalidProps: flagInvalidProps(attributes, attrs),
 });
 
-const flagInvalidProps = (props, attrs) =>
-  _.flow([
-    _.concat(_.map(_.get('name'), props), _.map(_.get('name'), attrs)),
-    _.reduce((invalidProps, prop) => _.set(prop, !validAttributes(prop), invalidProps), {}),
-  ]);
+const flagInvalidProps = _.flow([
+  (attributes, attrs) => _.concat(_.map(_.get('name'), attributes), _.map(_.get('name'), attrs)),
+  _.reduce((invalidProps, prop) => _.set(prop, !validAttributes(prop), invalidProps), {}),
+]);

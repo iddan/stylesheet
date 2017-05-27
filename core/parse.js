@@ -17,17 +17,21 @@ module.exports = async function parse(string) {
         components = _.set([component, 'className'], className, components);
       },
       onAttribute(component, attribute, className) {
-        components = _.update([component, 'props'], (props = []) => [
-          ...props,
-          _.assign({ className }, attribute),
-        ], components);
+        components = _.update(
+          [component, 'attributes'],
+          (attributes = []) => [...attributes, _.assign({ className }, attribute)],
+          components
+        );
       },
       onAttr(selector, component, prop, value) {
-        const [, name, type, defaultValue] = value.split(/attr\(\s*(.+?)\s+(.+?)(?:,\s+(.+?))?\s*\)/);
-        components = _.update([component, 'attrs'], (attrs = []) => [
-          ...attrs,
-          { name, prop, type, defaultValue, selector },
-        ], components);
+        const [, name, type, defaultValue] = value.split(
+          /attr\(\s*(.+?)\s+(.+?)(?:,\s+(.+?))?\s*\)/
+        );
+        components = _.update(
+          [component, 'attrs'],
+          (attrs = []) => [...attrs, { name, prop, type, defaultValue, selector }],
+          components
+        );
       },
     }),
   ]).process(string);

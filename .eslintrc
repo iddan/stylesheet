@@ -4,6 +4,7 @@
     "object-curly-spacing": ["warn", "always", {
       "objectsInObjects": false
     }],
-    "comma-dangle": ["off"]
+    "comma-dangle": ["off"],
+    "template-curly-spacing": ["warn", "always"]
   }
 }
