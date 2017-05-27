@@ -3,11 +3,12 @@ const validAttributes = require('./validAttributes');
 
 exports.createComponentPath = require.resolve('./dist/create-css-component');
 
-exports.preprocess = ({ selector, className, attributes = [], attrs = [] }) => ({
+exports.preprocess = ({ selector, className, attributes = [], attrs = [], base }) => ({
   selector,
   className,
   attributes,
   attrs,
+  base,
   invalidProps: flagInvalidProps(attributes, attrs),
 });
 

@@ -34,10 +34,12 @@ module.exports = function createCSSComponent(_ref) {
       className = _ref.className,
       attributes = _ref.attributes,
       attrs = _ref.attrs,
+      _ref$base = _ref.base,
+      base = _ref$base === undefined ? 'div' : _ref$base,
       invalidProps = _ref.invalidProps;
 
   var CSSComponent = function CSSComponent(props) {
-    return (0, _react.createElement)('div', _extends({}, (0, _utils.omitBy)(props, function (value, key) {
+    return (0, _react.createElement)(base, _extends({}, (0, _utils.omitBy)(props, function (value, key) {
       return invalidProps[key];
     }), {
       className: [className].concat(_toConsumableArray(attributes.filter(function (attribute) {
@@ -46,7 +48,7 @@ module.exports = function createCSSComponent(_ref) {
         return attribute.className;
       }))).join(' '),
       style: _extends({}, props.style, attrs.reduce(function (acc, attr) {
-        return console.log(attr) || _extends({}, acc, _defineProperty({}, attr.prop, props[attr.name] && (0, _postfixAttrValue2.default)(props[attr.name], attr.type)));
+        return _extends({}, acc, _defineProperty({}, attr.prop, props[attr.name] && (0, _postfixAttrValue2.default)(props[attr.name], attr.type)));
       }, {}))
     }));
   };

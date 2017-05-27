@@ -39,6 +39,9 @@ module.exports = async function parse(string, options) {
           components
         );
       },
+      onApply(component, base) {
+        components = _.set([component, 'base'], base, components);
+      },
     }),
   ]).process(string);
   return { result, importStatements, components };

@@ -6,7 +6,7 @@ body {
 }
 
 Label {
-  @apply div;
+  @apply span;
   font-family: monospace;
   font-size: 14px;
   user-select: none;

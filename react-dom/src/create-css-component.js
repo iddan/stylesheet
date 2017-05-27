@@ -17,10 +17,11 @@ module.exports = function createCSSComponent({
   className,
   attributes,
   attrs,
+  base = 'div',
   invalidProps,
 }) {
   const CSSComponent = props =>
-    createElement('div', {
+    createElement(base, {
       ...omitBy(props, (value, key) => invalidProps[key]),
       className: [
         className,
@@ -33,11 +34,10 @@ module.exports = function createCSSComponent({
       style: {
         ...props.style,
         ...attrs.reduce(
-          (acc, attr) =>
-            console.log(attr) || {
-              ...acc,
-              [attr.prop]: props[attr.name] && postfixAttrValue(props[attr.name], attr.type),
-            },
+          (acc, attr) => ({
+            ...acc,
+            [attr.prop]: props[attr.name] && postfixAttrValue(props[attr.name], attr.type),
+          }),
           {}
         ),
       },

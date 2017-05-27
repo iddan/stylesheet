@@ -13,6 +13,7 @@ module.exports = postcss.plugin('extract-components', ({
   onComponent,
   onAttribute,
   onAttr,
+  onApply,
   id,
 }) => {
   return (root, result) =>
@@ -57,9 +58,11 @@ module.exports = postcss.plugin('extract-components', ({
               }
               decl.remove();
             }
-            // rule.walkAtRules('apply', atRule => {
-            //   findParentComponent(atRule);
-            // });
+            rule.walkAtRules('apply', atRule => {
+              for (const component of components) {
+                onApply(component, atRule.params);
+              }
+            });
           });
         }
       }).process(rule.selector).result;

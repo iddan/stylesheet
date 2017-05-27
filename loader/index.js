@@ -33,7 +33,7 @@ var data = deepMerge(importedComponentsData, moduleData);
 exports.locals = {
   ${ Object.entries(components)
           .map(([name, component]) => `${ name }: createComponent(data.${ name })`)
-          .join('\n') },
+          .join(',\n') },
   __data__: data
 };`
       )
