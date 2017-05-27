@@ -11,11 +11,8 @@ exports.preprocess = ({ selector, className, props = [], attrs = [] }) => ({
   invalidProps: flagInvalidProps(props, attrs),
 });
 
-const flagInvalidProps = (props, attrs) => _.reduce(
-  (invalidProps, prop) => _.set(prop, !validAttributes(prop), invalidProps),
-  {},
-  _.concat(
-    _.map(_.get('name'), props),
-    _.map(_.get('name'), attrs)
-  )
-);
+const flagInvalidProps = (props, attrs) =>
+  _.flow([
+    _.concat(_.map(_.get('name'), props), _.map(_.get('name'), attrs)),
+    _.reduce((invalidProps, prop) => _.set(prop, !validAttributes(prop), invalidProps), {}),
+  ]);
