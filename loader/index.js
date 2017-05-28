@@ -22,7 +22,7 @@ module.exports = function(content) {
         `
 var cssBase = require(${ stringifyRequest(this, require.resolve('./css-base')) });
 var deepMerge = require(${ stringifyRequest(this, require.resolve('./deep-merge')) });
-var importedComponentsData = Object.assign({}, ${ importStatements.map(requireData) });
+var importedComponentsData = Object.assign(${ ['{}', ...importStatements.map(requireData)].join() });
 var createComponent = require(${ stringifyRequest(this, createComponentPath) });
 exports = module.exports = cssBase(${ options.sourceMap });
 // module
