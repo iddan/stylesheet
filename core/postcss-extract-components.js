@@ -61,6 +61,7 @@ module.exports = postcss.plugin('extract-components', ({
             rule.walkAtRules('apply', atRule => {
               for (const component of components) {
                 onApply(component, atRule.params);
+                atRule.remove();
               }
             });
           });
