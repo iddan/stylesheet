@@ -16,32 +16,32 @@ module.exports = function(content) {
     `Bindings must be provided and be one of the following: ${ Object.keys(bindings).join() }`
   );
   const { preprocess, createComponentPath } = bindings[options.bindings];
-  this.callback = (err, parsedContent, sourceMap, abstractSyntaxTree) => {
-    parse(content, { id: options.id || id })
-      .then(({ result, importStatements, components }) =>
+  this.async = () => this.callback;
+  parse(content, { id: options.id || id })
+    .then(({ result, importStatements, components }) => {
+      this.callback = (err, parsedContent, sourceMap, abstractSyntaxTree) => {
         callback(
-          null,
+          err,
           `
-          ${ parsedContent }
-  var deepMerge = require(${ stringifyRequest(this, require.resolve('./deep-merge')) });
-  var importedComponentsData = Object.assign(${ ['{}', ...importStatements.map(requireData)].join() });
-  var createComponent = require(${ stringifyRequest(this, createComponentPath) });
-  var moduleData = ${ JSON.stringify(_.mapValues(preprocess, components)) };
-  var data = deepMerge(importedComponentsData, moduleData);
-  exports.locals = {
-    ${ Object.entries(components)
+                ${ parsedContent }
+        var deepMerge = require(${ stringifyRequest(this, require.resolve('./deep-merge')) });
+        var importedComponentsData = Object.assign(${ ['{}', ...importStatements.map(requireData)].join() });
+        var createComponent = require(${ stringifyRequest(this, createComponentPath) });
+        var moduleData = ${ JSON.stringify(_.mapValues(preprocess, components)) };
+        var data = deepMerge(importedComponentsData, moduleData);
+        exports.locals = {
+          ${ Object.entries(components)
             .map(([name, component]) => `${ name }: createComponent(data.${ name })`)
             .join(',\n') },
-    __data__: data
-  };`,
+          __data__: data
+        };`,
           sourceMap,
           abstractSyntaxTree
-        )
-      )
-      .catch(callback);
-  };
-  this.async = () => this.callback;
-  cssLoader.call(this, content);
+        );
+      };
+      cssLoader.call(this, result);
+    })
+    .catch(callback);
 };
 
 const requireData = ({ url }) => `require(${ stringifyRequest(this, url + `?id=${ id }`) }).__data__`;
