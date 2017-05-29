@@ -1,6 +1,6 @@
 {
   "name": "stylesheet",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Dynamic CSS for user interfaces",
   "scripts": {
     "build": "yarn run build:react-dom; yarn run build:examples-webpack-react-dom",
