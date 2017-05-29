@@ -1,3 +1,4 @@
+const cssLoader = require('css-loader');
 const assert = require('assert');
 const { stringifyRequest, getOptions } = require('loader-utils');
 const _ = require('lodash/fp');
@@ -15,30 +16,32 @@ module.exports = function(content) {
     `Bindings must be provided and be one of the following: ${ Object.keys(bindings).join() }`
   );
   const { preprocess, createComponentPath } = bindings[options.bindings];
-  parse(content, { id: options.id || id })
-    .then(({ result, importStatements, components }) =>
-      callback(
-        null,
-        `
-var cssBase = require(${ stringifyRequest(this, require.resolve('./css-base')) });
-var deepMerge = require(${ stringifyRequest(this, require.resolve('./deep-merge')) });
-var importedComponentsData = Object.assign(${ ['{}', ...importStatements.map(requireData)].join() });
-var createComponent = require(${ stringifyRequest(this, createComponentPath) });
-exports = module.exports = cssBase(${ options.sourceMap });
-// module
-exports.push([module.id, ${ JSON.stringify(result.css) }, ""])
-// exports
-var moduleData = ${ JSON.stringify(_.mapValues(preprocess, components)) };
-var data = deepMerge(importedComponentsData, moduleData);
-exports.locals = {
-  ${ Object.entries(components)
-          .map(([name, component]) => `${ name }: createComponent(data.${ name })`)
-          .join(',\n') },
-  __data__: data
-};`
+  this.callback = (err, parsedContent, sourceMap, abstractSyntaxTree) => {
+    parse(content, { id: options.id || id })
+      .then(({ result, importStatements, components }) =>
+        callback(
+          null,
+          `
+          ${ parsedContent }
+  var deepMerge = require(${ stringifyRequest(this, require.resolve('./deep-merge')) });
+  var importedComponentsData = Object.assign(${ ['{}', ...importStatements.map(requireData)].join() });
+  var createComponent = require(${ stringifyRequest(this, createComponentPath) });
+  var moduleData = ${ JSON.stringify(_.mapValues(preprocess, components)) };
+  var data = deepMerge(importedComponentsData, moduleData);
+  exports.locals = {
+    ${ Object.entries(components)
+            .map(([name, component]) => `${ name }: createComponent(data.${ name })`)
+            .join(',\n') },
+    __data__: data
+  };`,
+          sourceMap,
+          abstractSyntaxTree
+        )
       )
-    )
-    .catch(callback);
+      .catch(callback);
+  };
+  this.async = () => this.callback;
+  cssLoader.call(this, content);
 };
 
 const requireData = ({ url }) => `require(${ stringifyRequest(this, url + `?id=${ id }`) }).__data__`;
