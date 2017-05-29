@@ -1,13 +1,14 @@
 module.exports = {
   module: {
     rules: [
-      {        
+      {
         test: /\.css/,
         use: [
           'style-loader',
           {
             loader: 'stylesheet/loader',
             query: {
+              sourceMap: true,
               bindings: 'react-dom',
             },
           },
