@@ -2,18 +2,11 @@ const _ = require('lodash/fp');
 const postcss = require('postcss');
 const { ID } = require('./utils');
 const extractComponents = require('./postcss-extract-components');
-const extractImports = require('./postcss-extract-imports');
 
 module.exports = async function parse(string, options) {
-  let importStatements = [];
   let components = {};
   const { id = ID() } = options;
   const result = await postcss([
-    extractImports({
-      onImport(url, mediaQuery) {
-        importStatements = [...importStatements, { url, mediaQuery }];
-      },
-    }),
     extractComponents({
       id,
       onComponent(component, className) {
@@ -44,5 +37,5 @@ module.exports = async function parse(string, options) {
       },
     }),
   ]).process(string);
-  return { result, importStatements, components };
+  return { result, components };
 };

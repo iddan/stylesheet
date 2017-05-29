@@ -18,23 +18,24 @@ module.exports = function(content) {
   const { preprocess, createComponentPath } = bindings[options.bindings];
   this.async = () => this.callback;
   parse(content, { id: options.id || id })
-    .then(({ result, importStatements, components }) => {
+    .then(({ result, components }) => {
       this.callback = (err, parsedContent, sourceMap, abstractSyntaxTree) => {
         callback(
           err,
           `
                 ${ parsedContent }
         var deepMerge = require(${ stringifyRequest(this, require.resolve('./deep-merge')) });
-        var importedComponentsData = Object.assign(${ ['{}', ...importStatements.map(requireData)].join() });
+        var importedComponentsData = exports.slice(0, exports.length - 1).map(([id]) => __webpack_require__(id).components);
         var createComponent = require(${ stringifyRequest(this, createComponentPath) });
         var moduleData = ${ JSON.stringify(_.mapValues(preprocess, components)) };
-        var data = deepMerge(importedComponentsData, moduleData);
+        var data = deepMerge.apply(null, importedComponentsData.concat(moduleData));
+        exports.components = data;
         exports.locals = {
           ${ Object.entries(components)
             .map(([name, component]) => `${ name }: createComponent(data.${ name })`)
-            .join(',\n') },
-          __data__: data
-        };`,
+            .join(',\n') }
+        };
+        `,
           sourceMap,
           abstractSyntaxTree
         );
@@ -43,5 +44,3 @@ module.exports = function(content) {
     })
     .catch(callback);
 };
-
-const requireData = ({ url }) => `require(${ stringifyRequest(this, url + `?id=${ id }`) }).__data__`;
