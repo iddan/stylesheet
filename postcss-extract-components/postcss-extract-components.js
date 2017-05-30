@@ -1,7 +1,7 @@
 const postcss = require('postcss');
 const parser = require('postcss-selector-parser');
 const _ = require('lodash/fp');
-const { ID } = require('./utils');
+const shortid = require('shortid');
 
 /**
  * @param {Object} options
@@ -36,7 +36,7 @@ module.exports = postcss.plugin('extract-components', ({
             switch (node.type) {
               case 'attribute': {
                 const { operator, attribute, raws: { unquoted, insensitive }} = node;
-                const attributeClassName = `${ componentName }-${ attribute }_${ ID() }_${ id }`;
+                const attributeClassName = `${ componentName }-${ attribute }_${ shortid.generate() }_${ id }`;
                 onAttribute(
                   componentName,
                   { operator, name: attribute, value: unquoted, insensitive },

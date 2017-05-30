@@ -5,6 +5,7 @@
   },
   "devDependencies": {
     "css-loader": "^0.27.3",
+    "style-loader": "^0.18.1",
     "webpack": "^2.2.1"
   },
   "dependencies": {

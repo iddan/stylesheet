@@ -1,11 +1,11 @@
 const _ = require('lodash/fp');
 const postcss = require('postcss');
-const { ID } = require('./utils');
-const extractComponents = require('./postcss-extract-components');
+const shortid = require('shortid');
+const extractComponents = require('../postcss-extract-components/postcss-extract-components');
 
 module.exports = async function parse(string, options) {
   let components = {};
-  const { id = ID() } = options;
+  const { id = shortid.generate() } = options;
   const result = await postcss([
     extractComponents({
       id,

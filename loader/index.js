@@ -3,10 +3,10 @@ const assert = require('assert');
 const { stringifyRequest, getOptions } = require('loader-utils');
 const _ = require('lodash/fp');
 const parse = require('../core/parse');
-const { ID } = require('../core/utils');
+const shortid = require('shortid');
 const bindings = require('./bindings');
 
-const id = ID();
+const id = shortid.generate();
 
 module.exports = function(content) {
   const callback = this.async();
