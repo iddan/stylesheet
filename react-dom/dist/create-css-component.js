@@ -128,10 +128,8 @@ module.exports = function createCSSComponent(_ref) {
     }
 
     _createClass(CSSComponent, [{
-      key: 'render',
-      value: function render() {
-        var props = this.props,
-            attrClassNames = this.attrClassNames;
+      key: 'componentWillUpdate',
+      value: function componentWillUpdate(nextProps) {
         var _iteratorNormalCompletion3 = true;
         var _didIteratorError3 = false;
         var _iteratorError3 = undefined;
@@ -141,7 +139,7 @@ module.exports = function createCSSComponent(_ref) {
             var attr = _step3.value;
 
             if (attr.cssRule) {
-              attr.cssRule.style[attr.prop] = (0, _template.format)(attr.template, props);
+              attr.cssRule.style[attr.prop] = (0, _template.format)(attr.template, nextProps);
             }
           }
         } catch (err) {
@@ -158,6 +156,12 @@ module.exports = function createCSSComponent(_ref) {
             }
           }
         }
+      }
+    }, {
+      key: 'render',
+      value: function render() {
+        var props = this.props,
+            attrClassNames = this.attrClassNames;
 
         return (0, _react.createElement)(base, _extends({}, (0, _utils.omitBy)(props, function (value, key) {
           return invalidProps[key];

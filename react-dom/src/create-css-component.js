@@ -57,13 +57,14 @@ module.exports = function createCSSComponent({
       this.forceUpdate();
     };
 
+    componentWillUpdate(nextProps) {
+      for (const attr of this.attrs) {
+        attr.cssRule.style[attr.prop] = format(attr.template, nextProps);
+      }
+    }
+
     render() {
       const { props, attrClassNames } = this;
-      for (const attr of this.attrs) {
-        if (attr.cssRule) {
-          attr.cssRule.style[attr.prop] = format(attr.template, props);
-        }
-      }
       return createElement(base, {
         ...omitBy(props, (value, key) => invalidProps[key]),
         className: [
