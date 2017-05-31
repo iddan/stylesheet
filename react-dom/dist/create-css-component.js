@@ -4,9 +4,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _react = require('react');
 
-var _postfixAttrValue = require('../../core/postfix-attr-value');
-
-var _postfixAttrValue2 = _interopRequireDefault(_postfixAttrValue);
+var _template = require('../../core/template');
 
 var _matchAttribute = require('../../core/match-attribute');
 
@@ -48,7 +46,7 @@ module.exports = function createCSSComponent(_ref) {
         return attribute.className;
       }))).join(' '),
       style: _extends({}, props.style, attrs.reduce(function (acc, attr) {
-        return _extends({}, acc, _defineProperty({}, attr.prop, props[attr.name] && (0, _postfixAttrValue2.default)(props[attr.name], attr.type)));
+        return _extends({}, acc, _defineProperty({}, attr.prop, console.log((0, _template.format)(attr.template, props)) || (0, _template.format)(attr.template, props)));
       }, {}))
     }));
   };

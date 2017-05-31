@@ -1,4 +1,4 @@
-export default function postfixAttrValue(value, type) {
+module.exports = function postfixAttrValue(value, type) {
   switch (type) {
     case 'em':
     case 'ex':
@@ -21,8 +21,8 @@ export default function postfixAttrValue(value, type) {
     case 'Hz':
     case 'kHz':
     case '%':
-      return `${value}${type}`;
+      return value + type;
     default:
       return value;
   }
-}
+};

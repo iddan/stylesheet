@@ -71,4 +71,4 @@ module.exports = postcss.plugin('extract-components', ({
 });
 
 const isComponentElement = ({ value }) => value.search(/\b[A-Z]/) > -1;
-const isAttr = value => value.search(/^attr\(.+?\)$/) !== -1;
+const isAttr = value => value.search(/attr\(.+?\)/) !== -1;

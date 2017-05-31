@@ -17,10 +17,9 @@ Label {
 }
 
 body Label[highlighted] {
-  background: yellow;
-  font-size: attr(fontSize px);
-  color: attr(color color, tomato);
-  font-size: attr(fontSize em);
+  background: linear-gradient(to top, yellow, attr(color color, tomato));
+  font-size: calc(attr(fontSize px) + 12px);
+  color: white;
 }
 
 body Label[name="Ryskin"] {

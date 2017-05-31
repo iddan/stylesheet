@@ -14,7 +14,7 @@ class App extends PureComponent {
         {
           key: 'ryskin',
           color: this.state.color,
-          fontSize: Math.random() * 10,
+          fontSize: Math.random() * 100,
           highlighted: true,
           name: 'Ryskin',
           onClick: () =>

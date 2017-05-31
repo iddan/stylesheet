@@ -2,6 +2,7 @@ const _ = require('lodash/fp');
 const postcss = require('postcss');
 const shortid = require('shortid');
 const extractComponents = require('../postcss-extract-components/postcss-extract-components');
+const attrToTemplate = require('./attr-to-template');
 
 module.exports = async function parse(string, options) {
   let components = {};
@@ -20,15 +21,20 @@ module.exports = async function parse(string, options) {
         );
       },
       onAttr(selector, component, prop, value) {
-        const [, name, type, defaultValue] = value.split(
-          /attr\(\s*(.+?)\s+(.+?)(?:,\s+(.+?))?\s*\)/
-        );
         components = _.update(
           [component, 'attrs'],
-          (attrs = []) => [
-            ...attrs,
-            { name, prop: _.camelCase(prop), type, defaultValue, selector },
-          ],
+          (attrs = []) => {
+            const { template, attributes } = attrToTemplate(value);
+            return [
+              ...attrs,
+              {
+                prop: _.camelCase(prop),
+                selector,
+                template,
+                attributes,
+              },
+            ];
+          },
           components
         );
       },

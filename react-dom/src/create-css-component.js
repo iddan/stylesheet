@@ -1,5 +1,5 @@
 import { createElement } from 'react';
-import postfixAttrValue from '../../core/postfix-attr-value';
+import { format } from '../../core/template';
 import matchAttribute from '../../core/match-attribute';
 import { omitBy } from './utils.js';
 
@@ -36,7 +36,7 @@ module.exports = function createCSSComponent({
         ...attrs.reduce(
           (acc, attr) => ({
             ...acc,
-            [attr.prop]: props[attr.name] && postfixAttrValue(props[attr.name], attr.type),
+            [attr.prop]: console.log(format(attr.template, props)) || format(attr.template, props),
           }),
           {}
         ),
