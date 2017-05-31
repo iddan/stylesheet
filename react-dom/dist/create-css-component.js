@@ -138,9 +138,7 @@ module.exports = function createCSSComponent(_ref) {
           for (var _iterator3 = this.attrs[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
             var attr = _step3.value;
 
-            if (attr.cssRule) {
-              attr.cssRule.style[attr.prop] = (0, _template.format)(attr.template, nextProps);
-            }
+            attr.cssRule.style[attr.prop] = (0, _template.format)(attr.template, nextProps);
           }
         } catch (err) {
           _didIteratorError3 = true;
