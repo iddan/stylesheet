@@ -50,10 +50,11 @@ module.exports = function createCSSComponent(_ref) {
 
       var _this = _possibleConstructorReturn(this, (CSSComponent.__proto__ || Object.getPrototypeOf(CSSComponent)).call(this, props));
 
-      _this.attrClassNames = [];
+      _this.attrs = [];
       _this.displayName = displayName;
 
       _this.handleDOMLoad = function () {
+        var attrClassNames = [];
         removeEventListener('load', _this.handleDOMLoad);
         var _iteratorNormalCompletion = true;
         var _didIteratorError = false;
@@ -63,8 +64,8 @@ module.exports = function createCSSComponent(_ref) {
           for (var _iterator = attrs[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
             var attr = _step.value;
 
-            var uniqueClassName = 'a' + Math.random().toString(32).slice(6);
-            _this.attrClassNames.push(uniqueClassName);
+            var attrClassName = 'a' + Math.random().toString(32).slice(6);
+            attrClassNames.push(attrClassName);
             var _iteratorNormalCompletion2 = true;
             var _didIteratorError2 = false;
             var _iteratorError2 = undefined;
@@ -76,8 +77,10 @@ module.exports = function createCSSComponent(_ref) {
                 for (var i = 0; i < cssStylesheet.cssRules.length; i++) {
                   var rule = cssStylesheet.cssRules[i];
                   if (rule.selectorText && rule.selectorText.includes(attr.selector)) {
-                    cssStylesheet.insertRule('.' + uniqueClassName + ' {}', i + 1);
-                    attr.cssRule = cssStylesheet.cssRules[i];
+                    cssStylesheet.insertRule('.' + attrClassName + ' {}', i + 1);
+                    _this.attrs.push(_extends({}, attr, {
+                      cssRule: cssStylesheet.cssRules[i + 1]
+                    }));
                     break styleSheetsLoop;
                   }
                 }
@@ -96,6 +99,8 @@ module.exports = function createCSSComponent(_ref) {
                 }
               }
             }
+
+            _this.attrClassNames = attrClassNames.join(' ');
           }
         } catch (err) {
           _didIteratorError = true;
@@ -132,11 +137,10 @@ module.exports = function createCSSComponent(_ref) {
         var _iteratorError3 = undefined;
 
         try {
-          for (var _iterator3 = attrs[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+          for (var _iterator3 = this.attrs[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
             var attr = _step3.value;
 
             if (attr.cssRule) {
-              console.log(attr.cssRule);
               attr.cssRule.style[attr.prop] = (0, _template.format)(attr.template, props);
             }
           }
@@ -158,7 +162,7 @@ module.exports = function createCSSComponent(_ref) {
         return (0, _react.createElement)(base, _extends({}, (0, _utils.omitBy)(props, function (value, key) {
           return invalidProps[key];
         }), {
-          className: [className].concat(_toConsumableArray(attrClassNames), _toConsumableArray(attributes.filter(function (attribute) {
+          className: [className, attrClassNames].concat(_toConsumableArray(attributes.filter(function (attribute) {
             return props[attribute.name] && (0, _matchAttribute2.default)(attribute, props[attribute.name]);
           }).map(function (attribute) {
             return attribute.className;

@@ -29,32 +29,37 @@ module.exports = function createCSSComponent({
       addEventListener('load', this.handleDOMLoad);
     }
 
-    attrClassNames = [];
+    attrs = [];
 
     displayName = displayName;
 
     handleDOMLoad = () => {
+      const attrClassNames = [];
       removeEventListener('load', this.handleDOMLoad);
       for (const attr of attrs) {
-        const uniqueClassName = 'a' + Math.random().toString(32).slice(6);
-        this.attrClassNames.push(uniqueClassName);
+        const attrClassName = 'a' + Math.random().toString(32).slice(6);
+        attrClassNames.push(attrClassName);
         styleSheetsLoop: for (const cssStylesheet of document.styleSheets) {
           for (let i = 0; i < cssStylesheet.cssRules.length; i++) {
             const rule = cssStylesheet.cssRules[i];
             if (rule.selectorText && rule.selectorText.includes(attr.selector)) {
-              cssStylesheet.insertRule(`.${ uniqueClassName } {}`, i + 1);
-              attr.cssRule = cssStylesheet.cssRules[i];
+              cssStylesheet.insertRule(`.${ attrClassName } {}`, i + 1);
+              this.attrs.push({
+                ...attr,
+                cssRule: cssStylesheet.cssRules[i + 1],
+              });
               break styleSheetsLoop;
             }
           }
         }
+        this.attrClassNames = attrClassNames.join(' ');
       }
       this.forceUpdate();
     };
 
     render() {
       const { props, attrClassNames } = this;
-      for (const attr of attrs) {
+      for (const attr of this.attrs) {
         if (attr.cssRule) {
           attr.cssRule.style[attr.prop] = format(attr.template, props);
         }
@@ -63,7 +68,7 @@ module.exports = function createCSSComponent({
         ...omitBy(props, (value, key) => invalidProps[key]),
         className: [
           className,
-          ...attrClassNames,
+          attrClassNames,
           ...attributes
             .filter(
               attribute => props[attribute.name] && matchAttribute(attribute, props[attribute.name])
