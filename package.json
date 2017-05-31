@@ -48,6 +48,7 @@
     "lodash": "^4.17.4",
     "postcss": "^5.2.16",
     "postcss-selector-parser": "^2.2.3",
+    "postcss-value-parser": "^3.3.0",
     "react": "^15.4.2",
     "shortid": "^2.2.8",
     "webpack": "^2.2.1"
