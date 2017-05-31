@@ -49,24 +49,24 @@ module.exports = postcss.plugin('extract-components', ({
           }
           tag.replaceWith(parser.className({ value: componentClassName }));
         }
-        if (components.length) {
-          rule.walkDecls(decl => {
-            const { prop, value } = decl;
-            if (isAttr(value)) {
-              for (const component of components) {
-                onAttr(rule.selector, component, prop, value);
-              }
-              decl.remove();
-            }
-            rule.walkAtRules('apply', atRule => {
-              for (const component of components) {
-                onApply(component, atRule.params);
-                atRule.remove();
-              }
-            });
-          });
-        }
       }).process(rule.selector).result;
+      if (components.length) {
+        rule.walkDecls(decl => {
+          const { prop, value } = decl;
+          if (isAttr(value)) {
+            for (const component of components) {
+              onAttr(rule.selector, component, prop, value);
+            }
+            decl.remove();
+          }
+          rule.walkAtRules('apply', atRule => {
+            for (const component of components) {
+              onApply(component, atRule.params);
+              atRule.remove();
+            }
+          });
+        });
+      }
     });
 });
 
