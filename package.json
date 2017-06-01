@@ -3,7 +3,8 @@
   "version": "0.6.0",
   "description": "Dynamic CSS for user interfaces",
   "scripts": {
-    "build": "yarn run build:react-dom; yarn run build:examples-webpack-react-dom",
+    "build": "yarn run build:dom; yarn run build:react-dom; yarn run build:examples-webpack-react-dom",
+    "build:dom": "babel dom/src --out-dir dom/dist --config dom/.babelrc",
     "build:react-dom": "babel react-dom/src --out-dir react-dom/dist --config react-dom/src/.babelrc",
     "build:examples-webpack-react-dom": "cd examples/webpack-react-dom; yarn run build -- --verbose --bail"
   },
@@ -35,13 +36,11 @@
     "email": "info@500tech.com",
     "url": "500tech.com"
   },
-  "contributors": [
-    {
-      "name": "Iddan Aharonson",
-      "email": "mail@aniddan.com",
-      "url": "aniddan.com"
-    }
-  ],
+  "contributors": [{
+    "name": "Iddan Aharonson",
+    "email": "mail@aniddan.com",
+    "url": "aniddan.com"
+  }],
   "dependencies": {
     "css-loader": "^0.28.3",
     "loader-utils": "^1.0.4",
