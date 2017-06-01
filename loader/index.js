@@ -1,8 +1,9 @@
+const postcss = require('postcss');
 const cssLoader = require('css-loader');
 const assert = require('assert');
 const { stringifyRequest, getOptions } = require('loader-utils');
 const _ = require('lodash/fp');
-const parse = require('../core/parse');
+const stylesheetPostcssPlugin = require('../postcss');
 const shortid = require('shortid');
 const bindings = require('./bindings');
 
@@ -17,8 +18,17 @@ module.exports = function(content) {
   );
   const { preprocess, createComponentPath } = bindings[options.bindings];
   this.async = () => this.callback;
-  parse(content, { id: options.id || id })
-    .then(({ result, components }) => {
+  let components;
+  postcss([
+    stylesheetPostcssPlugin({
+      id: options.id || id,
+      onComponents(receivedComponents) {
+        components = receivedComponents;
+      },
+    }),
+  ])
+    .process(content)
+    .then(result => {
       this.callback = (err, parsedContent, sourceMap, abstractSyntaxTree) => {
         callback(
           err,

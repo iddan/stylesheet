@@ -10,7 +10,7 @@ const attrToTemplate = require('../core/attr-to-template');
  * @param {function} options.onProp
  * @param {function} options.onAttr
  */
-module.exports = postcss.plugin('extract-_components', ({
+module.exports = postcss.plugin('stylesheet', ({
   onComponents,
   id,
 }) => {
