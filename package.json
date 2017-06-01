@@ -3,9 +3,10 @@
   "version": "0.6.0",
   "description": "Dynamic CSS for user interfaces",
   "scripts": {
-    "build": "yarn run build:dom; yarn run build:react-dom; yarn run build:examples-webpack-react-dom",
-    "build:dom": "babel dom/src --out-dir dom/dist --config dom/.babelrc",
-    "build:react-dom": "babel react-dom/src --out-dir react-dom/dist --config react-dom/src/.babelrc",
+    "build": "yarn run build:dom; yarn run build:vanilla-dom; yarn run build:react-dom; yarn run build:examples-webpack-react-dom",
+    "build:dom": "babel dom/src --out-dir dom/dist",
+    "build:vanilla-dom": "babel vanilla-dom/src --out-dir vanilla-dom/dist",
+    "build:react-dom": "babel react-dom/src --out-dir react-dom/dist",
     "build:examples-webpack-react-dom": "cd examples/webpack-react-dom; yarn run build -- --verbose --bail"
   },
   "keywords": [
@@ -42,6 +43,7 @@
     "url": "aniddan.com"
   }],
   "dependencies": {
+    "babel-core": "^6.24.1",
     "css-loader": "^0.28.3",
     "loader-utils": "^1.0.4",
     "lodash": "^4.17.4",
@@ -53,13 +55,19 @@
     "webpack": "^2.2.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.24.0",
+    "babel-cli": "^6.24.1",
     "babel-preset-env": "^1.2.2",
-    "babel-preset-stage-2": "^6.22.0",
+    "babel-preset-stage-2": "^6.24.1",
     "eslint": "^3.19.0",
     "eslint-config-fbjs-opensource": "^1.0.0"
   },
   "engines": {
     "node": ">=6.0.0"
+  },
+  "babel": {
+    "presets": [
+      "env",
+      "stage-2"
+    ]
   }
 }
