@@ -2,7 +2,7 @@ const postcss = require('postcss');
 const parser = require('postcss-selector-parser');
 const _ = require('lodash/fp');
 const shortid = require('shortid');
-const attrToTemplate = require('../core/attr-to-template');
+const attrToTemplate = require('./attr-to-template');
 
 /**
  * @param {Object} options
@@ -10,10 +10,7 @@ const attrToTemplate = require('../core/attr-to-template');
  * @param {function} options.onProp
  * @param {function} options.onAttr
  */
-module.exports = postcss.plugin('stylesheet', ({
-  onComponents,
-  id,
-}) => {
+module.exports = postcss.plugin('stylesheet', ({ onComponents, id }) => {
   return (root, result) => {
     let components = {};
     result.root.walkRules(/\b[A-Z]/, rule => {
