@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   module: {
     rules: [
@@ -21,4 +23,10 @@ module.exports = {
     filename: 'dist/bundle.js',
   },
   devtool: 'sourcemaps',
+  devServer: {
+    contentBase: path.join(__dirname, 'public'),
+    port: 8080,
+    historyApiFallback: true,
+    inline: true,
+  },
 };

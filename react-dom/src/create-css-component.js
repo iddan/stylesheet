@@ -25,34 +25,32 @@ module.exports = function createCSSComponent({
 
     className = className;
     attributes = attributes;
-    attrs = attrs;
     base = base;
     invalidProps = invalidProps;
 
-    state = {
-      attrs: [],
-    };
-
     constructor(props) {
       super(props);
-      bindAttrsToCSSOM(this.attrs).then(boundAttrs => this.setState({ attrs: boundAttrs }));
+      this.attrs = bindAttrsToCSSOM(attrs);
+      this.applyAttrs(props);
     }
 
-    componentWillUpdate(nextProps, nextState) {
-      for (const attr of nextState.attrs) {
-        if (attr.cssRule) {
-          attr.cssRule.style[attr.prop] = format(attr.template, nextProps);
-        }
+    applyAttrs = props => {
+      for (const attr of this.attrs) {
+        attr.cssRule.style[attr.prop] = format(attr.template, props);
       }
+    };
+
+    componentWillUpdate(nextProps) {
+      this.applyAttrs(nextProps);
     }
 
     render() {
-      const { props, state } = this;
+      const { props } = this;
       return createElement(this.base, {
         ...omitBy(props, (value, key) => this.invalidProps[key]),
         className: [
           this.className,
-          ...state.attrs.map(attr => attr.className),
+          ...this.attrs.map(attr => attr.className),
           ...this.attributes
             .filter(
               attribute => props[attribute.name] && matchAttribute(attribute, props[attribute.name])

@@ -3,11 +3,13 @@
   "version": "0.6.0",
   "main": "index.js",
   "scripts": {
+    "start": "webpack-dev-server",
     "build": "webpack"
   },
   "license": "MIT",
   "devDependencies": {
     "style-loader": "^0.18.1",
-    "webpack": "^2.6.1"
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^2.4.5"
   }
 }

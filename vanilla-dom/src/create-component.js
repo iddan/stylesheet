@@ -7,15 +7,7 @@ const getAttributeClassNames = attributes => props =>
     .filter(attribute => matchAttribute(attribute, props[attribute.name]))
     .map(attribute => attribute.className);
 
-const createComponent = ({
-  displayName,
-  selector,
-  className,
-  attributes,
-  attrs,
-  base = 'div',
-  invalidProps,
-}) => class CSSComponent {
+const createComponent = ({ className, attributes, attrs, base = 'div' }) => class CSSComponent {
   static create(initialAttributes) {
     const instance = new CSSComponent(initialAttributes);
     return instance.element;
@@ -30,15 +22,15 @@ const createComponent = ({
 
   element = document.createElement(base);
 
-  willUpdate = false;
+  attrs = bindAttrsToCSSOM(attrs);
 
-  attrs = [];
+  willUpdate = false;
 
   observe(properties) {
     Object.defineProperties(
       this.element,
-      properties.reduce((acc, property) => {
-        return {
+      properties.reduce(
+        (acc, property) => ({
           ...acc,
           [property]: {
             get: () => {
@@ -54,8 +46,9 @@ const createComponent = ({
               return value;
             },
           },
-        };
-      }, {})
+        }),
+        {}
+      )
     );
   }
 
@@ -63,10 +56,6 @@ const createComponent = ({
     this.props = props;
     this.observe(this.constructor.propKeys);
     this.render();
-    bindAttrsToCSSOM(attrs).then(boundAttrs => {
-      this.attrs = boundAttrs;
-      this.render();
-    });
   }
 
   render = () => {
