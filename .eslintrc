@@ -5,6 +5,11 @@
       "objectsInObjects": false
     }],
     "comma-dangle": ["off"],
-    "template-curly-spacing": ["warn", "always"]
+    "template-curly-spacing": ["warn", "always"],
+    "no-unused-vars": ["warn", {
+      "vars": "all",
+      "args": "after-used",
+      "ignoreRestSiblings": false
+    }]
   }
 }

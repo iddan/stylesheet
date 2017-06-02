@@ -14,7 +14,6 @@ import { omitBy } from './utils.js';
  */
 module.exports = function createCSSComponent({
   displayName,
-  selector,
   className,
   attributes,
   attrs,
@@ -24,13 +23,19 @@ module.exports = function createCSSComponent({
   return class CSSComponent extends Component {
     static displayName = displayName;
 
+    className = className;
+    attributes = attributes;
+    attrs = attrs;
+    base = base;
+    invalidProps = invalidProps;
+
     state = {
       attrs: [],
     };
 
     constructor(props) {
       super(props);
-      bindAttrsToCSSOM(attrs).then(boundAttrs => this.setState({ attrs: boundAttrs }));
+      bindAttrsToCSSOM(this.attrs).then(boundAttrs => this.setState({ attrs: boundAttrs }));
     }
 
     componentWillUpdate(nextProps, nextState) {
@@ -43,12 +48,12 @@ module.exports = function createCSSComponent({
 
     render() {
       const { props, state } = this;
-      return createElement(base, {
-        ...omitBy(props, (value, key) => invalidProps[key]),
+      return createElement(this.base, {
+        ...omitBy(props, (value, key) => this.invalidProps[key]),
         className: [
-          className,
+          this.className,
           ...state.attrs.map(attr => attr.className),
-          ...attributes
+          ...this.attributes
             .filter(
               attribute => props[attribute.name] && matchAttribute(attribute, props[attribute.name])
             )
