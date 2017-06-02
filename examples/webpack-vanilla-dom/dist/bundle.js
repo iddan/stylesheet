@@ -63,17 +63,324 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports) {
+
+/**
+ * @param {Object[]} objects array of plain objects
+ */
+const deepMerge = (...objects) => objects.reduce(
+  (acc, object) => {
+    if (!acc || typeof object !== 'object') {
+      return object;
+    }
+    if (!Array.isArray(acc) && Array.isArray(object)) {
+      return object;
+    }
+    if (Array.isArray(acc) && Array.isArray(object)) {
+      return [...acc, ...object];
+    }
+    return Object.keys(object).reduce(
+      (acc2, key) => Object.assign({}, acc2, { [key]: deepMerge(acc2[key], object[key]) }),
+      acc || {}
+    );
+  },
+  {}
+);
+
+module.exports = deepMerge;
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _template = __webpack_require__(5);
+
+var _matchAttribute = __webpack_require__(4);
+
+var _matchAttribute2 = _interopRequireDefault(_matchAttribute);
+
+var _bindAttrsToCssom = __webpack_require__(6);
+
+var _bindAttrsToCssom2 = _interopRequireDefault(_bindAttrsToCssom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var pick = function pick(properties, object) {
+  return properties.reduce(function (props, prop) {
+    return _extends({}, props, _defineProperty({}, prop, object[prop]));
+  });
+};
+
+var getAttributeClassNames = function getAttributeClassNames(attributes) {
+  return function (props) {
+    return attributes.filter(function (attribute) {
+      return (0, _matchAttribute2.default)(attribute, props[attribute.name]);
+    }).map(function (attribute) {
+      return attribute.className;
+    });
+  };
+};
+
+var createComponent = function createComponent(_ref) {
+  var _class, _temp;
+
+  var displayName = _ref.displayName,
+      selector = _ref.selector,
+      className = _ref.className,
+      attributes = _ref.attributes,
+      attrs = _ref.attrs,
+      _ref$base = _ref.base,
+      base = _ref$base === undefined ? 'div' : _ref$base,
+      invalidProps = _ref.invalidProps;
+  return _temp = _class = function () {
+    _createClass(CSSComponent, [{
+      key: 'observe',
+      value: function observe(properties) {
+        var _this = this;
+
+        Object.defineProperties(this.element, properties.reduce(function (acc, property) {
+          var key = '__' + property + '__';
+          return _extends({}, acc, _defineProperty({}, property, {
+            get: function get() {
+              return _this[key];
+            },
+            set: function set(value) {
+              console.log(value);
+              _this[key] = value;
+              if (!_this.willUpdate) {
+                _this.willUpdate = true;
+
+                _this.render();
+              }
+              return value;
+            }
+          }));
+        }, {}));
+      }
+    }, {
+      key: 'props',
+      get: function get() {
+        return pick(CSSComponent.propKeys, this);
+      }
+    }], [{
+      key: 'create',
+      value: function create(initialAttributes) {
+        var instance = new CSSComponent(initialAttributes);
+        return instance.element;
+      }
+    }]);
+
+    function CSSComponent(initialAttributes) {
+      var _this2 = this;
+
+      _classCallCheck(this, CSSComponent);
+
+      this.element = document.createElement(base);
+      this.willUpdate = false;
+      this.attrs = [];
+
+      this.render = function () {
+        requestAnimationFrame(function () {
+          var props = _this2.props;
+
+          console.log('rendering', { props: props });
+          _this2.element.dispatchEvent(Object.assign(new Event('componentWillUpdate', {
+            props: props
+          })));
+          _this2.element.className = [className].concat(CSSComponent.getAttributeClassNames(props)).concat(_this2.attrs.map(function (attr) {
+            return attr.className;
+          })).join(' ');
+          var _iteratorNormalCompletion = true;
+          var _didIteratorError = false;
+          var _iteratorError = undefined;
+
+          try {
+            for (var _iterator = _this2.attrs[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+              var attr = _step.value;
+
+              if (attr.cssRule) {
+                attr.cssRule.style[attr.prop] = (0, _template.format)(attr.template, props);
+              }
+            }
+          } catch (err) {
+            _didIteratorError = true;
+            _iteratorError = err;
+          } finally {
+            try {
+              if (!_iteratorNormalCompletion && _iterator.return) {
+                _iterator.return();
+              }
+            } finally {
+              if (_didIteratorError) {
+                throw _iteratorError;
+              }
+            }
+          }
+
+          _this2.element.dispatchEvent(Object.assign(new Event('componentDidUpdate', { props: props })));
+          _this2.willUpdate = false;
+        });
+      };
+
+      var _iteratorNormalCompletion2 = true;
+      var _didIteratorError2 = false;
+      var _iteratorError2 = undefined;
+
+      try {
+        for (var _iterator2 = Object.entries(initialAttributes)[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+          var _ref2 = _step2.value;
+
+          var _ref3 = _slicedToArray(_ref2, 2);
+
+          var key = _ref3[0];
+          var value = _ref3[1];
+
+          this['__' + key + '__'] = value;
+        }
+      } catch (err) {
+        _didIteratorError2 = true;
+        _iteratorError2 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion2 && _iterator2.return) {
+            _iterator2.return();
+          }
+        } finally {
+          if (_didIteratorError2) {
+            throw _iteratorError2;
+          }
+        }
+      }
+
+      (0, _bindAttrsToCssom2.default)(attrs).then(function (boundAttrs) {
+        _this2.attrs = boundAttrs;
+        _this2.render();
+      });
+      this.observe(CSSComponent.propKeys);
+      this.render();
+    }
+
+    return CSSComponent;
+  }(), _class.getAttributeClassNames = getAttributeClassNames(attributes), _class.propKeys = [].concat(_toConsumableArray(attributes.map(function (attribute) {
+    return attribute.name;
+  })), _toConsumableArray(attrs.reduce(function (acc, attr) {
+    return acc.concat(attr.attributes);
+  }, []))), _temp;
+};
+
+module.exports = createComponent;
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(6);
+var content = __webpack_require__(12);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -81,7 +388,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(3)(content, options);
+var update = __webpack_require__(8)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -98,19 +405,160 @@ if(false) {
 }
 
 /***/ }),
-/* 1 */
-/***/ (function(module, exports) {
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = React;
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (immutable) */ __webpack_exports__["default"] = matchAttribute;
+/**
+ * @param {Object} attribute A CSS attribute selector presenation
+ * @param {string} attribute.operator
+ * @param {string} attribute.value
+ * @param {boolean} attribute.insensitive
+ * @param {string} value The element's attribute value
+ */
+function matchAttribute(attribute, value) {
+  const { insensitive } = attribute;
+  const attributeValue = insensitive ? attribute.value.toLowerCase() : attribute.value;
+  const elementValue = insensitive ? value.toLowerCase() : value;
+  switch (attribute.operator) {
+    case '=': {
+      return elementValue === attributeValue;
+    }
+    case '~=': {
+      return whitespaceList(elementValue).includes(attributeValue);
+    }
+    case '|=': {
+      return beforeDash(elementValue) === attributeValue;
+    }
+    case '^=': {
+      return elementValue.startsWith(attributeValue);
+    }
+    case '$=': {
+      return elementValue.endsWith(attributeValue);
+    }
+    case '*=': {
+      return elementValue.includes(attributeValue);
+    }
+    default: {
+      return Boolean(elementValue);
+    }
+  }
+}
+
+const beforeDash = string => string.split('-')[0];
+
+const whitespaceList = string => string.split(/\s+/);
+
 
 /***/ }),
-/* 2 */
-/***/ (function(module, exports) {
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = ReactDOM;
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+const format = (template, values) =>
+  template.replace(
+    /\{\s*(.+?)(?:\s*=\s*"(.+?)")?\s*\}/g,
+    (match, name, defaultValue) => values[name] || defaultValue
+  );
+/* harmony export (immutable) */ __webpack_exports__["format"] = format;
+
+
 
 /***/ }),
-/* 3 */
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _domLoad = __webpack_require__(7);
+
+var _domLoad2 = _interopRequireDefault(_domLoad);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var getCSSRule = function getCSSRule(attr, className) {
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+
+  try {
+    for (var _iterator = document.styleSheets[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var cssStylesheet = _step.value;
+
+      for (var i = 0; i < cssStylesheet.cssRules.length; i++) {
+        var rule = cssStylesheet.cssRules[i];
+        if (rule.selectorText && rule.selectorText.includes(attr.selector)) {
+          cssStylesheet.insertRule('.' + className + ' {}', i + 1);
+          return cssStylesheet.cssRules[i + 1];
+        }
+      }
+    }
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator.return) {
+        _iterator.return();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
+  }
+
+  throw new Error('The CSS rule of ' + attr.template + ' was not found. Make sure you imported the source CSS correctly');
+};
+
+var bindAttrsToCSSOM = function bindAttrsToCSSOM(attrs) {
+  return _domLoad2.default.then(function () {
+    return attrs.map(function (attr) {
+      var className = 'a' + Math.random().toString(32).slice(6);
+      var cssRule = getCSSRule(attr, className);
+      return _extends({}, attr, { className: className, cssRule: cssRule });
+    });
+  });
+};
+
+exports.default = bindAttrsToCSSOM;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var DOMLoad = new Promise(function (resolve) {
+  if (document.readyState === 'complete') {
+    resolve();
+  } else {
+    var onDOMLoad = function onDOMLoad() {
+      removeEventListener('load', onDOMLoad);
+      resolve();
+    };
+    addEventListener('load', onDOMLoad);
+  }
+});
+
+exports.default = DOMLoad;
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -156,7 +604,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(4);
+var	fixUrls = __webpack_require__(9);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -469,7 +917,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 4 */
+/* 9 */
 /***/ (function(module, exports) {
 
 
@@ -564,63 +1012,96 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 5 */
+/* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index_css__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__index_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_css__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__index_css__);
 
 
+const App = () => {
+  const container = document.createElement('div');
+  container.setAttribute('role', 'container');
 
+  const ryskin = __WEBPACK_IMPORTED_MODULE_0__index_css__["Label"].create({
+    fontSize: Math.random() * 100,
+    highlighted: true,
+    name: 'Ryskin',
+  });
 
-class App extends __WEBPACK_IMPORTED_MODULE_0_react__["PureComponent"] {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  render() {
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { role: 'container' }, [
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_2__index_css__["Label"],
-        {
-          key: 'ryskin',
-          color: this.state.color,
-          fontSize: Math.random() * 100,
-          highlighted: true,
-          name: 'Ryskin',
-          onClick: () =>
-            this.setState({
-              color: `rgb(${ (Math.random() * 255).toFixed(0) }, ${ (Math.random() * 255).toFixed(0) }, ${ (Math.random() * 255).toFixed(0) })`,
-            }),
-        },
-        'Ryskinder, please click me!'
-      ),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_2__index_css__["Label"],
-        {
-          key: 'theWhiteScreen',
-          name: 'The White Screen',
-        },
-        'The White Screen'
-      ),
-    ]);
-  }
-}
+  ryskin.appendChild(document.createTextNode('Ryskinder, please click me!'));
 
-__WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(App), document.querySelector('#root'));
+  ryskin.addEventListener('click', () => {
+    ryskin.fontSize = Math.random() * 100;
+    ryskin.color = `rgb(${ (Math.random() * 255).toFixed(0) }, ${ (Math.random() * 255).toFixed(0) }, ${ (Math.random() * 255).toFixed(0) })`;
+  });
+
+  const theWhiteScreen = __WEBPACK_IMPORTED_MODULE_0__index_css__["Label"].create({
+    name: 'The White Screen',
+  });
+
+  theWhiteScreen.appendChild(document.createTextNode('The White Screen'));
+
+  container.appendChild(ryskin);
+  container.appendChild(theWhiteScreen);
+
+  return container;
+};
+
+document.querySelector('#root').appendChild(App());
 
 
 /***/ }),
-/* 6 */
-/***/ (function(module, exports) {
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed: ReferenceError: _ is not defined\n    at appendAttribute (/Users/iddan/stylesheet/postcss/append-attribute.js:8:10)\n    at Processor.rule.selector.selectorRoot [as func] (/Users/iddan/stylesheet/postcss/index.js:32:30)\n    at Processor.process (/Users/iddan/stylesheet/node_modules/postcss-selector-parser/dist/processor.js:34:14)\n    at result.root.walkRules.rule (/Users/iddan/stylesheet/postcss/index.js:39:10)\n    at /Users/iddan/stylesheet/node_modules/postcss/lib/container.js:247:28\n    at /Users/iddan/stylesheet/node_modules/postcss/lib/container.js:148:26\n    at Root.each (/Users/iddan/stylesheet/node_modules/postcss/lib/container.js:114:22)\n    at Root.walk (/Users/iddan/stylesheet/node_modules/postcss/lib/container.js:147:21)\n    at Root.walkRules (/Users/iddan/stylesheet/node_modules/postcss/lib/container.js:245:25)\n    at /Users/iddan/stylesheet/postcss/index.js:16:17\n    at LazyResult.run (/Users/iddan/stylesheet/node_modules/postcss/lib/lazy-result.js:274:20)\n    at LazyResult.asyncTick (/Users/iddan/stylesheet/node_modules/postcss/lib/lazy-result.js:189:32)\n    at processing.Promise.then._this2.processed (/Users/iddan/stylesheet/node_modules/postcss/lib/lazy-result.js:228:20)\n    at LazyResult.async (/Users/iddan/stylesheet/node_modules/postcss/lib/lazy-result.js:225:27)\n    at LazyResult.then (/Users/iddan/stylesheet/node_modules/postcss/lib/lazy-result.js:131:21)\n    at Object.module.exports (/Users/iddan/stylesheet/loader/index.js:31:6)");
+
+                exports = module.exports = __webpack_require__(1)(true);
+// imports
+
+
+// module
+exports.push([module.i, ".Label_BkhxaS0-Z.Label-name_rkfneTBAZW_BkhxaS0-Z {\n  background: white;\n  color: red;\n}\n", "", {"version":3,"sources":["<input css 2>"],"names":[],"mappings":"AAAA;EACE,kBAAkB;EAClB,WAAW;CACZ","file":"another.css","sourcesContent":["Label[name=\"The White Screen\"] {\n  background: white;\n  color: red;\n}\n"],"sourceRoot":""}]);
+
+// exports
+
+        var deepMerge = __webpack_require__(0);
+        var importedComponentsData = exports.slice(0, exports.length - 1).map(([id]) => __webpack_require__(id).components);
+        var createComponent = __webpack_require__(2);
+        var moduleData = {"Label":{"className":"Label_BkhxaS0-Z","attributes":[{"operator":"=","name":"name","value":"The White Screen","className":"Label-name_rkfneTBAZW_BkhxaS0-Z"}],"attrs":[]}};
+        var data = deepMerge.apply(null, importedComponentsData.concat(moduleData));
+        exports.components = data;
+        exports.locals = {
+          Label: createComponent(data.Label)
+        };
+        
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+                exports = module.exports = __webpack_require__(1)(true);
+// imports
+exports.i(__webpack_require__(11), "");
+
+// module
+exports.push([module.i, "@media screen and (max-width: 250px) {}\n\nbody {\n  margin: 0;\n}\n\n.Label_BkhxaS0-Z {\n  font-family: monospace;\n  font-size: 14px;\n  user-select: none;\n  color: white;\n  background: blue;\n  padding: 1rem;\n  margin: 1rem;\n}\n\nbody .Label_BkhxaS0-Z.Label-highlighted_SJlhl6rAZW_BkhxaS0-Z {\n  color: white;\n}\n\nbody .Label_BkhxaS0-Z.Label-name_SyWhgpBCZW_BkhxaS0-Z {\n  color: red;\n}\n", "", {"version":3,"sources":["<input css 1>"],"names":[],"mappings":"AACA,uCAAuC;;AAEvC;EACE,UAAU;CACX;;AAED;EAEE,uBAAuB;EACvB,gBAAgB;EAChB,kBAAkB;EAClB,aAAa;EACb,iBAAiB;EACjB,cAAc;EACd,aAAa;CACd;;AAED;EAGE,aAAa;CACd;;AAED;EACE,WAAW;CACZ","file":"index.css","sourcesContent":["@import './another.css';\n@media screen and (max-width: 250px) {}\n\nbody {\n  margin: 0;\n}\n\nLabel {\n  @apply span;\n  font-family: monospace;\n  font-size: 14px;\n  user-select: none;\n  color: white;\n  background: blue;\n  padding: 1rem;\n  margin: 1rem;\n}\n\nbody Label[highlighted] {\n  background: linear-gradient(to top, yellow, attr(color color, tomato));\n  font-size: calc(attr(fontSize px) + 12px);\n  color: white;\n}\n\nbody Label[name=\"Ryskin\"] {\n  color: red;\n}\n"],"sourceRoot":""}]);
+
+// exports
+
+        var deepMerge = __webpack_require__(0);
+        var importedComponentsData = exports.slice(0, exports.length - 1).map(([id]) => __webpack_require__(id).components);
+        var createComponent = __webpack_require__(2);
+        var moduleData = {"Label":{"className":"Label_BkhxaS0-Z","attributes":[{"name":"highlighted","className":"Label-highlighted_SJlhl6rAZW_BkhxaS0-Z"},{"operator":"=","name":"name","value":"Ryskin","className":"Label-name_SyWhgpBCZW_BkhxaS0-Z"}],"attrs":[{"prop":"background","selector":"body .Label_BkhxaS0-Z.Label-highlighted_SJlhl6rAZW_BkhxaS0-Z","template":"linear-gradient(to top, yellow, { color = \"tomato\"})","attributes":["color"]},{"prop":"fontSize","selector":"body .Label_BkhxaS0-Z.Label-highlighted_SJlhl6rAZW_BkhxaS0-Z","template":"calc({ fontSize }px + 12px)","attributes":["fontSize"]}],"base":"span"}};
+        var data = deepMerge.apply(null, importedComponentsData.concat(moduleData));
+        exports.components = data;
+        exports.locals = {
+          Label: createComponent(data.Label)
+        };
+        
 
 /***/ })
 /******/ ]);
