@@ -3,7 +3,7 @@ import matchAttribute from '../../core/match-attribute';
 import bindAttrsToCSSOM from '../../dom/dist/bind-attrs-to-cssom';
 
 const pick = (properties, object) =>
-  properties.reduce((props, prop) => ({ ...props, [prop]: object[prop] }));
+  properties.reduce((props, prop) => ({ ...props, [prop]: object[prop] }), {});
 
 const getAttributeClassNames = attributes => props =>
   attributes
@@ -67,15 +67,15 @@ const createComponent = ({
   }
 
   constructor(initialAttributes) {
-    for (const [key, value] of Object.entries(initialAttributes)) {
-      this[`__${ key }__`] = value;
+    for (const key of CSSComponent.propKeys) {
+      this[key] = initialAttributes[key];
     }
+    this.observe(CSSComponent.propKeys);
+    this.render();
     bindAttrsToCSSOM(attrs).then(boundAttrs => {
       this.attrs = boundAttrs;
       this.render();
     });
-    this.observe(CSSComponent.propKeys);
-    this.render();
   }
 
   render = () => {

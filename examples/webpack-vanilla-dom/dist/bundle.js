@@ -184,8 +184,6 @@ function toComment(sourceMap) {
 "use strict";
 
 
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -211,7 +209,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var pick = function pick(properties, object) {
   return properties.reduce(function (props, prop) {
     return _extends({}, props, _defineProperty({}, prop, object[prop]));
-  });
+  }, {});
 };
 
 var getAttributeClassNames = function getAttributeClassNames(attributes) {
@@ -330,15 +328,10 @@ var createComponent = function createComponent(_ref) {
       var _iteratorError2 = undefined;
 
       try {
-        for (var _iterator2 = Object.entries(initialAttributes)[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-          var _ref2 = _step2.value;
+        for (var _iterator2 = CSSComponent.propKeys[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+          var key = _step2.value;
 
-          var _ref3 = _slicedToArray(_ref2, 2);
-
-          var key = _ref3[0];
-          var value = _ref3[1];
-
-          this['__' + key + '__'] = value;
+          this[key] = initialAttributes[key];
         }
       } catch (err) {
         _didIteratorError2 = true;
@@ -355,12 +348,12 @@ var createComponent = function createComponent(_ref) {
         }
       }
 
+      this.observe(CSSComponent.propKeys);
+      this.render();
       (0, _bindAttrsToCssom2.default)(attrs).then(function (boundAttrs) {
         _this2.attrs = boundAttrs;
         _this2.render();
       });
-      this.observe(CSSComponent.propKeys);
-      this.render();
     }
 
     return CSSComponent;
@@ -1063,14 +1056,14 @@ document.querySelector('#root').appendChild(App());
 
 
 // module
-exports.push([module.i, ".Label_BkhxaS0-Z.Label-name_rkfneTBAZW_BkhxaS0-Z {\n  background: white;\n  color: red;\n}\n", "", {"version":3,"sources":["<input css 2>"],"names":[],"mappings":"AAAA;EACE,kBAAkB;EAClB,WAAW;CACZ","file":"another.css","sourcesContent":["Label[name=\"The White Screen\"] {\n  background: white;\n  color: red;\n}\n"],"sourceRoot":""}]);
+exports.push([module.i, ".Label_S1XY1LCZW.Label-name_r1MQFkICZW_S1XY1LCZW {\n  background: white;\n  color: red;\n}\n", "", {"version":3,"sources":["<input css 2>"],"names":[],"mappings":"AAAA;EACE,kBAAkB;EAClB,WAAW;CACZ","file":"another.css","sourcesContent":["Label[name=\"The White Screen\"] {\n  background: white;\n  color: red;\n}\n"],"sourceRoot":""}]);
 
 // exports
 
         var deepMerge = __webpack_require__(0);
         var importedComponentsData = exports.slice(0, exports.length - 1).map(([id]) => __webpack_require__(id).components);
         var createComponent = __webpack_require__(2);
-        var moduleData = {"Label":{"className":"Label_BkhxaS0-Z","attributes":[{"operator":"=","name":"name","value":"The White Screen","className":"Label-name_rkfneTBAZW_BkhxaS0-Z"}],"attrs":[]}};
+        var moduleData = {"Label":{"className":"Label_S1XY1LCZW","attributes":[{"operator":"=","name":"name","value":"The White Screen","className":"Label-name_r1MQFkICZW_S1XY1LCZW"}],"attrs":[]}};
         var data = deepMerge.apply(null, importedComponentsData.concat(moduleData));
         exports.components = data;
         exports.locals = {
@@ -1088,14 +1081,14 @@ exports.push([module.i, ".Label_BkhxaS0-Z.Label-name_rkfneTBAZW_BkhxaS0-Z {\n  b
 exports.i(__webpack_require__(11), "");
 
 // module
-exports.push([module.i, "@media screen and (max-width: 250px) {}\n\nbody {\n  margin: 0;\n}\n\n.Label_BkhxaS0-Z {\n  font-family: monospace;\n  font-size: 14px;\n  user-select: none;\n  color: white;\n  background: blue;\n  padding: 1rem;\n  margin: 1rem;\n}\n\nbody .Label_BkhxaS0-Z.Label-highlighted_SJlhl6rAZW_BkhxaS0-Z {\n  color: white;\n}\n\nbody .Label_BkhxaS0-Z.Label-name_SyWhgpBCZW_BkhxaS0-Z {\n  color: red;\n}\n", "", {"version":3,"sources":["<input css 1>"],"names":[],"mappings":"AACA,uCAAuC;;AAEvC;EACE,UAAU;CACX;;AAED;EAEE,uBAAuB;EACvB,gBAAgB;EAChB,kBAAkB;EAClB,aAAa;EACb,iBAAiB;EACjB,cAAc;EACd,aAAa;CACd;;AAED;EAGE,aAAa;CACd;;AAED;EACE,WAAW;CACZ","file":"index.css","sourcesContent":["@import './another.css';\n@media screen and (max-width: 250px) {}\n\nbody {\n  margin: 0;\n}\n\nLabel {\n  @apply span;\n  font-family: monospace;\n  font-size: 14px;\n  user-select: none;\n  color: white;\n  background: blue;\n  padding: 1rem;\n  margin: 1rem;\n}\n\nbody Label[highlighted] {\n  background: linear-gradient(to top, yellow, attr(color color, tomato));\n  font-size: calc(attr(fontSize px) + 12px);\n  color: white;\n}\n\nbody Label[name=\"Ryskin\"] {\n  color: red;\n}\n"],"sourceRoot":""}]);
+exports.push([module.i, "@media screen and (max-width: 250px) {}\n\nbody {\n  margin: 0;\n}\n\n.Label_S1XY1LCZW {\n  font-family: monospace;\n  font-size: 14px;\n  user-select: none;\n  color: white;\n  background: blue;\n  padding: 1rem;\n  margin: 1rem;\n}\n\nbody .Label_S1XY1LCZW.Label-highlighted_r1eQKkUAZ-_S1XY1LCZW {\n  color: white;\n}\n\nbody .Label_S1XY1LCZW.Label-name_r1Z7FkLRZ-_S1XY1LCZW {\n  color: red;\n}\n", "", {"version":3,"sources":["<input css 1>"],"names":[],"mappings":"AACA,uCAAuC;;AAEvC;EACE,UAAU;CACX;;AAED;EAEE,uBAAuB;EACvB,gBAAgB;EAChB,kBAAkB;EAClB,aAAa;EACb,iBAAiB;EACjB,cAAc;EACd,aAAa;CACd;;AAED;EAGE,aAAa;CACd;;AAED;EACE,WAAW;CACZ","file":"index.css","sourcesContent":["@import './another.css';\n@media screen and (max-width: 250px) {}\n\nbody {\n  margin: 0;\n}\n\nLabel {\n  @apply span;\n  font-family: monospace;\n  font-size: 14px;\n  user-select: none;\n  color: white;\n  background: blue;\n  padding: 1rem;\n  margin: 1rem;\n}\n\nbody Label[highlighted] {\n  background: linear-gradient(to top, yellow, attr(color color, tomato));\n  font-size: calc(attr(fontSize px) + 12px);\n  color: white;\n}\n\nbody Label[name=\"Ryskin\"] {\n  color: red;\n}\n"],"sourceRoot":""}]);
 
 // exports
 
         var deepMerge = __webpack_require__(0);
         var importedComponentsData = exports.slice(0, exports.length - 1).map(([id]) => __webpack_require__(id).components);
         var createComponent = __webpack_require__(2);
-        var moduleData = {"Label":{"className":"Label_BkhxaS0-Z","attributes":[{"name":"highlighted","className":"Label-highlighted_SJlhl6rAZW_BkhxaS0-Z"},{"operator":"=","name":"name","value":"Ryskin","className":"Label-name_SyWhgpBCZW_BkhxaS0-Z"}],"attrs":[{"prop":"background","selector":"body .Label_BkhxaS0-Z.Label-highlighted_SJlhl6rAZW_BkhxaS0-Z","template":"linear-gradient(to top, yellow, { color = \"tomato\"})","attributes":["color"]},{"prop":"fontSize","selector":"body .Label_BkhxaS0-Z.Label-highlighted_SJlhl6rAZW_BkhxaS0-Z","template":"calc({ fontSize }px + 12px)","attributes":["fontSize"]}],"base":"span"}};
+        var moduleData = {"Label":{"className":"Label_S1XY1LCZW","attributes":[{"name":"highlighted","className":"Label-highlighted_r1eQKkUAZ-_S1XY1LCZW"},{"operator":"=","name":"name","value":"Ryskin","className":"Label-name_r1Z7FkLRZ-_S1XY1LCZW"}],"attrs":[{"prop":"background","selector":"body .Label_S1XY1LCZW.Label-highlighted_r1eQKkUAZ-_S1XY1LCZW","template":"linear-gradient(to top, yellow, { color = \"tomato\"})","attributes":["color"]},{"prop":"fontSize","selector":"body .Label_S1XY1LCZW.Label-highlighted_r1eQKkUAZ-_S1XY1LCZW","template":"calc({ fontSize }px + 12px)","attributes":["fontSize"]}],"base":"span"}};
         var data = deepMerge.apply(null, importedComponentsData.concat(moduleData));
         exports.components = data;
         exports.locals = {

@@ -1,7 +1,5 @@
 'use strict';
 
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -27,7 +25,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var pick = function pick(properties, object) {
   return properties.reduce(function (props, prop) {
     return _extends({}, props, _defineProperty({}, prop, object[prop]));
-  });
+  }, {});
 };
 
 var getAttributeClassNames = function getAttributeClassNames(attributes) {
@@ -146,15 +144,10 @@ var createComponent = function createComponent(_ref) {
       var _iteratorError2 = undefined;
 
       try {
-        for (var _iterator2 = Object.entries(initialAttributes)[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-          var _ref2 = _step2.value;
+        for (var _iterator2 = CSSComponent.propKeys[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+          var key = _step2.value;
 
-          var _ref3 = _slicedToArray(_ref2, 2);
-
-          var key = _ref3[0];
-          var value = _ref3[1];
-
-          this['__' + key + '__'] = value;
+          this[key] = initialAttributes[key];
         }
       } catch (err) {
         _didIteratorError2 = true;
@@ -171,12 +164,12 @@ var createComponent = function createComponent(_ref) {
         }
       }
 
+      this.observe(CSSComponent.propKeys);
+      this.render();
       (0, _bindAttrsToCssom2.default)(attrs).then(function (boundAttrs) {
         _this2.attrs = boundAttrs;
         _this2.render();
       });
-      this.observe(CSSComponent.propKeys);
-      this.render();
     }
 
     return CSSComponent;
