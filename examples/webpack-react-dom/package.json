@@ -1,7 +1,8 @@
 {
   "name": "stylesheet-webpack-react-dom-example",
   "scripts": {
-    "start": "webpack-dev-server --hot"
+    "start": "webpack-dev-server",
+    "build": "webpack"
   },
   "devDependencies": {
     "style-loader": "^0.18.1",

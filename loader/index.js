@@ -41,8 +41,10 @@ module.exports = function(content) {
         var data = deepMerge.apply(null, importedComponentsData.concat(moduleData));
         exports.components = data;
         exports.locals = {
-          ${ Object.entries(components)
-            .map(([name, component]) => `${ name }: createComponent(data.${ name })`)
+          ${ Object.keys(components)
+            .map(component => `${ component }: createComponent(Object.assign({}, data.${ component }, {
+              displayName: ${ JSON.stringify(component) }
+            }))`)
             .join(',\n') }
         };
         `,

@@ -1027,18 +1027,20 @@ document.querySelector('#root').appendChild(App());
 
 
 // module
-exports.push([module.i, ".Label_HJNvd60Wb.Label-name_SkfVPuaCWb_HJNvd60Wb {\n  background: white;\n  color: red;\n}\n", "", {"version":3,"sources":["<input css 2>"],"names":[],"mappings":"AAAA;EACE,kBAAkB;EAClB,WAAW;CACZ","file":"another.css","sourcesContent":["Label[name=\"The White Screen\"] {\n  background: white;\n  color: red;\n}\n"],"sourceRoot":""}]);
+exports.push([module.i, ".Label_H1EqTrJz-.Label-name_r1BcTSkGZ_H1EqTrJz- {\n  background: white;\n  color: red;\n}\n", "", {"version":3,"sources":["<input css 2>"],"names":[],"mappings":"AAAA;EACE,kBAAkB;EAClB,WAAW;CACZ","file":"another.css","sourcesContent":["Label[name=\"The White Screen\"] {\n  background: white;\n  color: red;\n}\n"],"sourceRoot":""}]);
 
 // exports
 
         var deepMerge = __webpack_require__(0);
         var importedComponentsData = exports.slice(0, exports.length - 1).map(([id]) => __webpack_require__(id).components);
         var createComponent = __webpack_require__(2);
-        var moduleData = {"Label":{"className":"Label_HJNvd60Wb","attributes":[{"operator":"=","name":"name","value":"The White Screen","className":"Label-name_SkfVPuaCWb_HJNvd60Wb"}],"attrs":[]}};
+        var moduleData = {"Label":{"className":"Label_H1EqTrJz-","attributes":[{"operator":"=","name":"name","value":"The White Screen","className":"Label-name_r1BcTSkGZ_H1EqTrJz-"}],"attrs":[]}};
         var data = deepMerge.apply(null, importedComponentsData.concat(moduleData));
         exports.components = data;
         exports.locals = {
-          Label: createComponent(data.Label)
+          Label: createComponent(Object.assign({}, data.Label, {
+              displayName: "Label"
+            }))
         };
         
 
@@ -1052,18 +1054,20 @@ exports.push([module.i, ".Label_HJNvd60Wb.Label-name_SkfVPuaCWb_HJNvd60Wb {\n  b
 exports.i(__webpack_require__(11), "");
 
 // module
-exports.push([module.i, "@media screen and (max-width: 250px) {}\n\nbody {\n  margin: 0;\n}\n\n.Label_HJNvd60Wb {\n  font-family: monospace;\n  font-size: 14px;\n  user-select: none;\n  color: white;\n  background: blue;\n  padding: 1rem;\n  margin: 1rem;\n}\n\nbody .Label_HJNvd60Wb.Label-highlighted_rJeVDuTR-W_HJNvd60Wb {\n  color: white;\n}\n\nbody .Label_HJNvd60Wb.Label-name_H1-4v_TR-W_HJNvd60Wb {\n  color: red;\n}\n", "", {"version":3,"sources":["<input css 1>"],"names":[],"mappings":"AACA,uCAAuC;;AAEvC;EACE,UAAU;CACX;;AAED;EAEE,uBAAuB;EACvB,gBAAgB;EAChB,kBAAkB;EAClB,aAAa;EACb,iBAAiB;EACjB,cAAc;EACd,aAAa;CACd;;AAED;EAGE,aAAa;CACd;;AAED;EACE,WAAW;CACZ","file":"index.css","sourcesContent":["@import './another.css';\n@media screen and (max-width: 250px) {}\n\nbody {\n  margin: 0;\n}\n\nLabel {\n  @apply span;\n  font-family: monospace;\n  font-size: 14px;\n  user-select: none;\n  color: white;\n  background: blue;\n  padding: 1rem;\n  margin: 1rem;\n}\n\nbody Label[highlighted] {\n  background: linear-gradient(to top, yellow, attr(color color, tomato));\n  font-size: calc(attr(fontSize px) + 12px);\n  color: white;\n}\n\nbody Label[name=\"Ryskin\"] {\n  color: red;\n}\n"],"sourceRoot":""}]);
+exports.push([module.i, "@media screen and (max-width: 250px) {}\n\nbody {\n  margin: 0;\n}\n\n.Label_H1EqTrJz- {\n  font-family: monospace;\n  font-size: 14px;\n  user-select: none;\n  color: white;\n  background: blue;\n  padding: 1rem;\n  margin: 1rem;\n}\n\nbody .Label_H1EqTrJz-.Label-highlighted_rJeNcpBkMb_H1EqTrJz- {\n  color: white;\n}\n\nbody .Label_H1EqTrJz-.Label-name_BybN9THyMZ_H1EqTrJz- {\n  color: red;\n}\n", "", {"version":3,"sources":["<input css 1>"],"names":[],"mappings":"AACA,uCAAuC;;AAEvC;EACE,UAAU;CACX;;AAED;EAEE,uBAAuB;EACvB,gBAAgB;EAChB,kBAAkB;EAClB,aAAa;EACb,iBAAiB;EACjB,cAAc;EACd,aAAa;CACd;;AAED;EAGE,aAAa;CACd;;AAED;EACE,WAAW;CACZ","file":"index.css","sourcesContent":["@import './another.css';\n@media screen and (max-width: 250px) {}\n\nbody {\n  margin: 0;\n}\n\nLabel {\n  @apply span;\n  font-family: monospace;\n  font-size: 14px;\n  user-select: none;\n  color: white;\n  background: blue;\n  padding: 1rem;\n  margin: 1rem;\n}\n\nbody Label[highlighted] {\n  background: linear-gradient(to top, yellow, attr(color color, tomato));\n  font-size: calc(attr(fontSize px) + 12px);\n  color: white;\n}\n\nbody Label[name=\"Ryskin\"] {\n  color: red;\n}\n"],"sourceRoot":""}]);
 
 // exports
 
         var deepMerge = __webpack_require__(0);
         var importedComponentsData = exports.slice(0, exports.length - 1).map(([id]) => __webpack_require__(id).components);
         var createComponent = __webpack_require__(2);
-        var moduleData = {"Label":{"className":"Label_HJNvd60Wb","attributes":[{"name":"highlighted","className":"Label-highlighted_rJeVDuTR-W_HJNvd60Wb"},{"operator":"=","name":"name","value":"Ryskin","className":"Label-name_H1-4v_TR-W_HJNvd60Wb"}],"attrs":[{"prop":"background","selector":"body .Label_HJNvd60Wb.Label-highlighted_rJeVDuTR-W_HJNvd60Wb","template":"linear-gradient(to top, yellow, { color = \"tomato\"})","attributes":["color"]},{"prop":"fontSize","selector":"body .Label_HJNvd60Wb.Label-highlighted_rJeVDuTR-W_HJNvd60Wb","template":"calc({ fontSize }px + 12px)","attributes":["fontSize"]}],"base":"span"}};
+        var moduleData = {"Label":{"className":"Label_H1EqTrJz-","attributes":[{"name":"highlighted","className":"Label-highlighted_rJeNcpBkMb_H1EqTrJz-"},{"operator":"=","name":"name","value":"Ryskin","className":"Label-name_BybN9THyMZ_H1EqTrJz-"}],"attrs":[{"prop":"background","selector":"body .Label_H1EqTrJz-.Label-highlighted_rJeNcpBkMb_H1EqTrJz-","template":"linear-gradient(to top, yellow, { color = \"tomato\"})","attributes":["color"]},{"prop":"fontSize","selector":"body .Label_H1EqTrJz-.Label-highlighted_rJeNcpBkMb_H1EqTrJz-","template":"calc({ fontSize }px + 12px)","attributes":["fontSize"]}],"base":"span"}};
         var data = deepMerge.apply(null, importedComponentsData.concat(moduleData));
         exports.components = data;
         exports.locals = {
-          Label: createComponent(data.Label)
+          Label: createComponent(Object.assign({}, data.Label, {
+              displayName: "Label"
+            }))
         };
         
 
