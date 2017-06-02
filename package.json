@@ -4,7 +4,7 @@
   "description": "Dynamic CSS for user interfaces",
   "scripts": {
     "build": "yarn run build:internal dom; yarn run build:internal vanilla-dom; yarn run build:internal react-dom; yarn run build:example webpack-vanilla-dom; yarn run build:example webpack-react-dom",
-    "build:internal": "build(){ babel $1/src --out-dir $1/dist; }; build",
+    "build:internal": "build(){ babel $1/src --out-dir $1/dist --source-maps inline; }; build",
     "build:example": "build(){ cd examples/$1; yarn run build; }; build"
   },
   "keywords": [
