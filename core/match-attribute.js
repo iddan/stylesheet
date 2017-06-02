@@ -5,7 +5,7 @@
  * @param {boolean} attribute.insensitive
  * @param {string} value The element's attribute value
  */
-module.exports = function matchAttribute(attribute, value) {
+export default function matchAttribute(attribute, value) {
   const { insensitive } = attribute;
   const attributeValue = insensitive ? attribute.value.toLowerCase() : attribute.value;
   const elementValue = insensitive ? value.toLowerCase() : value;
@@ -32,8 +32,8 @@ module.exports = function matchAttribute(attribute, value) {
       return Boolean(elementValue);
     }
   }
-};
+}
 
-const beforeDash = (string) => string.split('-')[0];
+const beforeDash = string => string.split('-')[0];
 
-const whitespaceList = (string) => string.split(/\s+/);
+const whitespaceList = string => string.split(/\s+/);

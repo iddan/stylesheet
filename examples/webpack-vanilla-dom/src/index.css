@@ -1,0 +1,27 @@
+@import './another.css';
+@media screen and (max-width: 250px) {}
+
+body {
+  margin: 0;
+}
+
+Label {
+  @apply span;
+  font-family: monospace;
+  font-size: 14px;
+  user-select: none;
+  color: white;
+  background: blue;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+body Label[highlighted] {
+  background: linear-gradient(to top, yellow, attr(color color, tomato));
+  font-size: calc(attr(fontSize px) + 12px);
+  color: white;
+}
+
+body Label[name="Ryskin"] {
+  color: red;
+}
