@@ -1,6 +1,6 @@
 <div align="center" href="">
     <img height="167" src="https://cdn.rawgit.com/500tech/stylesheet/master/assets/stylesheet.svg" alt="Stylesheet Logo" align="center" />
-    <img width="167" src="https://cdn.rawgit.com/500tech/stylesheet/master/assets/react.svg" alt="Stylesheet Logo" align="center" />
+    <img width="167" src="https://cdn.rawgit.com/500tech/stylesheet/master/assets/react.svg" alt="React Logo" align="center" />
 <h1>Stylesheet ReactDOM</h1>
 <p>Dynamic CSS for React on the Web</p>
 </div>
@@ -55,3 +55,13 @@ module.exports = {
       }
   // the rest of your webpack config
 ```
+
+<h2 align="center">Prior Art and Comparison</h2>
+
+#### Styled Components 
+A library for composing components from tagged template literals of CSS code.
+
+ - Does not use standard CSS for dynamic properties.
+ - Does not use external CSS.
+ - Compiles at runtime
+ - Requires 70KB of *minified* code for full usage

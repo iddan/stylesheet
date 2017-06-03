@@ -16,7 +16,6 @@ npm install --save stylesheet
 
 <h2 align="center">Usage</h2>
 
-*stylesheet.css*
 ```CSS
 Title {
   font-size: 4em;
@@ -24,53 +23,27 @@ Title {
 }
 ```
 
-#### React (Web)
+<h3 align="center">And an integration</h3>
 
-```JSX
-import React, { Component } from 'react';
-import { Title } from './stylesheet.css';
+<div align="center">
+  <a href="https://github.com/500tech/stylesheet/tree/master/react-dom">
+      <img width="50" src="https://cdn.rawgit.com/500tech/stylesheet/master/assets/react.svg" alt="React Logo" align="center">
+      <span>ReactDOM</span>
+  </a>
+  <a href="https://github.com/500tech/stylesheet/tree/master/vanilla-dom">
+      <img width="50" src="https://cdn.rawgit.com/500tech/stylesheet/master/assets/dom.svg" alt="HTML5 Logo" align="center">
+      <span>Vanilla DOM</span>
+  </a>
+  <a href="https://github.com/500tech/stylesheet/tree/master/loader">
+      <img width="50" src="https://cdn.rawgit.com/500tech/stylesheet/master/assets/webpack.svg" alt="Webpack Logo" align="center">
+      <span>Webpack</span>
+  </a>
+</div>
 
-class Header extends Component {
-  render() {
-    return <Title textColor={this.props.textColor}>My dynamically styled app</Title>;
-  }
-}
-```
-
-#### Webpack
-
-```JavaScript
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        exclude: /node_modules/,
-        use: [
-          'style-loader',
-          {
-            loader: 'stylesheet/loader'
-            query: {
-              bindings: 'react-dom'
-            }
-          }
-        ]
-      }
-  // the rest of your webpack config
-```
-
-### Prior Art and Comparison
+<h2 align="center">Prior Art and Comparison</h2>
 
 #### CSS Modules
 A methodology to import CSS tokens (e.g. class names) to JavaScript and converting them to unique identifiers.
 
  - Requires boilreplate code to use as components.
  - Does not provide a solution for dynamic CSS.
-
-#### Styled Components 
-A library for composing components from tagged template literals of CSS code.
-
- - Does not use standard CSS for dynamic properties.
- - Does not use external CSS.
- - Compiles at runtime
- - Requires 70KB of *minified* code for full usage
