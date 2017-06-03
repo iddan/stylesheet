@@ -13,10 +13,6 @@ npm install --save stylesheet
 
 Stylesheet uses Webpack to go through your CSS modules and export the components. The loader extends Webpack's [CSS Loader] so you benefit the community standard for parsing CSS while getting extra functionality.
 
-```
-
-#### Webpack
-
 ```JavaScript
 module.exports = {
   module: {
