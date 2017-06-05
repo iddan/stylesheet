@@ -10,9 +10,9 @@
   "editor.formatOnSave": true,
   "files.exclude": {
     "**/node_modules/": "explorerExcludedFiles",
-    "_site": "explorerExcludedFiles",
-    "_assets": "explorerExcludedFiles",
-    ".sass-cache": "explorerExcludedFiles",
-    "search": "explorerExcludedFiles"
+    "_site/": "explorerExcludedFiles",
+    "_assets/": "explorerExcludedFiles",
+    ".sass-cache/": "explorerExcludedFiles",
+    "search/": "explorerExcludedFiles"
   }
 }
