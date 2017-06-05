@@ -25,3 +25,7 @@ body Label[highlighted] {
 body Label[name="Ryskin"] {
   color: red;
 }
+
+body Label:not([name="Ryskin"]):not([name="The White Screen"]) {
+  color: pink;
+}

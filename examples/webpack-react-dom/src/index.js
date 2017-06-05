@@ -32,6 +32,7 @@ class App extends PureComponent {
         },
         'The White Screen'
       ),
+      React.createElement(Label, {}, 'Just a label bro'),
     ]);
   }
 }

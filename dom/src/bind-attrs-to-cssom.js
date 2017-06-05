@@ -32,7 +32,7 @@ const bindAttrsToCSSOM = attrs => {
   const boundAttrs = attrs.map(attr => {
     const className = 'a' + Math.random().toString(32).slice(6);
     const cssRuleIndex = firstStyleSheet.cssRules.length;
-    firstStyleSheet.insertRule(`.${ className } {}`, cssRuleIndex);
+    firstStyleSheet.insertRule(`${ attr.selector }.${ className } {}`, cssRuleIndex);
     const cssRule = firstStyleSheet.cssRules[cssRuleIndex];
     return { ...attr, className, cssRule };
   });
