@@ -1,0 +1,187 @@
+Container {
+  @apply section;
+  background: #fff;
+  margin: 130px 0 40px 0;
+  position: relative;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+}
+
+Header {}
+
+Title {
+  @apply h1;
+  position: absolute;
+  top: -155px;
+  width: 100%;
+  font-size: 100px;
+  font-weight: 100;
+  text-align: center;
+  color: rgba(175, 47, 47, 0.15);
+  -webkit-text-rendering: optimizeLegibility;
+  -moz-text-rendering: optimizeLegibility;
+  text-rendering: optimizeLegibility;
+}
+
+NewTodo,
+Edit {
+  position: relative;
+  margin: 0;
+  width: 100%;
+  font-size: 24px;
+  font-family: inherit;
+  font-weight: inherit;
+  line-height: 1.4em;
+  border: 0;
+  outline: none;
+  color: inherit;
+  padding: 6px;
+  border: 1px solid #999;
+  box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+NewTodo {
+  @apply input;
+  padding: 16px 16px 16px 60px;
+  border: none;
+  background: rgba(0, 0, 0, 0.003);
+  box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.03);
+}
+
+Main {
+  @apply section;
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid #e6e6e6;
+}
+
+ToggleAll {
+  position: absolute;
+  top: -55px;
+  left: -12px;
+  width: 60px;
+  height: 34px;
+  text-align: center;
+  border: none;
+}
+
+ToggleAll::before {
+  content: "❯";
+  font-size: 22px;
+  color: rgb(230, 230, 230);
+  padding: 10px 27px;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  ToggleAll {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+    -webkit-appearance: none;
+    appearance: none;
+  }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  ToggleAll {
+    background: none;
+  }
+}
+
+TodoList {
+  @apply ul;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+TodoList TodoItem {
+  @apply li;
+  position: relative;
+  font-size: 24px;
+  border-bottom: 1px solid #ededed;
+}
+
+TodoList TodoItem:last-child {
+  border-bottom: none;
+}
+
+TodoList TodoItem[editing] {
+  border-bottom: none;
+  padding: 0;
+}
+
+TodoList TodoItem[editing]:last-child {
+  margin-bottom: -1px;
+}
+
+TodoList TodoItem[editing] View {
+  display: none;
+}
+
+TodoList TodoItem Toggle {
+  @apply input;
+  text-align: center;
+  width: 40px;
+  height: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  border: none;
+  -webkit-appearance: none;
+}
+
+TodoList TodoItem Toggle {
+  content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" …="50" cy="50" r="50" fill="none" stroke="#ededed" stroke-width="3"/></svg>');
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  TodoList TodoItem Toggle {
+    height: 40px;
+  }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  TodoList TodoItem Toggle {
+    background: none;
+  }
+}
+
+TodoList TodoItem label {
+  white-space: pre-line;
+  word-break: break-all;
+  padding: 15px 60px 15px 15px;
+  margin-left: 45px;
+  display: block;
+  line-height: 1.2;
+  transition: color 0.4s;
+}
+
+TodoList TodoItem Destroy {
+  @apply button;
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  bottom: 0;
+  width: 40px;
+  height: 40px;
+  margin: auto 0;
+  font-size: 30px;
+  color: #cc9a9a;
+  margin-bottom: 11px;
+  transition: color 0.2s ease-out;
+}
+
+TodoList TodoItem Destroy:after {
+  content: '×';
+}
+
+TodoList TodoItem:hover Destroy {
+  color: #af5b5e;
+}
+
+TodoList TodoItem Edit {}

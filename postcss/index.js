@@ -12,20 +12,22 @@ const appendAttr = require('./append-attr');
  */
 module.exports = postcss.plugin('stylesheet', ({ onComponents, id }) => {
   return (root, result) => {
-    let components = {};
+    let allComponents = {};
     result.root.walkRules(/\b[A-Z]/, rule => {
+      let components = {};
+      let blockComponents = {};
       rule.selector = parser(selectorRoot => {
         // TODO check for walkSelectors
         for (const selector of selectorRoot.nodes) {
-          const tagIndex = _.findLastIndex({ type: 'tag' }, selector.nodes);
-          const tag = selector.nodes[tagIndex];
+          const lastTagIndex = _.findLastIndex({ type: 'tag' }, selector.nodes);
+          const tag = selector.nodes[lastTagIndex];
           if (!tag || !isComponentElement(tag)) {
             continue;
           }
           const { value: componentName } = tag;
           const componentClassName = `${ componentName }_${ id }`;
           components = _.set([componentName, 'className'], componentClassName, components);
-          for (let i = tagIndex; i < selector.nodes.length; i++) {
+          for (let i = lastTagIndex; i < selector.nodes.length; i++) {
             const node = selector.nodes[i];
             switch (node.type) {
               case 'attribute': {
@@ -52,8 +54,9 @@ module.exports = postcss.plugin('stylesheet', ({ onComponents, id }) => {
           }
         });
       }
+      allComponents = _.merge(allComponents, components);
     });
-    onComponents(components);
+    onComponents(allComponents);
   };
 });
 
