@@ -14,43 +14,58 @@ module.exports = postcss.plugin('stylesheet', ({ onComponents, id }) => {
   return (root, result) => {
     let allComponents = {};
     result.root.walkRules(/\b[A-Z]/, rule => {
+      const blockComponents = new Set();
       let components = {};
-      let blockComponents = {};
-      rule.selector = parser(selectorRoot => {
-        // TODO check for walkSelectors
+      const parseComponentTagsAndAttributesSelectors = selectorRoot => {
         for (const selector of selectorRoot.nodes) {
-          const lastTagIndex = _.findLastIndex({ type: 'tag' }, selector.nodes);
-          const tag = selector.nodes[lastTagIndex];
-          if (!tag || !isComponentElement(tag)) {
-            continue;
-          }
-          const { value: componentName } = tag;
-          const componentClassName = `${ componentName }_${ id }`;
-          components = _.set([componentName, 'className'], componentClassName, components);
-          for (let i = lastTagIndex; i < selector.nodes.length; i++) {
-            const node = selector.nodes[i];
-            switch (node.type) {
-              case 'attribute': {
-                components = appendAttribute(id, components, componentName, node);
-                break;
-              }
+          for (const tag of selector.nodes.filter(matchComponentTags)) {
+            const tagIndex = selector.nodes.indexOf(tag);
+            const { value: componentName } = tag;
+            const componentClassName = `${ componentName }_${ id }`;
+            const nextCombinatorIndex = _.findIndexFrom(
+              { type: 'combinator' },
+              tagIndex,
+              selector.nodes
+            );
+            const attributeNodes = getAttributeNodes(
+              tagIndex,
+              nextCombinatorIndex === -1 ? nextCombinatorIndex : selector.nodes.length,
+              selector.nodes
+            );
+            if (nextCombinatorIndex === -1) {
+              blockComponents.add(componentName);
             }
+            components = _.set([componentName, 'className'], componentClassName, components);
+            for (const node of attributeNodes) {
+              components = appendAttribute(id, components, componentName, node);
+            }
+            tag.replaceWith(parser.className({ value: componentClassName }));
           }
-          tag.replaceWith(parser.className({ value: componentClassName }));
         }
-      }).process(rule.selector).result;
-      if (Object.keys(components).length) {
+      };
+      try {
+        rule.selector = parser(parseComponentTagsAndAttributesSelectors).process(
+          rule.selector
+        ).result;
+      } catch (err) {
+        if (err.message !== 'Expected pseudo-class or pseudo-element') {
+          throw err;
+        }
+      }
+      if (blockComponents.size) {
         rule.walkDecls(decl => {
           if (isAttr(decl.value)) {
-            for (const component of Object.keys(components)) {
+            for (const component of blockComponents) {
               components = appendAttr(components, component, rule, decl);
             }
           }
         });
         rule.walkAtRules('apply', atRule => {
-          for (const component of Object.keys(components)) {
-            components = _.set([component, 'base'], atRule.params, components);
-            atRule.remove();
+          if (isElementBase(atRule)) {
+            for (const component of blockComponents) {
+              components = _.set([component, 'base'], atRule.params, components);
+              atRule.remove();
+            }
           }
         });
       }
@@ -60,5 +75,13 @@ module.exports = postcss.plugin('stylesheet', ({ onComponents, id }) => {
   };
 });
 
-const isComponentElement = ({ value }) => value.search(/\b[A-Z]/) > -1;
+const and = _.curry((predicates, value) => _.every(predicate => predicate(value), predicates));
+
+const isComponentElement = ({ value }) => value.search(/[A-Z]/) === 0;
 const isAttr = value => value.search(/attr\(.+?\)/) !== -1;
+const isElementBase = ({ params }) => params.search(/^[A-z]+$/) !== -1;
+
+const matchComponentTags = and([_.matches({ type: 'tag' }), isComponentElement]);
+
+const getAttributeNodes = (tagIndex, separatorIndex, nodes) =>
+  _.flow([_.slice(tagIndex, separatorIndex), _.filter({ type: 'attribute' })])(nodes);

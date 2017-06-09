@@ -1,5 +1,6 @@
 const _ = require('lodash/fp');
 const validAttributes = require('./validAttributes');
+const mapToObject = require('./map-to-object');
 
 exports.createComponentPath = require.resolve('./dist/create-css-component');
 
@@ -13,7 +14,6 @@ exports.preprocess = ({ selector, className, attributes = [], attrs = [], base }
 });
 
 const flagInvalidProps = _.flow([
-  (attributes, attrs) =>
-    _.flatten(_.map(_.get('name'), attributes), _.map(_.get('attributes'), attrs)),
-  _.reduce((invalidProps, prop) => _.set(prop, !validAttributes(prop), invalidProps), {}),
+  (attributes, attrs) => _.flattenDeep(_.map('name', attributes), _.map('attributes', attrs)),
+  mapToObject(prop => !validAttributes(prop)),
 ]);

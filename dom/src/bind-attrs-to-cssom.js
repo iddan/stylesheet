@@ -1,4 +1,4 @@
-import DOMLoad from './dom-load';
+import onDOMLoad from './on-dom-load';
 
 function getFirstStyleSheet() {
   const [firstStyleSheet] = document.styleSheets;
@@ -36,7 +36,7 @@ const bindAttrsToCSSOM = attrs => {
     const cssRule = firstStyleSheet.cssRules[cssRuleIndex];
     return { ...attr, className, cssRule };
   });
-  DOMLoad.then(() => {
+  onDOMLoad(() => {
     for (const attr of boundAttrs) {
       const cssRuleIndex = [...firstStyleSheet.cssRules].indexOf(attr.cssRule);
       firstStyleSheet.removeRule(cssRuleIndex);

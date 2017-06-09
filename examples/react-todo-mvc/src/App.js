@@ -1,32 +1,14 @@
 import React, { Component } from 'react';
-import {
-  Container,
-  NewTodo,
-  Main,
-  ToggleAll,
-  TodoList,
-  TodoItem as StyledTodoItem,
-  TodoView,
-  TodoEdit,
-  Toggle,
-  Destroy,
-} from './App.css';
-
-const TodoItem = ({ editing, onCancel, onDestroy, onEdit, onSave, onToggle, todo }) => (
-  <StyledTodoItem editing={editing}>
-    <TodoView>
-      <Toggle type="checkbox" onChange={onToggle} value={todo.completed} />
-      <label>{todo.title}</label>
-      <Destroy onClick={onDestroy} />
-    </TodoView>
-  </StyledTodoItem>
-);
+import { Container, NewTodo, Main, ToggleAll, TodoList } from './App.css';
+import TodoItem from './TodoItem';
 
 class TodoApp extends Component {
   state = {
     todos: [
       {
+        id: '#1',
         title: 'Say Hello',
+        completed: false,
       },
     ],
   };

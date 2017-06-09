@@ -8,6 +8,7 @@
   "prettier.trailingComma": "es5",
   "prettier.useTabs": false,
   "editor.formatOnSave": true,
+  "eslint.enable": true,
   "files.exclude": {
     "**/node_modules/": "explorerExcludedFiles",
     "_site/": "explorerExcludedFiles",
