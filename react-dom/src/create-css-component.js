@@ -20,7 +20,6 @@ module.exports = function createCSSComponent({
   base = 'div',
   invalidProps,
 }) {
-  console.log(displayName, invalidProps);
   return class CSSComponent extends Component {
     static displayName = displayName;
 
@@ -47,7 +46,6 @@ module.exports = function createCSSComponent({
 
     render() {
       const { props } = this;
-      console.log(invalidProps, props, omitBy((value, key) => this.invalidProps[key]), displayName);
       return createElement(this.base, {
         ...omitBy(props, (value, key) => this.invalidProps[key]),
         className: [

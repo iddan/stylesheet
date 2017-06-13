@@ -20,22 +20,14 @@ module.exports = postcss.plugin('stylesheet', ({ onComponents, id }) => {
         for (const selector of selectorRoot.nodes) {
           for (const tag of selector.nodes.filter(matchComponentTags)) {
             const tagIndex = selector.nodes.indexOf(tag);
-            const { value: componentName } = tag;
+            const componentName = tag.value;
             const componentClassName = `${ componentName }_${ id }`;
-            const nextCombinatorIndex = _.findIndexFrom(
-              { type: 'combinator' },
-              tagIndex,
-              selector.nodes
-            );
-            const attributeNodes = getAttributeNodes(
-              tagIndex,
-              nextCombinatorIndex === -1 ? nextCombinatorIndex : selector.nodes.length,
-              selector.nodes
-            );
+            const nextCombinatorIndex = findNextCombinatorIndexFrom(tagIndex, selector.nodes);
+            const attributeNodes = getAttributeNodes(tagIndex, nextCombinatorIndex, selector.nodes);
+            components = _.set([componentName, 'className'], componentClassName, components);
             if (nextCombinatorIndex === -1) {
               blockComponents.add(componentName);
             }
-            components = _.set([componentName, 'className'], componentClassName, components);
             for (const node of attributeNodes) {
               components = appendAttribute(id, components, componentName, node);
             }
@@ -83,5 +75,7 @@ const isElementBase = ({ params }) => params.search(/^[A-z]+$/) !== -1;
 
 const matchComponentTags = and([_.matches({ type: 'tag' }), isComponentElement]);
 
-const getAttributeNodes = (tagIndex, separatorIndex, nodes) =>
-  _.flow([_.slice(tagIndex, separatorIndex), _.filter({ type: 'attribute' })])(nodes);
+const findNextCombinatorIndexFrom = _.findIndexFrom({ type: 'combinator' });
+
+const getAttributeNodes = (tagIndex, nextCombinatorIndex, nodes) =>
+  _.flow([_.slice(tagIndex, nextCombinatorIndex), _.filter({ type: 'attribute' })])(nodes);

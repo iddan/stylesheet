@@ -1,4 +1,4 @@
-/* eslint-disable promise/no-callback-in-promise */
+/* eslint-disable promise/no-callback-in-promise promise/always-return */
 const postcss = require('postcss');
 const cssLoader = require('css-loader');
 const assert = require('assert');
