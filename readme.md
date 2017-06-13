@@ -45,5 +45,5 @@ Title {
 #### CSS Modules
 A methodology to import CSS tokens (e.g. class names) to JavaScript and converting them to unique identifiers.
 
- - Requires boilreplate code to use as components.
+ - Requires boilerplate code to use as components.
  - Does not provide a solution for dynamic CSS.
