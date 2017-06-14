@@ -1,0 +1,32 @@
+Filters {
+	@apply ul;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	position: absolute;
+	right: 0;
+	left: 0;
+}
+
+Filters li {
+	display: inline;
+}
+
+Filters li Link {
+	@apply a;
+	color: inherit;
+	margin: 3px;
+	padding: 3px 7px;
+	text-decoration: none;
+	border: 1px solid transparent;
+	border-radius: 3px;
+}
+
+Filters li Link[selected],
+Filters li Link:hover {
+	border-color: rgba(175, 47, 47, 0.1);
+}
+
+Filters li Link[selected] {
+	border-color: rgba(175, 47, 47, 0.2);
+}

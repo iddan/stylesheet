@@ -71,7 +71,7 @@ const and = _.curry((predicates, value) => _.every(predicate => predicate(value)
 
 const isComponentElement = ({ value }) => value.search(/[A-Z]/) === 0;
 const isAttr = value => value.search(/attr\(.+?\)/) !== -1;
-const isElementBase = ({ params }) => params.search(/^[A-z]+$/) !== -1;
+const isElementBase = ({ params }) => params.search(/[A-z]/) === 0;
 
 const matchComponentTags = and([_.matches({ type: 'tag' }), isComponentElement]);
 

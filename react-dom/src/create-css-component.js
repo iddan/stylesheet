@@ -21,7 +21,7 @@ module.exports = function createCSSComponent({
   invalidProps,
 }) {
   return class CSSComponent extends Component {
-    static displayName = displayName;
+    static displayName = `Styled(${ displayName })`;
 
     className = className;
     attributes = attributes;
