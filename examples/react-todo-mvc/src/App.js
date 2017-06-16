@@ -101,6 +101,7 @@ class TodoApp extends PureComponent {
   render() {
     const { todos, filter } = this.state;
     const incomplete = todos.reduce((sum, todo) => sum + Number(!todo.completed), 0);
+    const shownTodos = filterTodos(filter, todos);
     return (
       <Container>
         <header>
@@ -114,7 +115,7 @@ class TodoApp extends PureComponent {
             onChange={this.handleToggleAllChange}
           />
           <TodoList>
-            {filterTodos(filter, todos).map(todo => (
+            {shownTodos.map(todo => (
               <TodoItem
                 key={todo.id}
                 id={todo.id}
