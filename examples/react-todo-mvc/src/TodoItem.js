@@ -16,8 +16,13 @@ class TodoItem extends PureComponent {
     editing: false,
   };
 
+  setInput = input => {
+    this.input = input;
+  };
+
   edit = () => {
     this.setState({ editing: true, editedTitle: this.props.title });
+    this.input.focus();
   };
 
   cancelEdit = () => {
@@ -50,11 +55,16 @@ class TodoItem extends PureComponent {
     return (
       <StyledTodoItem editing={editing}>
         <TodoView onDoubleClick={this.edit}>
-          <Toggle type="checkbox" onChange={this.changeComplete} value={completed} />
+          <Toggle type="checkbox" onChange={this.changeComplete} checked={completed} />
           <label>{title}</label>
           <Destroy onClick={this.destroy} />
         </TodoView>
-        <TodoEdit value={editedTitle || title} onBlur={this.cancelEdit} />
+        <TodoEdit
+          innerRef={this.setInput}
+          value={editedTitle || title}
+          onChange={this.handleChange}
+          onBlur={this.cancelEdit}
+        />
       </StyledTodoItem>
     );
   }

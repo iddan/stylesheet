@@ -22,12 +22,13 @@ module.exports = postcss.plugin('stylesheet', ({ onComponents, id }) => {
             const tagIndex = selector.nodes.indexOf(tag);
             const componentName = tag.value;
             const componentClassName = `${ componentName }_${ id }`;
-            const nextCombinatorIndex = findNextCombinatorIndexFrom(tagIndex, selector.nodes);
-            const attributeNodes = getAttributeNodes(tagIndex, nextCombinatorIndex, selector.nodes);
-            components = _.set([componentName, 'className'], componentClassName, components);
+            let nextCombinatorIndex = findNextCombinatorIndexFrom(tagIndex, selector.nodes);
             if (nextCombinatorIndex === -1) {
+              nextCombinatorIndex = selector.nodes.length;
               blockComponents.add(componentName);
             }
+            const attributeNodes = getAttributeNodes(tagIndex, nextCombinatorIndex, selector.nodes);
+            components = _.set([componentName, 'className'], componentClassName, components);
             for (const node of attributeNodes) {
               components = appendAttribute(id, components, componentName, node);
             }

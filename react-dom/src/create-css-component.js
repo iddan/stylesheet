@@ -47,7 +47,8 @@ module.exports = function createCSSComponent({
     render() {
       const { props } = this;
       return createElement(this.base, {
-        ...omitBy(props, (value, key) => this.invalidProps[key]),
+        ref: props.innerRef,
+        ...omitBy(props, (value, key) => this.invalidProps[key] || key === 'innerRef'),
         className: [
           this.className,
           ...this.attrs.map(attr => attr.className),

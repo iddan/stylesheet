@@ -4,6 +4,20 @@ import NewTodo from './NewTodo';
 import TodoItem from './TodoItem';
 import Footer from './Footer';
 
+const filterTodos = (filter, todos) => {
+  switch (filter) {
+    case 'active': {
+      return todos.filter(todo => !todo.completed);
+    }
+    case 'completed': {
+      return todos.filter(todo => todo.completed);
+    }
+    default: {
+      return todos;
+    }
+  }
+};
+
 class TodoApp extends PureComponent {
   state = {
     filter: location.hash.replace('#/', '') || 'all',
@@ -26,6 +40,17 @@ class TodoApp extends PureComponent {
 
   setFilter = filter => {
     this.setState({ filter });
+  };
+
+  handleToggleAllChange = e => {
+    const { checked } = e.target;
+    this.setState(state => ({
+      ...state,
+      todos: state.todos.map(todo => ({
+        ...todo,
+        completed: checked,
+      })),
+    }));
   };
 
   updateTodo = todo => {
@@ -65,9 +90,13 @@ class TodoApp extends PureComponent {
           <NewTodo add={this.addNewTodo} />
         </header>
         <Main>
-          <ToggleAll type="checkbox" />
+          <ToggleAll
+            type="checkbox"
+            checked={todos.length && todos.every(todo => todo.completed)}
+            onChange={this.handleToggleAllChange}
+          />
           <TodoList>
-            {todos.map(todo => (
+            {filterTodos(filter, todos).map(todo => (
               <TodoItem
                 key={todo.id}
                 id={todo.id}

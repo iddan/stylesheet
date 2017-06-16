@@ -1,5 +1,6 @@
 NewTodo,
 TodoEdit {
+	@apply input;
 	position: relative;
 	margin: 0;
 	width: 100%;
