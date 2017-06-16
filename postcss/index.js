@@ -1,7 +1,7 @@
 const postcss = require('postcss');
 const parser = require('postcss-selector-parser');
 const _ = require('lodash/fp');
-const appendAttribute = require('./append-attribute');
+const parseAttributeNodes = require('./parse-attribute-nodes');
 const appendAttr = require('./append-attr');
 
 /**
@@ -28,10 +28,17 @@ module.exports = postcss.plugin('stylesheet', ({ onComponents, id }) => {
               blockComponents.add(componentName);
             }
             const attributeNodes = getAttributeNodes(tagIndex, nextCombinatorIndex, selector.nodes);
-            components = _.set([componentName, 'className'], componentClassName, components);
-            for (const node of attributeNodes) {
-              components = appendAttribute(id, components, componentName, node);
-            }
+            components = _.update(
+              componentName,
+              _.flow([
+                _.set('className', componentClassName),
+                _.update('attributes', (attributes = []) => [
+                  ...attributes,
+                  ...parseAttributeNodes(id, componentName, attributeNodes),
+                ]),
+              ]),
+              components
+            );
             tag.replaceWith(parser.className({ value: componentClassName }));
           }
         }

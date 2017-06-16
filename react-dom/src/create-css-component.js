@@ -49,12 +49,12 @@ module.exports = function createCSSComponent({
     };
 
     matchAttributeToProp = attribute => {
-      const { props } = this;
-      return props[attribute.name] && matchAttribute(attribute, props[attribute.name]);
+      return matchAttribute(attribute, this.props[attribute.name]);
     };
 
     render() {
       const { props } = this;
+      console.log(this.attributes, props);
       return createElement(this.base, {
         ref: props.innerRef,
         ...omitBy(props, this.shouldOmitProp),
