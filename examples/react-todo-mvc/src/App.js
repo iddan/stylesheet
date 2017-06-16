@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { Container, Main, ToggleAll, TodoList } from './App.css';
 import NewTodo from './NewTodo';
 import TodoItem from './TodoItem';
@@ -19,14 +20,25 @@ const filterTodos = (filter, todos) => {
 };
 
 class TodoApp extends PureComponent {
+  static propTypes = {
+    todos: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        completed: PropTypes.bool.isRequired,
+      })
+    ),
+    onTodosChange: PropTypes.func.isRequired,
+  };
+
   state = {
     filter: location.hash.replace('#/', '') || 'all',
-    todos: JSON.parse(localStorage.getItem('todos')) || [],
+    todos: this.props.todos || [],
   };
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.todos !== this.state.todos) {
-      localStorage.setItem('todos', JSON.stringify(this.state.todos));
+      this.props.onTodosChange(this.state.todos);
     }
   }
 
