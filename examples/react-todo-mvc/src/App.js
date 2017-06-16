@@ -21,8 +21,14 @@ const filterTodos = (filter, todos) => {
 class TodoApp extends PureComponent {
   state = {
     filter: location.hash.replace('#/', '') || 'all',
-    todos: [],
+    todos: JSON.parse(localStorage.getItem('todos')) || [],
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.todos !== this.state.todos) {
+      localStorage.setItem('todos', JSON.stringify(this.state.todos));
+    }
+  }
 
   addNewTodo = ({ title }) => {
     this.setState(state => ({
