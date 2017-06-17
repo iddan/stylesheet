@@ -54,7 +54,6 @@ module.exports = function createCSSComponent({
 
     render() {
       const { props } = this;
-      console.log(this.attributes, props);
       return createElement(this.base, {
         ref: props.innerRef,
         ...omitBy(props, this.shouldOmitProp),
