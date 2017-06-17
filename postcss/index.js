@@ -69,7 +69,28 @@ module.exports = postcss.plugin('stylesheet', ({ onComponents, id }) => {
           }
         });
       }
-      allComponents = _.merge(allComponents, components);
+      for (const [componentName, component] of Object.entries(components)) {
+        allComponents = _.update(
+          componentName,
+          _.flow([
+            _.update('className', className => className || component.className),
+            _.update('attributes', (attributes = []) => {
+              if (!component.attributes) {
+                return attributes;
+              }
+              return attributes.concat(component.attributes)
+            }),
+            _.update('attrs', (attrs = []) => {
+              if (!component.attrs) {
+                return attrs;
+              }
+              return attrs.concat(component.attrs)
+            }),
+            _.update('base', base => base || component.base),
+          ]),
+          allComponents
+        );
+      }
     });
     onComponents(allComponents);
   };

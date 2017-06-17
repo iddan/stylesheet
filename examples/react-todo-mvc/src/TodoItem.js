@@ -12,7 +12,6 @@ class TodoItem extends PureComponent {
   };
 
   state = {
-    editedTitle: null,
     editing: false,
   };
 
@@ -20,23 +19,21 @@ class TodoItem extends PureComponent {
     this.input = input;
   };
 
-  edit = () => {
-    this.setState({ editing: true, editedTitle: this.props.title });
+  focusInput = () => {
     this.input.focus();
   };
 
-  cancelEdit = () => {
-    this.setState({ editing: false, editedTitle: null });
+  startEdit = () => {
+    this.setState({ editing: true }, this.focusInput);
   };
 
-  handleChange = e => {
-    this.setState({ editedTitle: e.target.value });
+  endEdit = () => {
+    this.setState({ editing: false });
   };
 
-  save = () => {
+  changeTitle = e => {
     const { onChange, id } = this.props;
-    const { editedTitle } = this.state;
-    onChange({ id, title: editedTitle });
+    onChange({ id, title: e.target.value });
   };
 
   changeComplete = e => {
@@ -51,19 +48,19 @@ class TodoItem extends PureComponent {
 
   render() {
     const { title, completed } = this.props;
-    const { editing, editedTitle } = this.state;
+    const { editing } = this.state;
     return (
       <StyledTodoItem editing={editing}>
-        <TodoView onDoubleClick={this.edit}>
+        <TodoView onDoubleClick={this.startEdit}>
           <Toggle type="checkbox" onChange={this.changeComplete} checked={completed} />
           <label>{title}</label>
           <Destroy onClick={this.destroy} />
         </TodoView>
         <TodoEdit
           innerRef={this.setInput}
-          value={editedTitle || title}
-          onChange={this.handleChange}
-          onBlur={this.cancelEdit}
+          value={title}
+          onChange={this.changeTitle}
+          onBlur={this.endEdit}
         />
       </StyledTodoItem>
     );
