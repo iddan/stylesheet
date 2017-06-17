@@ -6,9 +6,8 @@ const appendAttr = require('./append-attr');
 
 /**
  * @param {Object} options
- * @param {function} options.onComponent
- * @param {function} options.onProp
- * @param {function} options.onAttr
+ * @param {function} options.onComponents
+ * @param {string} options.id
  */
 module.exports = postcss.plugin('stylesheet', ({ onComponents, id }) => {
   return (root, result) => {
