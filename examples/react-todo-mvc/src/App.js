@@ -98,9 +98,15 @@ class TodoApp extends PureComponent {
     });
   };
 
+  handleClearCompleted = () => {
+    this.setState(state => ({
+      todos: state.todos.filter(todo => !todo.completed),
+    }));
+  };
+
   render() {
     const { todos, filter } = this.state;
-    const incomplete = todos.reduce((sum, todo) => sum + Number(!todo.completed), 0);
+    const complete = todos.reduce((sum, todo) => sum + Number(todo.completed), 0);
     const shownTodos = filterTodos(filter, todos);
     return (
       <Container>
@@ -128,7 +134,13 @@ class TodoApp extends PureComponent {
           </TodoList>
         </Main>
         {Boolean(todos.length) &&
-          <Footer onFilterSelect={this.setFilter} filter={filter} incomplete={incomplete} />}
+          <Footer
+            onFilterSelect={this.setFilter}
+            onClearCompleted={this.handleClearCompleted}
+            filter={filter}
+            complete={complete}
+            incomplete={todos.length - complete}
+          />}
       </Container>
     );
   }

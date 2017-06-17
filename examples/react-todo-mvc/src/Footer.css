@@ -33,6 +33,10 @@ TodoCount strong {
 	font-weight: 300;
 }
 
+ClearCompleted {
+	@apply button;
+}
+
 ClearCompleted,
 html ClearCompleted:active {
 	float: right;
@@ -45,6 +49,10 @@ html ClearCompleted:active {
 
 ClearCompleted:hover {
 	text-decoration: underline;
+}
+
+ClearCompleted::after {
+	content: 'Clear completed';
 }
 
 Info {
