@@ -21,7 +21,7 @@ module.exports = function createCSSComponent({
   invalidProps,
 }) {
   return class CSSComponent extends Component {
-    static displayName = displayName;
+    static displayName = `Styled(${ displayName })`;
 
     className = className;
     attributes = attributes;
@@ -34,30 +34,37 @@ module.exports = function createCSSComponent({
       this.applyAttrs(props);
     }
 
+    componentWillUpdate(nextProps) {
+      this.applyAttrs(nextProps);
+    }
+
     applyAttrs = props => {
       for (const attr of this.attrs) {
         attr.cssRule.style[attr.prop] = format(attr.template, props);
       }
     };
 
-    componentWillUpdate(nextProps) {
-      this.applyAttrs(nextProps);
-    }
+    shouldOmitProp = (value, key) => {
+      return this.invalidProps[key] || key === 'innerRef';
+    };
+
+    matchAttributeToProp = attribute => {
+      return matchAttribute(attribute, this.props[attribute.name]);
+    };
 
     render() {
       const { props } = this;
       return createElement(this.base, {
-        ...omitBy(props, (value, key) => this.invalidProps[key]),
+        ref: props.innerRef,
+        ...omitBy(props, this.shouldOmitProp),
         className: [
           this.className,
-          ...this.attrs.map(attr => attr.className),
-          ...this.attributes
-            .filter(
-              attribute => props[attribute.name] && matchAttribute(attribute, props[attribute.name])
-            )
-            .map(attribute => attribute.className),
+          ...this.attrs.map(getClassName),
+          ...this.attributes.filter(this.matchAttributeToProp).map(getClassName),
         ].join(' '),
       });
     }
   };
 };
+
+const getClassName = ({ className }) => className;

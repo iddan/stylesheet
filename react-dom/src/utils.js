@@ -3,7 +3,7 @@ export const omitBy = (object, filter) => {
   for (const key in object) {
     const value = object[key];
     if (!filter(value, key)) {
-      newObj[key] = value; 
+      newObj[key] = value;
     }
   }
   return newObj;

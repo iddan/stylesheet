@@ -1,5 +1,13 @@
 {
-  "extends": "fbjs-opensource",
+  "extends": [
+    "fbjs-opensource",
+    "plugin:lodash-fp/recommended",
+    "plugin:promise/recommended"
+  ],
+  "plugins": [
+    "lodash-fp",
+    "promise"
+  ],
   "rules": {
     "object-curly-spacing": ["warn", "always", {
       "objectsInObjects": false

@@ -1,3 +1,4 @@
+/* eslint-disable promise/no-callback-in-promise promise/always-return */
 const postcss = require('postcss');
 const cssLoader = require('css-loader');
 const assert = require('assert');
@@ -35,7 +36,9 @@ module.exports = function(content) {
           `
                 ${ parsedContent }
         var deepMerge = require(${ stringifyRequest(this, require.resolve('./deep-merge')) });
-        var importedComponentsData = exports.slice(0, exports.length - 1).map(([id]) => __webpack_require__(id).components);
+        var importedComponentsData = exports
+          .slice(0, exports.length - 1)
+          .map(([id]) => __webpack_require__(id).components);
         var createComponent = require(${ stringifyRequest(this, createComponentPath) });
         var moduleData = ${ JSON.stringify(_.mapValues(preprocess, components)) };
         var data = deepMerge.apply(null, importedComponentsData.concat(moduleData));
