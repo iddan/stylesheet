@@ -50,7 +50,7 @@ class TodoItem extends PureComponent {
     const { title, completed } = this.props;
     const { editing } = this.state;
     return (
-      <StyledTodoItem editing={editing}>
+      <StyledTodoItem editing={editing} completed={completed}>
         <TodoView onDoubleClick={this.startEdit}>
           <Toggle type="checkbox" onChange={this.changeComplete} checked={completed} />
           <label>{title}</label>
