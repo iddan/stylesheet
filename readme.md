@@ -5,7 +5,7 @@
 </div>
 
 ```bash
-npm install --save stylesheet
+npm install stylesheet
 ```
 
  - **Pure:** Stylesheet uses pure standard CSS. Wrap your dynamic CSS properties with the experminatal attr() function and Stylesheet will automatically update and render them with your data. So you can develop new features in Stylesheet without rewriting existing code.
