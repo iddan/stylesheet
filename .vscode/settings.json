@@ -9,6 +9,7 @@
   "prettier.useTabs": false,
   "editor.formatOnSave": true,
   "eslint.enable": true,
+  "cSpell.enabled": true,
   "files.exclude": {
     "**/node_modules/": "explorerExcludedFiles",
     "_site/": "explorerExcludedFiles",
