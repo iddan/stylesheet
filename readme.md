@@ -25,6 +25,7 @@ Title {
 
 <h3 align="center">And an integration</h3>
 
+<div align="center">
 <table align="center">
     <tr>
         <td align="center">
@@ -55,6 +56,7 @@ Title {
         </td>
     </tr>
 </table>
+</div>
 
 <h2 align="center">Prior Art and Comparison</h2>
 
