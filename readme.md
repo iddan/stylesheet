@@ -5,7 +5,7 @@
 </div>
 
 ```bash
-npm install --save stylesheet
+npm install stylesheet
 ```
 
  - **Pure:** Stylesheet uses pure standard CSS. Wrap your dynamic CSS properties with the experminatal attr() function and Stylesheet will automatically update and render them with your data. So you can develop new features in Stylesheet without rewriting existing code.
@@ -26,18 +26,36 @@ Title {
 <h3 align="center">And an integration</h3>
 
 <div align="center">
-  <a href="https://github.com/500tech/stylesheet/tree/master/react-dom">
-      <img width="50" src="https://cdn.rawgit.com/500tech/stylesheet/master/assets/react.svg" alt="React Logo" align="center">
-      <span>ReactDOM</span>
-  </a>
-  <a href="https://github.com/500tech/stylesheet/tree/master/vanilla-dom">
-      <img width="50" src="https://cdn.rawgit.com/500tech/stylesheet/master/assets/dom.svg" alt="HTML5 Logo" align="center">
-      <span>Vanilla DOM</span>
-  </a>
-  <a href="https://github.com/500tech/stylesheet/tree/master/loader">
-      <img width="50" src="https://cdn.rawgit.com/500tech/stylesheet/master/assets/webpack.svg" alt="Webpack Logo" align="center">
-      <span>Webpack</span>
-  </a>
+<table align="center">
+    <tr>
+        <td align="center">
+            <a href="https://github.com/500tech/stylesheet/tree/master/react-dom">
+                <img width="50" src="https://cdn.rawgit.com/500tech/stylesheet/master/assets/react.svg" alt="React Logo" align="center">
+            </a>
+        </td>
+        <td align="center">
+            <a href="https://github.com/500tech/stylesheet/tree/master/vanilla-dom">
+                <img width="50" src="https://cdn.rawgit.com/500tech/stylesheet/master/assets/dom.svg" alt="HTML5 Logo" align="center">
+            </a>
+        </td>
+        <td align="center">
+          <a href="https://github.com/500tech/stylesheet/tree/master/loader">
+              <img width="50" src="https://cdn.rawgit.com/500tech/stylesheet/master/assets/webpack.svg" alt="Webpack Logo" align="center">
+          </a>
+        </td>
+    </tr>
+    <tr>
+        <td align="center">
+            <a href="https://github.com/500tech/stylesheet/tree/master/react-dom">ReactDOM</a>
+        </td>
+        <td align="center">
+            <a href="https://github.com/500tech/stylesheet/tree/master/vanilla-dom">Vanilla DOM</a>
+        </td>
+        <td align="center">
+            <a href="https://github.com/500tech/stylesheet/tree/master/loader">Webpack</a>
+        </td>
+    </tr>
+</table>
 </div>
 
 <h2 align="center">Prior Art and Comparison</h2>
