@@ -18,7 +18,7 @@ function insertCSSRule(selector, rule) {
       const cssRule = cssStylesheet.cssRules[i];
       if (cssRule.selectorText && cssRule.selectorText.includes(selector)) {
         cssStylesheet.insertRule(rule, i + 1);
-        return cssStylesheet.rules[i + 1];
+        return cssStylesheet.cssRules[i + 1];
       }
     }
   }
@@ -27,6 +27,16 @@ function insertCSSRule(selector, rule) {
   );
 }
 
+/**
+ * @typedef {Attr} BoundAttr Attr bound to a CSSOM rule
+ * @property {CSSRule} cssRule will be used to apply the result of the attr declaration
+ * @property {string} className cssRule's class name
+ */
+
+/**
+ * @param {Attr[]} attrs
+ * @returns {BoundAttr[]}
+ */
 const bindAttrsToCSSOM = attrs => {
   const firstStyleSheet = getFirstStyleSheet();
   const boundAttrs = attrs.map(attr => {
@@ -39,7 +49,7 @@ const bindAttrsToCSSOM = attrs => {
   onDOMLoad(() => {
     for (const attr of boundAttrs) {
       const cssRuleIndex = [...firstStyleSheet.cssRules].indexOf(attr.cssRule);
-      firstStyleSheet.removeRule(cssRuleIndex);
+      firstStyleSheet.deleteRule(cssRuleIndex);
       attr.cssRule = insertCSSRule(attr.selector, attr.cssRule.cssText);
     }
   });

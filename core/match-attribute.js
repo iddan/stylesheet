@@ -1,5 +1,5 @@
 /**
- * @param {Object} attribute A CSS attribute selector presentation
+ * @param {Object} attribute A CSS attribute selector representation
  * @param {string} attribute.operator
  * @param {string} attribute.value
  * @param {boolean} attribute.insensitive
