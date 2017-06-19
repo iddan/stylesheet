@@ -12,6 +12,7 @@
   "cSpell.enabled": true,
   "files.exclude": {
     "**/node_modules/": "explorerExcludedFiles",
+    "coverage/": "explorerExcludedFiles",
     "_site/": "explorerExcludedFiles",
     "_assets/": "explorerExcludedFiles",
     ".sass-cache/": "explorerExcludedFiles",
