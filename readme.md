@@ -5,9 +5,9 @@
                  alt="NPM Version" />
         </a>
         <a href="https://snyk.io/test/github/500tech/stylesheet">
-            <img src="https://snyk.io/test/github/500tech/stylesheet/badge.svg"
+            <img src="https://snyk.io/test/npm/stylesheet/badge.svg"
                  alt="Known Vulnerabilities"
-                 data-canonical-src="https://snyk.io/test/github/500tech/stylesheet" />
+                 data-canonical-src="https://snyk.io/test/npm/stylesheet"/>
         </a>
         <a href="https://travis-ci.org/500tech/stylesheet">
             <img src="https://travis-ci.org/500tech/stylesheet.svg?branch=master" />
