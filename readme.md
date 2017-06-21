@@ -15,6 +15,10 @@
         <a href="https://codecov.io/gh/500tech/stylesheet">
             <img src="https://codecov.io/gh/500tech/stylesheet/branch/master/graph/badge.svg" alt="Codecov" />
         </a>
+        <a href="https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2F500tech%2Fstylesheet?ref=badge_shield"
+           alt="FOSSA Status">
+            <img src="https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2F500tech%2Fstylesheet.svg?type=shield"/>
+        </a>
     </p>
     <img height="145" src="https://cdn.rawgit.com/500tech/stylesheet/master/assets/stylesheet.svg" alt="Stylesheet Logo" align="center" />
     <h1>Stylesheet</h1>
