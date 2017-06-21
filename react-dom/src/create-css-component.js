@@ -2,6 +2,7 @@ import { createElement, Component } from 'react';
 import { format } from '../../core/template';
 import matchAttribute from '../../core/match-attribute';
 import bindAttrsToCSSOM from '../../dom/dist/bind-attrs-to-cssom';
+import generateClassName from '../../dom/dist/generate-class-name';
 import { omitBy } from './utils.js';
 
 /**
@@ -52,16 +53,14 @@ module.exports = function createCSSComponent({
       return matchAttribute(attribute, this.props[attribute.name]);
     };
 
+    generateClassName = generateClassName({ className, attributes, attrs: this.attrs });
+
     render() {
       const { props } = this;
       return createElement(this.base, {
         ref: props.innerRef,
         ...omitBy(props, this.shouldOmitProp),
-        className: [
-          this.className,
-          ...this.attrs.map(getClassName),
-          ...this.attributes.filter(this.matchAttributeToProp).map(getClassName),
-        ].join(' '),
+        className: this.generateClassName(this.props),
       });
     }
   };

@@ -1,5 +1,9 @@
 import { Label } from './index.css';
 
+const randomInt = max => (Math.random() * max).toFixed(0);
+
+const randomColor = () => `rgb(${ [randomInt(255), randomInt(255), randomInt(255)].join() })`;
+
 const App = () => {
   const container = document.createElement('div');
   container.setAttribute('role', 'container');
@@ -8,13 +12,14 @@ const App = () => {
     fontSize: Math.random() * 100,
     highlighted: true,
     name: 'Ryskin',
+    color: randomColor(),
   });
 
   ryskin.appendChild(document.createTextNode('Ryskinder, please click me!'));
 
   ryskin.addEventListener('click', () => {
     ryskin.fontSize = Math.random() * 100;
-    ryskin.color = `rgb(${ (Math.random() * 255).toFixed(0) }, ${ (Math.random() * 255).toFixed(0) }, ${ (Math.random() * 255).toFixed(0) })`;
+    ryskin.color = randomColor();
   });
 
   const theWhiteScreen = Label.create({

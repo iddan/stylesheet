@@ -1,30 +1,21 @@
 import { format } from '../../core/template';
 import matchAttribute from '../../core/match-attribute';
 import bindAttrsToCSSOM from '../../dom/dist/bind-attrs-to-cssom';
+import generateClassName from '../../dom/dist/generate-class-name';
 
 const getAttributeClassNames = attributes => props =>
   attributes
     .filter(attribute => matchAttribute(attribute, props[attribute.name]))
     .map(attribute => attribute.className);
 
-const createComponent = ({ className, attributes, attrs, base = 'div' }) => class CSSComponent {
-  static create(initialAttributes) {
-    const instance = new CSSComponent(initialAttributes);
-    return instance.element;
-  }
-
-  static getAttributeClassNames = getAttributeClassNames(attributes);
-
-  static propKeys = [
-    ...attributes.map(attribute => attribute.name),
-    ...attrs.reduce((acc, attr) => acc.concat(attr.attributes), []),
-  ];
-
-  element = document.createElement(base);
-
-  attrs = bindAttrsToCSSOM(attrs);
-
+class CSSComponent {
   willUpdate = false;
+
+  constructor(element, attrs, props = {}) {
+    this.element = element;
+    this.attrs = attrs;
+    this.props = props;
+  }
 
   observe(properties) {
     Object.defineProperties(
@@ -37,12 +28,7 @@ const createComponent = ({ className, attributes, attrs, base = 'div' }) => clas
               return this.props[property];
             },
             set: value => {
-              this.props[property] = value;
-              if (!this.willUpdate) {
-                this.willUpdate = true;
-
-                this.render();
-              }
+              this.update({ ...this.props, [property]: value });
               return value;
             },
           },
@@ -52,35 +38,70 @@ const createComponent = ({ className, attributes, attrs, base = 'div' }) => clas
     );
   }
 
-  constructor(props = {}) {
-    this.props = props;
-    this.observe(this.constructor.propKeys);
-    this.render();
+  update(nextProps) {
+    const prevProps = this.props;
+    this.props = nextProps;
+    if (!this.willUpdate) {
+      this.willUpdate = true;
+      setTimeout(() => {
+        this.element.dispatchEvent(
+          Object.assign(new Event('willUpdateStyle'), {
+            props: prevProps,
+            nextProps: this.props,
+          })
+        );
+        this.willUpdate = false;
+        requestAnimationFrame(() => {
+          this.render();
+          this.element.dispatchEvent(
+            Object.assign(new Event('didUpdateStyle'), { prevProps, props: this.props })
+          );
+        });
+      });
+    }
   }
 
-  render = () => {
-    requestAnimationFrame(() => {
-      const { props } = this;
-      this.element.dispatchEvent(
-        Object.assign(
-          new Event('componentWillUpdate', {
-            props,
-          })
-        )
-      );
-      this.element.className = [className]
-        .concat(this.constructor.getAttributeClassNames(props))
-        .concat(this.attrs.map(attr => attr.className))
-        .join(' ');
-      for (const attr of this.attrs) {
-        if (attr.cssRule) {
-          attr.cssRule.style[attr.prop] = format(attr.template, props);
-        }
+  render() {
+    const { props } = this;
+    this.element.className = this.className;
+    for (const attr of this.attrs) {
+      if (attr.cssRule) {
+        attr.cssRule.style[attr.prop] = format(attr.template, props);
       }
-      this.element.dispatchEvent(Object.assign(new Event('componentDidUpdate', { props })));
-      this.willUpdate = false;
-    });
-  };
+    }
+  }
+}
+
+const createComponent = ({ className, attributes, attrs, base = 'div' }) => class
+  extends CSSComponent {
+    static getAttributeClassNames = getAttributeClassNames(attributes);
+
+    static create(initialAttributes) {
+      const instance = new this(initialAttributes);
+      return instance.element;
+    }
+
+    static propKeys = [
+      ...attributes.map(attribute => attribute.name),
+      ...attrs.reduce((acc, attr) => acc.concat(attr.attributes), []),
+    ];
+
+    static className = className;
+    static attributes = attributes;
+    static attrs = attrs;
+    static base = base;
+
+    constructor(props) {
+      super(document.createElement(base), bindAttrsToCSSOM(attrs), props);
+      this.observe(this.constructor.propKeys);
+      this.render();
+    }
+
+    generateClassName = generateClassName({ className, attributes, attrs: this.attrs });
+
+    get className() {
+      return this.generateClassName(this.props);
+    }
 };
 
 module.exports = createComponent;
