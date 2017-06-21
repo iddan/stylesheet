@@ -1,5 +1,5 @@
 import onDOMLoad from '../../dom/dist/on-dom-load';
-import bindAttrsToCSSOM from '../../dist/src/bind-attrs-to-cssom';
+import bindAttrsToCSSOM from '../../dom/dist/bind-attrs-to-cssom';
 
 const style = Object.assign(document.createElement('style'), {
   type: 'text/css',
