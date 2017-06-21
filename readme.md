@@ -9,6 +9,7 @@
                  alt="Known Vulnerabilities"
                  data-canonical-src="https://snyk.io/test/github/500tech/stylesheet" />
         </a>
+        <img src="https://travis-ci.org/500tech/stylesheet.svg?branch=master" />
     </p>
     <img height="145" src="https://cdn.rawgit.com/500tech/stylesheet/master/assets/stylesheet.svg" alt="Stylesheet Logo" align="center" />
     <h1>Stylesheet</h1>
