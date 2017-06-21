@@ -17,7 +17,7 @@
   ],
   "bugs": {
     "url": "https://github.com/iddan/stylesheet/issues",
-    "email": "iddan@500tech.com"
+    "email": "mail@aniddan.com"
   },
   "license": "MIT",
   "main": " ",
@@ -27,15 +27,10 @@
   },
   "directories": {},
   "author": {
-    "name": "500Tech",
-    "email": "info@500tech.com",
-    "url": "500tech.com"
-  },
-  "contributors": [{
     "name": "Iddan Aharonson",
     "email": "mail@aniddan.com",
     "url": "aniddan.com"
-  }],
+  },
   "dependencies": {
     "babel-core": "^6.24.1",
     "css-loader": "^0.28.3",
