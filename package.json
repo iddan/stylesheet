@@ -1,6 +1,6 @@
 {
   "name": "stylesheet",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "description": "Dynamic CSS for user interfaces",
   "scripts": {
     "build": "yarn run build:internal dom; yarn run build:internal vanilla-dom; yarn run build:internal react-dom;",
@@ -31,11 +31,13 @@
     "email": "info@500tech.com",
     "url": "500tech.com"
   },
-  "contributors": [{
-    "name": "Iddan Aharonson",
-    "email": "mail@aniddan.com",
-    "url": "aniddan.com"
-  }],
+  "contributors": [
+    {
+      "name": "Iddan Aharonson",
+      "email": "mail@aniddan.com",
+      "url": "aniddan.com"
+    }
+  ],
   "dependencies": {
     "babel-core": "^6.24.1",
     "css-loader": "^0.28.3",
