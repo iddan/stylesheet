@@ -1,4 +1,4 @@
-import { omitBy } from '../../react-dom/src/utils';
+import { omitBy } from '../../react-dom/dist/utils';
 
 test('Omits every name starts with D', () => {
   expect(
