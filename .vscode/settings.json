@@ -9,5 +9,13 @@
   "prettier.useTabs": false,
   "editor.formatOnSave": true,
   "eslint.enable": true,
-  "cSpell.enabled": true
+  "cSpell.enabled": true,
+  "files.exclude": {
+    "**/node_modules/": "explorerExcludedFiles",
+    "coverage/": "explorerExcludedFiles",
+    "_site/": "explorerExcludedFiles",
+    "_assets/": "explorerExcludedFiles",
+    ".sass-cache/": "explorerExcludedFiles",
+    "search/": "explorerExcludedFiles"
+  }
 }

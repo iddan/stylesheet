@@ -1,7 +1,18 @@
 <div align="center" href="">
+    <p>
+        <a href="https://npm.im/stylesheet">
+            <img src="https://img.shields.io/npm/v/stylesheet.svg"
+                 alt="NPM Version" />
+        </a>
+        <a href="https://snyk.io/test/github/500tech/stylesheet">
+            <img src="https://snyk.io/test/github/500tech/stylesheet/badge.svg"
+                 alt="Known Vulnerabilities"
+                 data-canonical-src="https://snyk.io/test/github/500tech/stylesheet" />
+        </a>
+    </p>
     <img height="145" src="https://cdn.rawgit.com/500tech/stylesheet/master/assets/stylesheet.svg" alt="Stylesheet Logo" align="center" />
-<h1>Stylesheet</h1>
-<p>Dynamic CSS for user interfaces.</p>
+    <h1>Stylesheet</h1>
+    <p>Dynamic CSS for user interfaces.</p>
 </div>
 
 ```bash
