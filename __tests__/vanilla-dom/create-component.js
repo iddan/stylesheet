@@ -1,5 +1,5 @@
 import { preprocess } from '../../vanilla-dom';
-import createComponent from '../../vanilla-dom/src/create-component';
+import createComponent from '../../vanilla-dom/dist/create-component';
 
 test('component shape', () => {
   const Component = createComponent(

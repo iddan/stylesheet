@@ -1,4 +1,4 @@
-import onDOMLoad from '../../dom/src/on-dom-load';
+import onDOMLoad from '../../dom/dist/on-dom-load';
 
 test('Callback is triggered only after document is loaded', () => {
   onDOMLoad(() => {
