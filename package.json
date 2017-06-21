@@ -6,7 +6,7 @@
     "build": "yarn run build:internal dom; yarn run build:internal vanilla-dom; yarn run build:internal react-dom;",
     "build:internal": "build(){ babel $1/src --out-dir $1/dist --source-maps inline; }; build",
     "lint": "eslint core dom loader postcss react-dom vanilla-dom",
-    "test": "jest"
+    "test": "jest && codecov"
   },
   "keywords": [
     "css-modules",
@@ -31,13 +31,11 @@
     "email": "info@500tech.com",
     "url": "500tech.com"
   },
-  "contributors": [
-    {
-      "name": "Iddan Aharonson",
-      "email": "mail@aniddan.com",
-      "url": "aniddan.com"
-    }
-  ],
+  "contributors": [{
+    "name": "Iddan Aharonson",
+    "email": "mail@aniddan.com",
+    "url": "aniddan.com"
+  }],
   "dependencies": {
     "babel-core": "^6.24.1",
     "css-loader": "^0.28.3",
@@ -54,6 +52,7 @@
     "babel-cli": "^6.24.1",
     "babel-preset-env": "^1.2.2",
     "babel-preset-stage-2": "^6.24.1",
+    "codecov": "^2.2.0",
     "eslint": "^3.19.0",
     "eslint-config-fbjs-opensource": "^1.0.0",
     "eslint-plugin-lodash-fp": "^2.1.3",
@@ -73,6 +72,8 @@
   "jest": {
     "setupFiles": [
       "raf/polyfill"
-    ]
+    ],
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
   }
 }
