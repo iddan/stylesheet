@@ -12,8 +12,9 @@
         <a href="https://travis-ci.org/iddan/stylesheet">
             <img src="https://travis-ci.org/iddan/stylesheet.svg?branch=master" />
         </a>
-        <a href="https://codecov.io/gh/iddan/stylesheet">
-            <img src="https://codecov.io/gh/iddan/stylesheet/branch/master/graph/badge.svg" alt="Codecov" />
+        <a href='https://coveralls.io/github/iddan/stylesheet?branch=master'>
+            <img src='https://coveralls.io/repos/github/iddan/stylesheet/badge.svg?branch=master' 
+                 alt='Coverage Status' />
         </a>
         <a href="https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fiddan%2Fstylesheet?ref=badge_shield"
            alt="FOSSA Status">
