@@ -12,6 +12,9 @@
         <a href="https://travis-ci.org/500tech/stylesheet">
             <img src="https://travis-ci.org/500tech/stylesheet.svg?branch=master" />
         </a>
+        <a href="https://codecov.io/gh/500tech/stylesheet">
+            <img src="https://codecov.io/gh/500tech/stylesheet/branch/master/graph/badge.svg" alt="Codecov" />
+        </a>
     </p>
     <img height="145" src="https://cdn.rawgit.com/500tech/stylesheet/master/assets/stylesheet.svg" alt="Stylesheet Logo" align="center" />
     <h1>Stylesheet</h1>
