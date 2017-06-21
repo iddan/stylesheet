@@ -1,6 +1,6 @@
 {
   "name": "stylesheet",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "description": "Dynamic CSS for user interfaces",
   "scripts": {
     "build": "yarn run build:internal dom; yarn run build:internal vanilla-dom; yarn run build:internal react-dom;",
