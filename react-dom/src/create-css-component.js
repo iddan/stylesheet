@@ -29,9 +29,11 @@ module.exports = function createCSSComponent({
     base = base;
     invalidProps = invalidProps;
 
+    attrs = bindAttrsToCSSOM(attrs);
+    generateClassName = generateClassName({ className, attributes, attrs: this.attrs });
+
     constructor(props) {
       super(props);
-      this.attrs = bindAttrsToCSSOM(attrs);
       this.applyAttrs(props);
     }
 
@@ -52,8 +54,6 @@ module.exports = function createCSSComponent({
     matchAttributeToProp = attribute => {
       return matchAttribute(attribute, this.props[attribute.name]);
     };
-
-    generateClassName = generateClassName({ className, attributes, attrs: this.attrs });
 
     render() {
       const { props } = this;
