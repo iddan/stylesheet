@@ -17,7 +17,7 @@
         </a>
         <a href="https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fiddan%2Fstylesheet?ref=badge_shield"
            alt="FOSSA Status">
-            <img src="https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fiddan%2Fstylesheet.svg?type=shield"/>
+            <img src="https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fiddan%2Fstylesheet.svg?type=shield" />
         </a>
     </p>
     <img height="145" src="https://cdn.rawgit.com/iddan/stylesheet/master/assets/stylesheet.svg" alt="Stylesheet Logo" align="center" />
