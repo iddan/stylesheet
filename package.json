@@ -16,14 +16,14 @@
     "dynamic-style-sheets"
   ],
   "bugs": {
-    "url": "https://github.com/500tech/stylesheet/issues",
+    "url": "https://github.com/iddan/stylesheet/issues",
     "email": "iddan@500tech.com"
   },
   "license": "MIT",
   "main": " ",
   "repository": {
     "type": "git",
-    "url": "https://github.com/500tech/stylesheet.git"
+    "url": "https://github.com/iddan/stylesheet.git"
   },
   "directories": {},
   "author": {
@@ -31,13 +31,11 @@
     "email": "info@500tech.com",
     "url": "500tech.com"
   },
-  "contributors": [
-    {
-      "name": "Iddan Aharonson",
-      "email": "mail@aniddan.com",
-      "url": "aniddan.com"
-    }
-  ],
+  "contributors": [{
+    "name": "Iddan Aharonson",
+    "email": "mail@aniddan.com",
+    "url": "aniddan.com"
+  }],
   "dependencies": {
     "babel-core": "^6.24.1",
     "css-loader": "^0.28.3",

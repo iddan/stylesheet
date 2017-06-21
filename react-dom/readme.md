@@ -1,6 +1,6 @@
 <div align="center" href="">
-    <img height="167" src="https://cdn.rawgit.com/500tech/stylesheet/master/assets/stylesheet.svg" alt="Stylesheet Logo" align="center" />
-    <img width="167" src="https://cdn.rawgit.com/500tech/stylesheet/master/assets/react.svg" alt="React Logo" align="center" />
+    <img height="167" src="https://cdn.rawgit.com/iddan/stylesheet/master/assets/stylesheet.svg" alt="Stylesheet Logo" align="center" />
+    <img width="167" src="https://cdn.rawgit.com/iddan/stylesheet/master/assets/react.svg" alt="React Logo" align="center" />
 <h1>Stylesheet ReactDOM</h1>
 <p>Dynamic CSS for React on the Web</p>
 </div>

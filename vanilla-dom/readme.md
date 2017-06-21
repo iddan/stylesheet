@@ -1,6 +1,6 @@
 <div align="center" href="">
-    <img height="167" src="https://cdn.rawgit.com/500tech/stylesheet/master/assets/stylesheet.svg" alt="Stylesheet Logo" align="center" />
-    <img width="167" src="https://cdn.rawgit.com/500tech/stylesheet/master/assets/dom.svg" alt="Stylesheet Logo" align="center" />
+    <img height="167" src="https://cdn.rawgit.com/iddan/stylesheet/master/assets/stylesheet.svg" alt="Stylesheet Logo" align="center" />
+    <img width="167" src="https://cdn.rawgit.com/iddan/stylesheet/master/assets/dom.svg" alt="Stylesheet Logo" align="center" />
 <h1>Stylesheet Vanilla DOM</h1>
 <p>Dynamic CSS for the Web</p>
 </div>

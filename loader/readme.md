@@ -1,8 +1,8 @@
 <div align="center" href="">
-    <img height="167" src="https://cdn.rawgit.com/500tech/stylesheet/master/assets/stylesheet.svg" alt="Stylesheet Logo" align="center" />
-    <img width="167" src="https://cdn.rawgit.com/500tech/stylesheet/master/assets/webpack.svg" alt="Stylesheet Logo" align="center" />
+    <img height="167" src="https://cdn.rawgit.com/iddan/stylesheet/master/assets/stylesheet.svg" alt="Stylesheet Logo" align="center" />
+    <img width="167" src="https://cdn.rawgit.com/iddan/stylesheet/master/assets/webpack.svg" alt="Stylesheet Logo" align="center" />
 <h1>Stylesheet Loader</h1>
-<p><a href="https://webpack.js.org">Webpack</a> loader for <a href="https://github.com/500tech/stylesheet">Stylesheet</a></p>
+<p><a href="https://webpack.js.org">Webpack</a> loader for <a href="https://github.com/iddan/stylesheet">Stylesheet</a></p>
 </div>
 
 <h2 align="center">Usage</h2>

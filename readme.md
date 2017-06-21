@@ -4,23 +4,23 @@
             <img src="https://img.shields.io/npm/v/stylesheet.svg"
                  alt="NPM Version" />
         </a>
-        <a href="https://snyk.io/test/github/500tech/stylesheet">
+        <a href="https://snyk.io/test/github/iddan/stylesheet">
             <img src="https://snyk.io/test/npm/stylesheet/badge.svg"
                  alt="Known Vulnerabilities"
                  data-canonical-src="https://snyk.io/test/npm/stylesheet"/>
         </a>
-        <a href="https://travis-ci.org/500tech/stylesheet">
-            <img src="https://travis-ci.org/500tech/stylesheet.svg?branch=master" />
+        <a href="https://travis-ci.org/iddan/stylesheet">
+            <img src="https://travis-ci.org/iddan/stylesheet.svg?branch=master" />
         </a>
-        <a href="https://codecov.io/gh/500tech/stylesheet">
-            <img src="https://codecov.io/gh/500tech/stylesheet/branch/master/graph/badge.svg" alt="Codecov" />
+        <a href="https://codecov.io/gh/iddan/stylesheet">
+            <img src="https://codecov.io/gh/iddan/stylesheet/branch/master/graph/badge.svg" alt="Codecov" />
         </a>
-        <a href="https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2F500tech%2Fstylesheet?ref=badge_shield"
+        <a href="https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fiddan%2Fstylesheet?ref=badge_shield"
            alt="FOSSA Status">
-            <img src="https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2F500tech%2Fstylesheet.svg?type=shield"/>
+            <img src="https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fiddan%2Fstylesheet.svg?type=shield"/>
         </a>
     </p>
-    <img height="145" src="https://cdn.rawgit.com/500tech/stylesheet/master/assets/stylesheet.svg" alt="Stylesheet Logo" align="center" />
+    <img height="145" src="https://cdn.rawgit.com/iddan/stylesheet/master/assets/stylesheet.svg" alt="Stylesheet Logo" align="center" />
     <h1>Stylesheet</h1>
     <p>Dynamic CSS for user interfaces.</p>
 </div>
@@ -50,30 +50,30 @@ Title {
 <table align="center">
     <tr>
         <td align="center">
-            <a href="https://github.com/500tech/stylesheet/tree/master/react-dom">
-                <img width="50" src="https://cdn.rawgit.com/500tech/stylesheet/master/assets/react.svg" alt="React Logo" align="center">
+            <a href="https://github.com/iddan/stylesheet/tree/master/react-dom">
+                <img width="50" src="https://cdn.rawgit.com/iddan/stylesheet/master/assets/react.svg" alt="React Logo" align="center">
             </a>
         </td>
         <td align="center">
-            <a href="https://github.com/500tech/stylesheet/tree/master/vanilla-dom">
-                <img width="50" src="https://cdn.rawgit.com/500tech/stylesheet/master/assets/dom.svg" alt="HTML5 Logo" align="center">
+            <a href="https://github.com/iddan/stylesheet/tree/master/vanilla-dom">
+                <img width="50" src="https://cdn.rawgit.com/iddan/stylesheet/master/assets/dom.svg" alt="HTML5 Logo" align="center">
             </a>
         </td>
         <td align="center">
-          <a href="https://github.com/500tech/stylesheet/tree/master/loader">
-              <img width="50" src="https://cdn.rawgit.com/500tech/stylesheet/master/assets/webpack.svg" alt="Webpack Logo" align="center">
+          <a href="https://github.com/iddan/stylesheet/tree/master/loader">
+              <img width="50" src="https://cdn.rawgit.com/iddan/stylesheet/master/assets/webpack.svg" alt="Webpack Logo" align="center">
           </a>
         </td>
     </tr>
     <tr>
         <td align="center">
-            <a href="https://github.com/500tech/stylesheet/tree/master/react-dom">ReactDOM</a>
+            <a href="https://github.com/iddan/stylesheet/tree/master/react-dom">ReactDOM</a>
         </td>
         <td align="center">
-            <a href="https://github.com/500tech/stylesheet/tree/master/vanilla-dom">Vanilla DOM</a>
+            <a href="https://github.com/iddan/stylesheet/tree/master/vanilla-dom">Vanilla DOM</a>
         </td>
         <td align="center">
-            <a href="https://github.com/500tech/stylesheet/tree/master/loader">Webpack</a>
+            <a href="https://github.com/iddan/stylesheet/tree/master/loader">Webpack</a>
         </td>
     </tr>
 </table>
