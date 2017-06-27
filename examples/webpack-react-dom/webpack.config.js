@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   module: {
@@ -30,7 +31,13 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, 'public'),
     port: 8080,
+    hotOnly: true,
     historyApiFallback: true,
     inline: true,
   },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+  ],
 };

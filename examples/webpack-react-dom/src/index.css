@@ -11,13 +11,13 @@ Label {
   font-size: 14px;
   user-select: none;
   color: white;
-  background: blue;
+  background: navajowhite;
   padding: 1rem;
   margin: 1rem;
 }
 
 body Label[highlighted] {
-  background: linear-gradient(to top, yellow, attr(color color, tomato));
+  background: linear-gradient(to top, green, attr(color color, tomato));
   font-size: calc(attr(fontSize px) + 12px);
   color: white;
 }

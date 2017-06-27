@@ -3,6 +3,7 @@ import { format } from '../../core/template';
 import matchAttribute from '../../core/match-attribute';
 import bindAttrsToCSSOM from '../../dom/dist/bind-attrs-to-cssom';
 import generateClassName from '../../dom/dist/generate-class-name';
+import Stylesheet from '../hot';
 import { omitBy } from './utils.js';
 
 /**
@@ -23,22 +24,34 @@ module.exports = function createCSSComponent({
 }) {
   return class CSSComponent extends Component {
     static displayName = `Styled(${ displayName })`;
-
-    className = className;
-    attributes = attributes;
-    base = base;
-    invalidProps = invalidProps;
-
-    attrs = bindAttrsToCSSOM(attrs);
-    generateClassName = generateClassName({ className, attributes, attrs: this.attrs });
+    static className = className;
+    static attributes = attributes;
+    static attrs = attrs;
+    static base = base;
+    static invalidProps = invalidProps;
 
     constructor(props) {
       super(props);
-      this.applyAttrs(props);
+      this.init();
+      Stylesheet.register(this);
+    }
+
+    init() {
+      this.attrs = bindAttrsToCSSOM(this.constructor.attrs);
+      this.generateClassName = generateClassName({
+        className: this.constructor.className,
+        attributes: this.constructor.attributes,
+        attrs: this.attrs,
+      });
+      this.applyAttrs(this.props);
     }
 
     componentWillUpdate(nextProps) {
       this.applyAttrs(nextProps);
+    }
+
+    componentWillUnmount() {
+      Stylesheet.unregister(this);
     }
 
     applyAttrs = props => {
@@ -48,7 +61,7 @@ module.exports = function createCSSComponent({
     };
 
     shouldOmitProp = (value, key) => {
-      return this.invalidProps[key] || key === 'innerRef';
+      return this.constructor.invalidProps[key] || key === 'innerRef';
     };
 
     matchAttributeToProp = attribute => {
@@ -57,7 +70,7 @@ module.exports = function createCSSComponent({
 
     render() {
       const { props } = this;
-      return createElement(this.base, {
+      return createElement(this.constructor.base, {
         ref: props.innerRef,
         ...omitBy(props, this.shouldOmitProp),
         className: this.generateClassName(this.props),

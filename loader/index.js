@@ -50,6 +50,12 @@ module.exports = function(content) {
             }))`)
             .join(',\n') }
         };
+        if (module.hot) {
+          for (var key in module.hot.data) {
+            Object.assign(module.hot.data[key], exports.locals[key]); 
+          };
+          module.hot.dispose(data => Object.assign(data, module.hot.data || exports.locals));
+        }
         `,
           sourceMap,
           abstractSyntaxTree
