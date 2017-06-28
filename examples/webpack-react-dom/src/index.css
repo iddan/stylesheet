@@ -17,7 +17,7 @@ Label {
 }
 
 body Label[highlighted] {
-  background: linear-gradient(to top, green, attr(color color, tomato));
+  background: linear-gradient(to top, yellow, attr(color color, tomato));
   font-size: calc(attr(fontSize px) + 12px);
   color: white;
 }
@@ -27,5 +27,5 @@ body Label[name="Ryskin"] {
 }
 
 body Label:not([name="Ryskin"]):not([name="The White Screen"]) {
-  color: pink;
+  color: blueviolet;
 }
