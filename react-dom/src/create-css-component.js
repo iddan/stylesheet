@@ -1,6 +1,5 @@
 import { createElement, Component } from 'react';
 import { format } from '../../core/template';
-import matchAttribute from '../../core/match-attribute';
 import bindAttrsToCSSOM from '../../dom/dist/bind-attrs-to-cssom';
 import generateClassName from '../../dom/dist/generate-class-name';
 import Stylesheet from '../hot';
