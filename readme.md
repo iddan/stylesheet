@@ -30,7 +30,7 @@
 npm install stylesheet
 ```
 
- - **Pure:** Stylesheet uses pure standard CSS. Wrap your dynamic CSS properties with the experminatal attr() function and Stylesheet will automatically update and render them with your data. So you can develop new features in Stylesheet without rewriting existing code.
+ - **Pure:** Stylesheet uses pure standard CSS. Wrap your dynamic CSS properties with an [attr() function][attr] or [attribute selector] and Stylesheet will automatically update and render them with your data. So you can develop new features in Stylesheet without rewriting existing code.
  
  - **Component-Based:** Build reusable, customizable and dynamic front-end UI elements. Since components styles is written in plain CSS you can easily define components's complex relationships, interactions and shared styles.
  
@@ -95,3 +95,6 @@ A methodology to import CSS tokens (e.g. class names) to JavaScript and converti
 
  - Requires boilerplate code to use as components.
  - Does not provide a solution for dynamic CSS.
+
+ [attr]: https://github.com/iddan/stylesheet/wiki/attr()
+ [attribute selector]: https://github.com/iddan/stylesheet/wiki/Attribute-Selector
