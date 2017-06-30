@@ -78,5 +78,3 @@ module.exports = function createCSSComponent({
     }
   };
 };
-
-const getClassName = ({ className }) => className;
