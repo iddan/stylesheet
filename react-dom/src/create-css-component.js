@@ -7,12 +7,13 @@ import Stylesheet from '../hot';
 import { omitBy } from './utils.js';
 
 /**
- * @param {string} displayName
- * @param {string} selector
- * @param {string} className
- * @param {Object} props
- * @param {Object} attrs
- * @param {Object} invalidProps
+ * @param {string} displayName to be displayed in the React Dev Tools wrapped with Styled()
+ * @param {string} className to be used for basic styles bound to the component's tag name
+ * @param {Array<Attribute>} attributes selectors the component can be bound to
+ * @param {Array<Attr>} attrs in properties that the component can be bound to
+ * @param {string} [base] tag the component uses by default
+ * @param {Object} invalidProps to avoid passing to the component's DOM element
+ * @returns {Class<React.Component>}
  */
 module.exports = function createCSSComponent({
   displayName,
@@ -23,6 +24,7 @@ module.exports = function createCSSComponent({
   invalidProps,
 }) {
   return class CSSComponent extends Component {
+    /** Defined on the component so they can be redefined and be updated in instances later */
     static displayName = `Styled(${ displayName })`;
     static className = className;
     static attributes = attributes;
@@ -33,9 +35,14 @@ module.exports = function createCSSComponent({
     constructor(props) {
       super(props);
       this.init();
+      /** Register the instance for hot updates */
       Stylesheet.register(this);
     }
 
+    /**
+     * Defined outside the constructor as it can be reused when the component's static properties change.
+     * Currently used for HMR
+     */
     init() {
       this.attrs = bindAttrsToCSSOM(this.constructor.attrs);
       this.generateClassName = generateClassName({
@@ -54,18 +61,20 @@ module.exports = function createCSSComponent({
       Stylesheet.unregister(this);
     }
 
+    /** Updates the element's CSS properties using attr() */
     applyAttrs = props => {
       for (const attr of this.attrs) {
         attr.cssRule.style[attr.prop] = format(attr.template, props);
       }
     };
 
+    /**
+     * @param {*} value of prop
+     * @param {*} key of prop
+     * @return {boolean}
+     */
     shouldOmitProp = (value, key) => {
       return this.constructor.invalidProps[key] || key === 'innerRef';
-    };
-
-    matchAttributeToProp = attribute => {
-      return matchAttribute(attribute, this.props[attribute.name]);
     };
 
     render() {
