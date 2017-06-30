@@ -80,6 +80,14 @@ Title {
 </table>
 </div>
 
+<div align="center">
+    <p>
+        <a href="https://github.com/iddan/stylesheet/wiki/Bindings">
+            Learn more about integrations
+        </a>
+    </p>
+</div>
+
 <h2 align="center">Prior Art and Comparison</h2>
 
 #### CSS Modules
