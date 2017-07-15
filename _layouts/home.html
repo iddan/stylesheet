@@ -16,16 +16,76 @@
     <section class="features">{{ features | markdownify }}</section>
     <article>
       {% include code-example.html
-        css="Label {
-  background: blue;
+        css="Button {
+  @apply button;
+  min-width: 8rem;
+  padding: .7rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-radius: 4px;
+  margin: 1rem;
+  user-select: none;
+  position: relative;
+}
+
+Button:active::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+}
+
+Button[highlighted] {
+  background: linear-gradient(to top right, #2962FF, attr(backgroundColor color));
+  color: white;
+}
+
+button {
+  border: none;
+  outline: none;
+  font: inherit;
+  background: none;
+  cursor: pointer;
 }"
         js="import React from 'react';
 import ReactDOM from 'react-dom';
-import { Label } from './styles.css';
+import { Button } from './styles.css';
+
+const randomHueValue = () => (Math.random() * 255).toFixed(0);
+
+const randomColor = () => `hsl(${ randomHueValue() }, 100%, 80%`;
 
 class App extends React.Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      backgroundColor: '#18FFFF',
+    }
+    this.changeBackgroundColor = this.changeBackgroundColor.bind(this)
+  }
+  
+  changeBackgroundColor() {
+    this.setState({ backgroundColor: randomColor() })
+  }
+  
   render() {
-    return <Label>Hello</Label>;
+    const { backgroundColor } = this.state; 
+    return (
+      <div>
+        <Button
+          highlighted
+          backgroundColor={ backgroundColor }
+          onClick={ this.changeBackgroundColor }
+        >Click me to change my tint color</Button>
+        <Button>I have no color because I'm not highlighted</Button>
+      </div>
+    );
   }
 }
 
