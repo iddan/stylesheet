@@ -10,6 +10,7 @@ import { preprocess } from 'stylesheet/react-dom';
 import createComponent from 'stylesheet/react-dom/dist/create-css-component';
 import 'codemirror/mode/css/css';
 import 'codemirror/mode/jsx/jsx';
+import 'codemirror/theme/tomorrow-night-bright.css';
 import 'codemirror/lib/codemirror.css';
 
 
@@ -23,6 +24,8 @@ const BABEL_OPTIONS = {
 };
 
 const container = document.getElementById(document.currentScript.getAttribute('data-container-id'));
+const initialCSS = document.currentScript.getAttribute('data-css');
+const initialJS = document.currentScript.getAttribute('data-js');
 
 const compile = text => {
   let components;
@@ -56,8 +59,8 @@ class CodeExample extends Component {
 
   state = {
     raw: {
-      css: container.querySelector('#css').innerText,
-      js: container.querySelector('#js').innerText,
+      css: initialCSS,
+      js: initialJS,
     },
     compiled: {
       components: {},
@@ -73,7 +76,10 @@ class CodeExample extends Component {
 
   handleCSSChange = (css) => {
     this.setState(state => ({ raw: { ...state.raw, css } }));
-    compile(css).then(compiled => this.setState({ compiled }));
+    compile(css)
+      .then(compiled => this.setState({ compiled }))
+      /** @TODO handle parse errors */
+      .catch(err => null);
   }
 
   handleJSChange = (js) => {
@@ -92,39 +98,49 @@ class CodeExample extends Component {
       './styles.css': mapValues(createComponent, this.state.compiled.components),
     };
     const mountNode = this.output;
-    eval(compileJS(this.state.raw.js));
+    try {
+      eval(compileJS(this.state.raw.js));
+    } catch (err) {
+      /** @TODO handle parse errors */
+    }
     /* eslint-enable no-eval, no-unused-vars */
   }
 
   render() {
     const { raw, compiled } = this.state;
     return (
-      <Tabs>
-        <TabList>
-          <Tab>Live Editor</Tab>
-          <Tab>Compiled Code</Tab>
-        </TabList>
-        <TabPanel>
-          <CodeMirror onChange={ this.handleCSSChange }
-                      value={ raw.css }
-                      options={{ mode: 'css', lineWrapping: true }} />
-          <CodeMirror onChange={ this.handleJSChange }
-                      value={ raw.js }
-                      options={{ mode: 'jsx', lineWrapping: true }} />
-        </TabPanel>
-        <TabPanel>
-          <pre><code>{ compiled.css }</code></pre>
-          <pre><code>{
-            Object.entries(compiled.components).map(([name, properties]) => (
-              `export const ${ name } = createComponent(${ JSON.stringify(properties, null, 2) });`
-            )).join('\n')  
-          }</code></pre>
-        </TabPanel>
+      <div className="code-example">
+        <Tabs className="code-example__tabs">
+          <TabList>
+            <Tab>Live Editor</Tab>
+            <Tab>Compiled Code</Tab>
+          </TabList>
+          <TabPanel>
+            <CodeMirror className="code-example__code-panel"
+                        onChange={ this.handleCSSChange }
+                        value={ raw.css }
+                        options={{ mode: 'css', lineWrapping: true, theme: 'tomorrow-night-bright', height: 'auto', viewportMargin: Infinity }} />
+            <CodeMirror className="code-example__code-panel"
+                        onChange={ this.handleJSChange }
+                        value={ raw.js }
+                        options={{ mode: 'jsx', lineWrapping: true, theme: 'tomorrow-night-bright', height: 'auto', viewportMargin: Infinity }} />
+          </TabPanel>
+          <TabPanel>
+            <CodeMirror className="code-example__code-panel"
+                        value={ compiled.css }
+                        options={{ readOnly: true, mode: 'css', lineWrapping: true, theme: 'tomorrow-night-bright', height: 'auto', viewportMargin: Infinity }} />
+            <CodeMirror className="code-example__code-panel"
+                        value={ Object.entries(compiled.components).map(([name, properties]) => (
+  `export const ${ name } = createComponent(${ JSON.stringify(properties, null, 2) });`
+  )).join('\n') }
+                        options={{ readOnly: true, mode: 'jsx', lineWrapping: true, theme: 'tomorrow-night-bright', height: 'auto', viewportMargin: Infinity }} />
+          </TabPanel>
+        </Tabs>
         <style>
-          { compiled.css }
+        { compiled.css }
         </style>
-        <div ref={ this.setOutput } />
-      </Tabs>
+        <div className="code-example__output" ref={ this.setOutput } />
+      </div>
     );
   }
 }

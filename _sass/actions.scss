@@ -15,10 +15,13 @@ section.actions {
     display: block;
   }
 
+  a {
+    margin: 1.5rem auto;
+  }
+
   button {
     @extend %raised-button;
     background: white;
     color: black;
-    margin: 1.5rem auto;
   }
 }

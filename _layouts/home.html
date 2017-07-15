@@ -9,12 +9,28 @@
     <link href="index.css" rel="stylesheet" type="text/css">
   </head>
   <body>
+    {% include github-ribbon.html %}
     {% include header.html %}
     {% include hero.html %}
     {% include actions.html %}
     <section class="features">{{ features | markdownify }}</section>
     <article>
-      {% include code-example.html %}
+      {% include code-example.html
+        css="Label {
+  background: blue;
+}"
+        js="import React from 'react';
+import ReactDOM from 'react-dom';
+import { Label } from './styles.css';
+
+class App extends React.Component {
+  render() {
+    return <Label>Hello</Label>;
+  }
+}
+
+ReactDOM.render(<App />, mountNode);"
+      %}
     </article>
     {% include actions.html %}
     {% include footer.html %}
