@@ -2,3 +2,7 @@ _site
 .sass-cache
 .jekyll-metadata
 **/node_modules/
+coverage
+examples
+react-dom
+style-loader
