@@ -7,8 +7,8 @@
   "prettier.tabWidth": 2,
   "prettier.trailingComma": "es5",
   "prettier.useTabs": false,
+  "prettier.eslintIntegration": true,
   "editor.formatOnSave": true,
-  "eslint.enable": true,
   "cSpell.enabled": true,
   "files.exclude": {
     "**/node_modules/": "explorerExcludedFiles",

@@ -162,10 +162,10 @@ document.querySelector('#root').appendChild(App());
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__loader_normal_loader_js_id_Bk4BUSPrb_bindings_vanilla_dom_index_css__ = __webpack_require__(3);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__loader_normal_loader_js_id_Bk4BUSPrb_bindings_vanilla_dom_index_css__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_extract_text_webpack_plugin_dist_loader_js_ref_0_1_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_postcss_loader_lib_index_js_config_path_Users_iddan_stylesheet_loader_postcss_config_js_ctx_id_Bk4BUSPrb_index_css__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_extract_text_webpack_plugin_dist_loader_js_ref_0_1_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_postcss_loader_lib_index_js_config_path_Users_iddan_stylesheet_loader_postcss_config_js_ctx_id_Bk4BUSPrb_index_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__node_modules_extract_text_webpack_plugin_dist_loader_js_ref_0_1_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_postcss_loader_lib_index_js_config_path_Users_iddan_stylesheet_loader_postcss_config_js_ctx_id_Bk4BUSPrb_index_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__loader_normal_loader_js_id_HkhZLBvS_bindings_vanilla_dom_index_css__ = __webpack_require__(3);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__loader_normal_loader_js_id_HkhZLBvS_bindings_vanilla_dom_index_css__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_extract_text_webpack_plugin_dist_loader_js_ref_0_1_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_postcss_loader_lib_index_js_config_path_Users_iddan_stylesheet_loader_postcss_config_js_ctx_id_HkhZLBvS_index_css__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_extract_text_webpack_plugin_dist_loader_js_ref_0_1_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_postcss_loader_lib_index_js_config_path_Users_iddan_stylesheet_loader_postcss_config_js_ctx_id_HkhZLBvS_index_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__node_modules_extract_text_webpack_plugin_dist_loader_js_ref_0_1_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_postcss_loader_lib_index_js_config_path_Users_iddan_stylesheet_loader_postcss_config_js_ctx_id_HkhZLBvS_index_css__);
 
   
   
@@ -178,7 +178,7 @@ document.querySelector('#root').appendChild(App());
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Label; });
 
-    var data = {"Label":{"className":"Label_Bk4BUSPrb","attributes":[{"name":"highlighted","className":"Label-highlighted__Bk4BUSPrb"},{"operator":"=","name":"name","value":"Ryskin","className":"Label-name_TjNxB_Bk4BUSPrb"}],"attrs":[{"prop":"background","selector":"body .Label_Bk4BUSPrb.Label-highlighted__Bk4BUSPrb","template":"linear-gradient(to top, yellow, { color = \"tomato\"})","attributes":["color"]},{"prop":"fontSize","selector":"body .Label_Bk4BUSPrb.Label-highlighted__Bk4BUSPrb","template":"calc({ fontSize }px + 12px)","attributes":["fontSize"]}],"base":"span"}};
+    var data = {"Label":{"className":"Label_HkhZLBvS-","attributes":[{"name":"highlighted","className":"Label-highlighted__HkhZLBvS-"},{"operator":"=","name":"name","value":"Ryskin","className":"Label-name_TjNxB_HkhZLBvS-"}],"attrs":[{"prop":"background","selector":"body .Label_HkhZLBvS-.Label-highlighted__HkhZLBvS-","template":"linear-gradient(to top, yellow, { color = \"tomato\"})","attributes":["color"]},{"prop":"fontSize","selector":"body .Label_HkhZLBvS-.Label-highlighted__HkhZLBvS-","template":"calc({ fontSize }px + 12px)","attributes":["fontSize"]}],"base":"span"}};
     var createComponent = __webpack_require__(4);
     
   var Label = createComponent(Object.assign({}, data.Label, {

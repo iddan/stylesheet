@@ -9,7 +9,11 @@ class Counter extends PureComponent {
   };
 
   render() {
-    return <div onClick={this.handleClick}>{this.state.count}</div>;
+    return (
+      <div onClick={this.handleClick}>
+        {this.state.count}
+      </div>
+    );
   }
 }
 
@@ -18,7 +22,8 @@ class App extends PureComponent {
 
   handleClick = () => {
     this.setState({
-      color: `rgb(${ (Math.random() * 255).toFixed(0) }, ${ (Math.random() * 255).toFixed(0) }, ${ (Math.random() * 255).toFixed(0) })`,
+      color: `rgb(${ (Math.random() * 255).toFixed(0) }, ${ (Math.random() * 255).toFixed(0) }, ${ (Math.random() *
+        255).toFixed(0) })`,
       fontSize: Math.random() * 100,
     });
   };
@@ -26,11 +31,7 @@ class App extends PureComponent {
   render() {
     return (
       <div>
-        <Label
-          color={this.state.color}
-          fontSize={this.state.fontSize}
-          onClick={this.handleClick}
-          highlighted>
+        <Label color={this.state.color} fontSize={this.state.fontSize} onClick={this.handleClick} highlighted>
           Click Me
         </Label>
         <Label name="The White Screen">The White Screen</Label>

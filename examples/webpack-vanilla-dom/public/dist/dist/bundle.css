@@ -1,0 +1,27 @@
+Label[name="The White Screen"] {
+  background: white;
+  color: red;
+}
+@media screen and (max-width: 250px) {}
+
+body {
+  margin: 0;
+}
+
+.Label_Bk4BUSPrb {
+  font-family: monospace;
+  font-size: 14px;
+  user-select: none;
+  color: white;
+  background: blue;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+body .Label_Bk4BUSPrb.Label-highlighted__Bk4BUSPrb {
+  color: white;
+}
+
+body .Label_Bk4BUSPrb.Label-name_TjNxB_Bk4BUSPrb {
+  color: red;
+}

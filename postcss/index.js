@@ -6,10 +6,11 @@ const appendAttr = require('./append-attr');
 
 /**
  * @param {Object} options
- * @param {function} options.onComponents
  * @param {string} options.id
+ * @param {function} [options.onComponents]
  */
-module.exports = postcss.plugin('stylesheet', ({ onComponents, id }) => {
+module.exports = postcss.plugin('stylesheet', (options = {}) => {
+  const { id, onComponents = () => null } = options;
   return (root, result) => {
     let allComponents = {};
     result.root.walkRules(/\b[A-Z]/, rule => {
@@ -20,7 +21,7 @@ module.exports = postcss.plugin('stylesheet', ({ onComponents, id }) => {
           for (const tag of selector.nodes.filter(matchComponentTags)) {
             const tagIndex = selector.nodes.indexOf(tag);
             const componentName = tag.value;
-            const componentClassName = `${ componentName }_${ id }`;
+            const componentClassName = `${componentName}_${id}`;
             let nextCombinatorIndex = findNextCombinatorIndexFrom(tagIndex, selector.nodes);
             if (nextCombinatorIndex === -1) {
               nextCombinatorIndex = selector.nodes.length;
@@ -77,13 +78,13 @@ module.exports = postcss.plugin('stylesheet', ({ onComponents, id }) => {
               if (!component.attributes) {
                 return attributes;
               }
-              return attributes.concat(component.attributes)
+              return attributes.concat(component.attributes);
             }),
             _.update('attrs', (attrs = []) => {
               if (!component.attrs) {
                 return attrs;
               }
-              return attrs.concat(component.attrs)
+              return attrs.concat(component.attrs);
             }),
             _.update('base', base => base || component.base),
           ]),

@@ -1,0 +1,32 @@
+Label[name="The White Screen"] {
+  background: white;
+  color: red;
+  border: 1px solid gainsboro;
+}
+@media screen and (max-width: 250px) {}
+
+body {
+  margin: 0;
+}
+
+.Label_ryd7NBwBZ {
+  font-family: monospace;
+  font-size: 14px;
+  user-select: none;
+  color: blue;
+  background: navajowhite;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+body .Label_ryd7NBwBZ.Label-highlighted__ryd7NBwBZ {
+  color: white;
+}
+
+body .Label_ryd7NBwBZ.Label-name_TjNxB_ryd7NBwBZ {
+  color: red;
+}
+
+body .Label_ryd7NBwBZ:not([name="Ryskin"]):not([name="The White Screen"]) {
+  color: blueviolet;
+}

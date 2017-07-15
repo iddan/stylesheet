@@ -1,47 +1,41 @@
 const path = require('path');
 const webpack = require('webpack');
+const config = require('./webpack.config.base');
 
-module.exports = {
-  module: {
+const { module: { rules = [] }, plugins = [] } = config;
+
+module.exports = Object.assign(config, {
+  module: Object.assign(config.module, {
     rules: [
-      {
-        test: /\.js/,
-        use: 'babel-loader'
-      },
+      ...rules,
       {
         test: /\.css/,
         use: [
-          'style-loader',
           {
             loader: 'stylesheet/loader',
             query: {
               sourceMap: true,
-              bindings: 'react-dom',
+              bindings: 'vanilla-dom',
             },
           },
+          'style-loader',
+          'css-loader',
         ],
       },
     ],
-  },
-  externals: {
-    'react': 'React',
-    'react-dom': 'ReactDOM',
-  },
-  entry: './src/index.js',
-  output: {
-    filename: 'dist/bundle.js',
-  },
+  }),
   devtool: 'sourcemaps',
   devServer: {
-    contentBase: path.join(__dirname, 'public'),
+    contentBase: path.resolve(__dirname, '../public'),
     port: 8080,
     hotOnly: true,
     historyApiFallback: true,
     inline: true,
   },
   plugins: [
+    ...plugins,
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
   ],
-};
+});
