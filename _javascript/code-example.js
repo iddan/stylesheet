@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import postcss from 'postcss';
 import CodeMirror from 'react-codemirror';
 import * as Babel from 'babel-standalone';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import mapValues from 'lodash/fp/mapValues';
 import postcssPlugin from 'stylesheet/postcss';
 import { preprocess } from 'stylesheet/react-dom';
@@ -98,28 +99,32 @@ class CodeExample extends Component {
   render() {
     const { raw, compiled } = this.state;
     return (
-      <div className="code-example">
-        <div>
+      <Tabs>
+        <TabList>
+          <Tab>Live Editor</Tab>
+          <Tab>Compiled Code</Tab>
+        </TabList>
+        <TabPanel>
           <CodeMirror onChange={ this.handleCSSChange }
                       value={ raw.css }
                       options={{ mode: 'css', lineWrapping: true }} />
           <CodeMirror onChange={ this.handleJSChange }
                       value={ raw.js }
                       options={{ mode: 'jsx', lineWrapping: true }} />
-        </div>
-        <div>
+        </TabPanel>
+        <TabPanel>
           <pre><code>{ compiled.css }</code></pre>
           <pre><code>{
             Object.entries(compiled.components).map(([name, properties]) => (
               `export const ${ name } = createComponent(${ JSON.stringify(properties, null, 2) });`
             )).join('\n')  
           }</code></pre>
-        </div>
+        </TabPanel>
         <style>
           { compiled.css }
         </style>
         <div ref={ this.setOutput } />
-      </div>
+      </Tabs>
     );
   }
 }
