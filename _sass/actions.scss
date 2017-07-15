@@ -1,19 +1,24 @@
-%button-reset {
-  padding: .5rem;
-}
+@import './button';
 
 section.actions {
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 1rem auto;
 
   code {
     padding: .5rem;
     background: black;
+    font-size: 1.25rem;
     color: white;
+    display: block;
   }
 
   button {
-    @extend %button-reset;
-    padding: .5em;
-    box-shadow: 2px solid #000;
+    @extend %raised-button;
+    background: white;
+    color: black;
+    margin: 1.5rem auto;
   }
 }

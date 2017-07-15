@@ -1,0 +1,45 @@
+@import './material-shadow.scss';
+
+%button-reset {
+  background: none;
+  border: none;
+  font: inherit;
+  color: inherit;
+  outline: none;
+}
+
+%raised-button {
+  @extend %button-reset;
+  @include material-shadow(1);
+  min-width: 6rem;
+  padding: .5em;
+  text-transform: uppercase;
+  font: {
+    weight: 500;
+    size: .9rem;
+  }
+  border-radius: 4px;
+  transition: box-shadow .1s;
+  position: relative;
+  cursor: pointer;
+
+  &:hover {
+    @include material-shadow(2);
+  }
+
+  &:active {
+    @include material-shadow(1);
+
+    &::after {
+      content: '';
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.05);
+      display: block;
+      pointer-events: none;
+    }
+  }
+}

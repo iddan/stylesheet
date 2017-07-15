@@ -1,8 +1,8 @@
 _site
 .sass-cache
 .jekyll-metadata
-**/node_modules/
+
+**/node_modules/**
 coverage
 examples
 react-dom
-style-loader

@@ -3,10 +3,9 @@
     "_site": "explorerExcludedFiles",
     ".sass-cache": "explorerExcludedFiles",
     ".jekyll-metadata": "explorerExcludedFiles",
-    "**/node_modules/": "explorerExcludedFiles",
+    "**/node_modules/**": "explorerExcludedFiles",
     "coverage": "explorerExcludedFiles",
     "examples": "explorerExcludedFiles",
-    "react-dom": "explorerExcludedFiles",
-    "style-loader": "explorerExcludedFiles"
+    "react-dom": "explorerExcludedFiles"
   }
 }
