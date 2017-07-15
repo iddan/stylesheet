@@ -22,7 +22,7 @@
         </a>
     </p>
     <img height="145" src="https://cdn.rawgit.com/iddan/stylesheet/master/assets/stylesheet.svg" alt="Stylesheet Logo" align="center" />
-    <h1>Stylesheet</h1>
+    <a href="https://iddan.github.io/stylesheet"><h1>Stylesheet</h1></a>
     <p>Dynamic CSS for user interfaces.</p>
 </div>
 
