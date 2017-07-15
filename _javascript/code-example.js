@@ -58,6 +58,7 @@ const compileJS = (js) => `
 class CodeExample extends Component {
 
   state = {
+    tabIndex: 0,
     raw: {
       css: initialCSS,
       js: initialJS,
@@ -106,14 +107,19 @@ class CodeExample extends Component {
     /* eslint-enable no-eval, no-unused-vars */
   }
 
+  handleTabSelect = (tabIndex) => {
+    this.setState({ tabIndex })
+  }
+
   render() {
-    const { raw, compiled } = this.state;
+    const { raw, compiled, tabIndex } = this.state;
     return (
       <div className="code-example">
-        <Tabs className="code-example__tabs">
+        <Tabs className="code-example__tabs" onSelect={ this.handleTabSelect }>
           <TabList>
             <Tab>Live Editor</Tab>
             <Tab>Compiled Code</Tab>
+            <div className="code-example__indicator" style={{ transform: `translateX(${ tabIndex * 100 + '%' })` }} />
           </TabList>
           <TabPanel>
             <CodeMirror className="code-example__code-panel"

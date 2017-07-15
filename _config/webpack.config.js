@@ -29,8 +29,6 @@ module.exports = {
   externals: {
     'react': 'React',
     'react-dom': 'ReactDOM',
-    fs: '{}',
-    module: '{}',
   },
   entry: {
     'code-example': './_javascript/code-example',

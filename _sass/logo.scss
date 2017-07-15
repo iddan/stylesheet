@@ -1,4 +1,6 @@
 .logo {
-  font-family: 'Playfair Display SC', serif;
-  font-weight: 600;
+  font: {
+    family: 'Playfair Display SC', serif;
+    weight: 900;
+  }
 }

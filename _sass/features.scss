@@ -6,6 +6,11 @@ section.features {
   margin: 2rem 3rem;
 
   h3 {
+    font: {
+      family: 'Playfair Display', serif;
+      weight: 700;
+      style: italic;
+    }
     grid-row: 1;
     margin: 0;
   }

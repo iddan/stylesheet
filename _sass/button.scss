@@ -12,7 +12,7 @@
   @extend %button-reset;
   @include material-shadow(1);
   min-width: 6rem;
-  padding: .5em;
+  padding: .6em 1rem;
   text-transform: uppercase;
   font: {
     weight: 500;

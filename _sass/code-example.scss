@@ -22,7 +22,7 @@
   &__output {
     min-width: 30rem;
     flex: 1;
-    margin-top: calc(2rem + 6px);
+    margin-top: calc(3.5rem + 2px);
     margin-left: 3rem;
   }
 
@@ -32,13 +32,34 @@
     flex-direction: row;
 
     .react-tabs__tab {
-      padding: .5rem 1rem;
-      border: 2px solid black;
+      width: 10em;
+      background: white;
+      color: black;
+      transition: background .1s;
+      padding: 1rem 0;
+      cursor: pointer;
+      text: {
+        transform: uppercase;
+        align: center;
+      }
+      outline: none;
+      user-select: none;
+      font-weight: 500;
 
-      &--selected {
-        background: black;
-        color: white;
+      &:active {
+        background: darken(white, 5%);
       }
     }
+    position: relative;
+    margin-bottom: .5rem;
+  }
+
+  &__indicator {
+    width: 10em;
+    height: 3px;
+    background: black;
+    position: absolute;
+    bottom: 0;
+    transition: transform .2s;
   }
 }
