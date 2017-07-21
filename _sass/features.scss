@@ -1,8 +1,4 @@
 section.features {
-  display: grid;
-  grid-template-rows: auto;
-  grid-template-columns: repeat(3, auto);
-  grid-column-gap: 3em;
   margin: 2rem 3rem;
 
   h3 {
@@ -11,7 +7,18 @@ section.features {
       weight: 700;
       style: italic;
     }
-    grid-row: 1;
-    margin: 0;
+    margin: 0 0 2em;
+  }
+
+  @media (min-width: 60em) {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: repeat(3, auto);
+    grid-column-gap: 3em;
+
+    h3 {
+      grid-row: 1;
+      margin: 0;
+    }
   }
 }
